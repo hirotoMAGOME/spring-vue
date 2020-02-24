@@ -29,6 +29,7 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 	compile('javax.xml.bind:jaxb-api:2.3.0')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 }
 
 test {
