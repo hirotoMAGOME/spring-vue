@@ -4,6 +4,9 @@
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 
     menu
+        <img src="../assets/logo.png">
+    <router-view/>
+    <button class="btn btn-primary">test</button>
   </div>
 </template>
 
