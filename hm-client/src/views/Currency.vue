@@ -5,7 +5,26 @@
                 <div slot="header" class="clearfix">
                     <span>仮想通貨一覧</span>
                 </div>
-                <div>...</div>
+                <el-table
+                        :data="currencies"
+                        style="width: 100%">
+                    <el-table-column
+                            prop="id"
+                            label="通貨ID"
+                            width="300"/>
+                    <el-table-column
+                            prop="name"
+                            label="通貨名"
+                            width="300"/>
+                    <el-table-column
+                            prop="symbol"
+                            label="通貨単位"
+                            width="300"/>
+                    <el-table-column
+                            prop="amount"
+                            label="数量"
+                            width="300"/>
+                </el-table>
             </el-card>
         </el-col>
     </el-row>
