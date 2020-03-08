@@ -10,3 +10,5 @@ logging:
   file:
     path:
     name: my.log
+#  level:
+#    root: DEBUG
