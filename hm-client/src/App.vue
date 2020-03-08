@@ -1,19 +1,23 @@
 <template>
   <div id="app">
+    <SharedHeader />
     <HelloWorld msg="Welcome to Your Vue.js App" />
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import SharedHeader from "./components/SharedHeader";
+import HelloWorld from "./components/HelloWorld";
 
 export default {
   name: "App",
   components: {
-    HelloWorld
+    HelloWorld,
+    SharedHeader
   }
 };
+
 </script>
 
 <style>
