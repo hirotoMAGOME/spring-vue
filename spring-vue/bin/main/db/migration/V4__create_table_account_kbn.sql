@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS cd_account_kbn;
+
+CREATE TABLE `cd_account_kbn` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `code` VARCHAR(64) NOT NULL,
+  `name` VARCHAR(64),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

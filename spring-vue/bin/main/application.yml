@@ -1,0 +1,14 @@
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/hm?autoReconnect=true&useSSL=false&serverTimezone=JST
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+logging:
+  file:
+    path:
+    name: my.log
+#  level:
+#    root: DEBUG
