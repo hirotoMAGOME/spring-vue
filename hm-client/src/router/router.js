@@ -28,6 +28,11 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue'),
     },
+    {
+      path: "/asset",
+      name: "asset",
+      component: () => import(/* webpackChunkName: "currency" */ '@/views/Asset.vue')
+    },
     // ここを追加
     {
       path: "/currency",
