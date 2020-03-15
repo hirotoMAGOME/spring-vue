@@ -3,12 +3,16 @@ package hm.springapi.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-@Entity(name="cd_account_kbn")
+@Entity(name="m_account")
 @Setter
 @Getter
 public class Account {
@@ -17,10 +21,22 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /** 仮想通貨名 */
-    private String code;
-
-    /** シンボル */
+    /** 口座名 */
+    @Column
     private String name;
-
+    
+    /** 作成日時 */
+    @Column
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created_at;
+    
+    /** 更新日時 */
+    @Column
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updated_at;
+    
+    /** 削除日時 */
+    @Column
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date deleted_at;
 }

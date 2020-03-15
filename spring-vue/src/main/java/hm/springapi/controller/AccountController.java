@@ -16,7 +16,7 @@ public class AccountController {
 
     private final AccountService accountService;
 
-    @GetMapping("/")
+    @GetMapping("/account")
     public ResponseEntity<AccountResponse> findAll() {
         List<Account> accounts = accountService.findAll();
         AccountResponse accountResponse = AccountResponse.builder()
