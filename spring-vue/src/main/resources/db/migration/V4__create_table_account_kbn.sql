@@ -1,9 +1,11 @@
-DROP TABLE IF EXISTS cd_account_kbn;
+DROP TABLE IF EXISTS m_account_type;
 
-CREATE TABLE `cd_account_kbn` (
+CREATE TABLE `m_account_type` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `code` VARCHAR(64) NOT NULL,
-  `name` VARCHAR(64),
+  `name` VARCHAR(64) NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_at` DATETIME,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

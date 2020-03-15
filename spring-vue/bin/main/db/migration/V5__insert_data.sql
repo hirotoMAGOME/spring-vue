@@ -1,1 +1,1 @@
-INSERT INTO cd_account_kbn (id,code,name) VALUES (1,'01','現金'),(2,'02','銀行口座'),(3,'03','仮想通貨口座'),(4,'04','株式口座'),(5,'05','FX口座');
+INSERT INTO m_account_type (id,name) VALUES (1,'現金'),(2,'銀行口座'),(3,'仮想通貨口座'),(4,'株式口座'),(5,'FX口座');
