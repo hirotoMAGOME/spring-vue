@@ -5,7 +5,7 @@ CREATE TABLE `m_account_type` (
   `name` VARCHAR(64) NOT NULL,
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `deleted_at` DATETIME DEFAULT null,
+  `deleted_at` DATETIME,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
