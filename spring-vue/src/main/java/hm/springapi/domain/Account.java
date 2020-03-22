@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity(name="m_account")
 @Setter
 @Getter
@@ -48,7 +50,9 @@ public class Account {
     
     /****/
     @ManyToOne
+    @JsonBackReference("Account")
     @JoinColumn(name="account_type_id",referencedColumnName="id",nullable=false,unique=true,insertable = false, updatable = false)
     private AccountType accountType;
+    
     
 }
