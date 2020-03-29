@@ -38,5 +38,5 @@ INSERT INTO m_budget_category (id,user_id,name) VALUES (2,2,"カテゴリ2");
 INSERT INTO m_budget_category (id,user_id,name) VALUES (3,2,"カテゴリ3");
 INSERT INTO m_budget_category (id,user_id,name) VALUES (4,2,"カテゴリ4");
 INSERT INTO m_budget_category (id,user_id,name) VALUES (5,2,"カテゴリ5");
-INSERT INTO a_budget (id,appropriate_month,budget_category_id,name,price) VALUES (1,NULL,1,"サンプル予算",100);
-INSERT INTO a_budget (id,appropriate_month,budget_category_id,name,price) VALUES (2,NULL,2,"サンプル予算2",200);
+INSERT INTO a_budget (id,appropriate_month,budget_category_id,name,amount) VALUES (1,NULL,1,"サンプル予算",100);
+INSERT INTO a_budget (id,appropriate_month,budget_category_id,name,amount) VALUES (2,NULL,2,"サンプル予算2",200);
