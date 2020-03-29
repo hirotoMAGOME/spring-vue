@@ -25,7 +25,7 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /** ©“®Ì”ÔID */
+    /** ŒûÀí—ŞID */
     @Column
     private Long account_type_id;
     

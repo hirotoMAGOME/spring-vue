@@ -33,7 +33,11 @@ export default new Router({
       name: "asset",
       component: () => import(/* webpackChunkName: "currency" */ '@/views/Asset.vue')
     },
-    // ここを追加
+    {
+      path: "/asset/cash",
+      name: "cash",
+      component: () => import(/* webpackChunkName: "Cash" */ '@/views/Cash.vue')
+    },
     {
       path: "/currency",
       name: "currency",

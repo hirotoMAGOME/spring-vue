@@ -7,7 +7,7 @@
         <p
           class="card-text"
         >Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <a href="/asset/cash/" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
     <div class="card col-4">
@@ -92,7 +92,7 @@ export default {
   },
   methods: {
     refresh: async function() {
-      const res = await axios.get("http://localhost:8080/account");
+      const res = await axios.get("http://localhost:8080/asset");
       //const res = await axios.get('/')
       this.accounts = res.data.accounts;
       console.log(res);
