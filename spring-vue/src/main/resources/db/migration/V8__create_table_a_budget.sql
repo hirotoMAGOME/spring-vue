@@ -1,42 +1,36 @@
 DROP TABLE IF EXISTS m_budget_category;
 
 CREATE TABLE `m_budget_category` (
-  `id` BIGINT UNSIGNED unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` BIGINT UNSIGNED NOT NULL,
-  `name` VARCHAR(64) NOT NULL,
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` INT UNSIGNED NOT NULL,
+  `name` VARCHAR(64) NULL,
+  `fixed_flg` TINYINT UNSIGNED NOT NULL,
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `deleted_at` DATETIME,
+  `deleted_at` DATETIME NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `m_user` (`id`)
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `id_idx` (`user_id` ASC) VISIBLE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 DROP TABLE IF EXISTS a_budget;
 
 CREATE TABLE `a_budget` (
-  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `appropriate_month` DATE,
-  `budget_category_id` BIGINT UNSIGNED NOT NULL,
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `appropriate_month` DATE NULL,
+  `budget_category_id` INT UNSIGNED NOT NULL,
+  `amount` INT NOT NULL DEFAULT 0,
   `name` VARCHAR(64) NOT NULL,
-  `amount` INT NOT NULL,
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_user_id` BIGINT UNSIGNED NOT NULL DEFAULT 1,
+  `created_user_id` INT UNSIGNED NOT NULL DEFAULT 0,
   `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_user_id` BIGINT UNSIGNED NOT NULL DEFAULT 1,
-  `deleted_at` DATETIME,
-  `deleted_user_id` BIGINT UNSIGNED DEFAULT 1,
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`budget_category_id`) REFERENCES `m_account_type` (`id`),
-  FOREIGN KEY (`created_user_id`) REFERENCES `m_user` (`id`),
-  FOREIGN KEY (`updated_user_id`) REFERENCES `m_user` (`id`),
-  FOREIGN KEY (`deleted_user_id`) REFERENCES `m_user` (`id`)
+  `updated_user_id` INT UNSIGNED NOT NULL DEFAULT 0,
+  `deleted_at` DATETIME NULL,
+  `deleted_user_id` INT UNSIGNED NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO m_budget_category (id,user_id,name) VALUES (1,2,"カテゴリ1");
-INSERT INTO m_budget_category (id,user_id,name) VALUES (2,2,"カテゴリ2");
-INSERT INTO m_budget_category (id,user_id,name) VALUES (3,2,"カテゴリ3");
-INSERT INTO m_budget_category (id,user_id,name) VALUES (4,2,"カテゴリ4");
-INSERT INTO m_budget_category (id,user_id,name) VALUES (5,2,"カテゴリ5");
-INSERT INTO a_budget (id,appropriate_month,budget_category_id,name,amount) VALUES (1,NULL,1,"サンプル予算",100);
-INSERT INTO a_budget (id,appropriate_month,budget_category_id,name,amount) VALUES (2,NULL,2,"サンプル予算2",200);
+INSERT INTO `hm`.`m_budget_category` (`id`, `user_id`, `name`, `fixed_flg`, `created_at`, `updated_at`, `deleted_at`) VALUES (1, 1, '水道', 1, DEFAULT, DEFAULT, NULL);
+INSERT INTO `hm`.`m_budget_category` (`id`, `user_id`, `name`, `fixed_flg`, `created_at`, `updated_at`, `deleted_at`) VALUES (2, 1, 'LINE MOBILE', 1, DEFAULT, DEFAULT, NULL);
+INSERT INTO `hm`.`m_budget_category` (`id`, `user_id`, `name`, `fixed_flg`, `created_at`, `updated_at`, `deleted_at`) VALUES (3, 1, '？？？', 0, DEFAULT, DEFAULT, NULL);

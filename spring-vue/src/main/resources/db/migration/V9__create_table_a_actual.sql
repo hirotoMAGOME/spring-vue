@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS `hm`.`a_actual` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `appropriate_month` DATE NULL,
+  `settled_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `budget_id` INT UNSIGNED NOT NULL,
+  `account_id` INT UNSIGNED NOT NULL,
+  `price` INT NOT NULL DEFAULT 0,
+  `name` VARCHAR(64) NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_user_id` INT UNSIGNED NOT NULL DEFAULT 0,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_user_id` INT UNSIGNED NOT NULL DEFAULT 0,
+  `deleted_at` DATETIME NULL,
+  `deleted_user_id` INT UNSIGNED NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  INDEX `id_idx` (`created_user_id` ASC, `updated_user_id` ASC, `deleted_user_id` ASC) VISIBLE,
+  INDEX `id_idx1` (`account_id` ASC) VISIBLE,
+  INDEX `id_idx2` (`budget_id` ASC) VISIBLE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
