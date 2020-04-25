@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS `hm`.`m_currency` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(64) NOT NULL,
+  `mark` VARCHAR(64) NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted_at` DATETIME NULL,
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+INSERT INTO `hm`.`m_currency` (`id`, `name`, `mark`) VALUES (1, '円', '\\');
