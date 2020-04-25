@@ -34,3 +34,7 @@ CREATE TABLE `a_budget` (
 INSERT INTO `hm`.`m_budget_category` (`id`, `user_id`, `name`, `fixed_flg`, `created_at`, `updated_at`, `deleted_at`) VALUES (1, 1, '水道', 1, DEFAULT, DEFAULT, NULL);
 INSERT INTO `hm`.`m_budget_category` (`id`, `user_id`, `name`, `fixed_flg`, `created_at`, `updated_at`, `deleted_at`) VALUES (2, 1, 'LINE MOBILE', 1, DEFAULT, DEFAULT, NULL);
 INSERT INTO `hm`.`m_budget_category` (`id`, `user_id`, `name`, `fixed_flg`, `created_at`, `updated_at`, `deleted_at`) VALUES (3, 1, '？？？', 0, DEFAULT, DEFAULT, NULL);
+
+INSERT INTO `hm`.`a_budget` (`id`, `appropriate_month`, `budget_category_id`, `amount`, `name`, `created_at`, `created_user_id`, `updated_at`, `updated_user_id`, `deleted_at`, `deleted_user_id`) VALUES (1, NULL, 1, -2000, '水道', DEFAULT, DEFAULT, DEFAULT, DEFAULT, NULL, NULL);
+INSERT INTO `hm`.`a_budget` (`id`, `appropriate_month`, `budget_category_id`, `amount`, `name`, `created_at`, `created_user_id`, `updated_at`, `updated_user_id`, `deleted_at`, `deleted_user_id`) VALUES (2, NULL, 2, -2000, 'LINE MOBILE', DEFAULT, DEFAULT, DEFAULT, DEFAULT, NULL, NULL);
+INSERT INTO `hm`.`a_budget` (`id`, `appropriate_month`, `budget_category_id`, `amount`, `name`, `created_at`, `created_user_id`, `updated_at`, `updated_user_id`, `deleted_at`, `deleted_user_id`) VALUES (3, NULL, 3, -5000, 'DMM', DEFAULT, DEFAULT, DEFAULT, DEFAULT, NULL, NULL);
