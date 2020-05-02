@@ -3,8 +3,39 @@
     <div class="row">
       <span>サマリー</span>
     </div>
-    <div class="row">
-        
+    <div class="card col-12">
+      <div class="card-header">実績入力</div>
+      <div class="card-body">
+        <h5 class="card-title">口座管理</h5>
+        <p class="card-text">決済日</p>
+        <p>予算ID</p>
+        <p>口座ID</p>
+        <p>実績名</p>
+        <p>金額</p>
+        <a href="/asset/cash/" class="btn btn-primary">登録</a>
+      </div>
+    </div>
+    <div class="card col-12">
+      <div class="card-header">実績入力</div>
+      <div class="card-body">
+        <p class="card-text">予算</p>
+        <p>
+          口座
+          <select v-model="actual.account">
+            <option value="abc">ABC</option>
+            <option value="222">222</option>
+          </select>
+        </p>
+        <p>
+          実績名
+          <input v-model="actual.name" placeholder="edit me" />
+        </p>
+        <p>
+          金額
+          <input v-model="actual.price" placeholder="edit me" />
+        </p>
+        <a class="btn btn-primary" @click="onClickRegist">登録</a>
+      </div>
     </div>
   </div>
   <!-- <el-row>
@@ -29,25 +60,51 @@
 import axios from "axios";
 
 export default {
-    name: "Asset",
-    data() {
-      return {
-        accounts: []
-      };
-    },
-    created: async function() {
-      await this.refresh();
-    },
-    methods: {
-      refresh: async function() {
-        const res = await axios.get("http://localhost:8080/cash");
-        //const res = await axios.get('/')
-        this.accounts = res.data.accounts;
-        console.log(res);
-        console.info(this.accounts);
+  name: "Cash",
+  // data() {
+  //   return {
+  //     accounts: []
+  //   };
+  // },
+  data() {
+    return {
+      budgets: [],
+      actual: {
+        account: null,
+        name: null,
+        price: null
       }
+    };
+  },
+  created: async function() {
+    await this.refresh();
+  },
+  methods: {
+    refresh: async function() {
+      const url = "http://localhost:8080/cash";
+      const res = await axios.get(url);
+
+      this.budgets = res.data.budgets;
     },
-    mounted: function() {}
+    onClickRegist: function() {
+      const url = "http://localhost:8080/cash";
+      var request = {
+        test1: "aaa",
+        test2: "bbb"
+      };
+      console.log("regist");
+      axios
+        .post(url, request)
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      console.log("regist2");
+    }
+  },
+  mounted: function() {}
 };
 </script>
 

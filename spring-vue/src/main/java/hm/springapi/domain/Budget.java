@@ -14,8 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 @Entity(name="a_budget")
 @Setter
 @Getter
