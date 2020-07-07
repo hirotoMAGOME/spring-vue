@@ -31,17 +31,27 @@ export default new Router({
     {
       path: "/asset",
       name: "asset",
-      component: () => import(/* webpackChunkName: "currency" */ '@/views/Asset.vue')
+      component: () => import(/* webpackChunkName: "asset" */ '@/views/Asset.vue')
     },
     {
       path: "/asset/cash",
       name: "cash",
-      component: () => import(/* webpackChunkName: "Cash" */ '@/views/Cash.vue')
+      component: () => import(/* webpackChunkName: "cash" */ '@/views/Cash.vue')
     },
     {
       path: "/currency",
       name: "currency",
       component: () => import(/* webpackChunkName: "currency" */ '@/views/Currency.vue')
+    },
+    {
+      path: "/personal-master-setting",
+      name: "personalMasterSetting",
+      component: () => import(/* webpackChunkName: "personalMasterSetting" */ '@/views/personal-master-setting/PersonalMasterSetting.vue')
+    },
+    {
+      path: "/json",
+      name: "json",
+      component: () => import(/* webpackChunkName: "json" */ '@/json/budget-category.json')
     }
   ]
 });
