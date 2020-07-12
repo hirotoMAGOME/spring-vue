@@ -1,15 +1,26 @@
 <template>
   <div id="app">
-    <!-- <link rel="stylesheet" href="sample.css"> -->
-    <!-- 画面サイズ固定 -->
-    <div id="app-shared-header">
-
-    </div>
-    <SharedHeader />
-    <SharedSideBar />
-    <router-view />
-
-    <link rel="stylesheet" href="./css/common/app.css">
+    <el-container>
+      <SharedHeader />
+    </el-container>
+    <el-container class="d-flex flex-row">
+      <SharedSideBar style="width:200px" />
+      <div style="width:1720px">
+        <div class="row d-flex flex-row">
+          <!-- TODO pageタイトルをcomponent化 -->
+          <div class="page-title">
+            <h1>ページタイトル</h1>
+            <el-breadcrumb separator-class="el-icon-arrow-right">
+              <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
+              <el-breadcrumb-item>promotion management</el-breadcrumb-item>
+              <el-breadcrumb-item>promotion list</el-breadcrumb-item>
+              <el-breadcrumb-item>promotion detail</el-breadcrumb-item>
+            </el-breadcrumb>
+          </div>
+        </div>
+        <router-view />
+      </div>
+    </el-container>
   </div>
 </template>
 
@@ -24,10 +35,10 @@ export default {
     SharedSideBar
   }
 };
-
 </script>
 
 <style>
+@import "./css/common/common.css";
 @import "./css/common/app.css";
 /* #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -37,6 +48,4 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 } */
-
-
 </style>
