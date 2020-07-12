@@ -3,19 +3,23 @@
     aaaaaaaaaaaaaaaa
     <el-card class="box-card" shadow="always" body-style="padding:10px 20px">
       <div slot="header" class="clearfix">
-        <span>個人マスタ選択</span>
+        <span>個人マスタ選択{{options.budgetCategories}}</span>
       </div>
-      <div>
-        <p>aaaaa</p>
-        <p>bbbbbb</p>
-      </div>
+      <el-select filterable placeholder="Select">
+        <el-option
+          v-for="item in options.budgetCategories"
+          :key="item.id"
+          :label="item.name"
+          :value="item.id"
+        >{{item.name}}</el-option>
+      </el-select>
     </el-card>
+
     <el-card class="box-card" shadow="always">
       <div slot="header" class="clearfix">
         <span>〇〇一覧</span>
       </div>
     </el-card>
-
   </el-main>
 </template>
 <script>
@@ -25,40 +29,35 @@ import axios from "axios";
 
 export default {
   name: "PersonalMasterSetting",
-  // data() {
-  //   return {
-  //     accounts: []
-  //   };
-  // },
   data() {
-    return {};
+    return {
+      options: {
+        budgetCategories: []
+      }
+    };
   },
   created: async function() {
     await this.refresh();
   },
   methods: {
     refresh: async function() {
-      // const url = "http://localhost:8080/cash";
-      // const res = await axios.get(url);
-      console.log("Aaa");
-      const url = "http://localhost:8080/api/budget-category";
-      const res = await axios.get(url);
-      console.log(res);
-      // axios
-      //   .get(url)
-      //   .then(function(res) {
-      //     console.log("success");
-      //     console.log(res);
-      //   })
-      //   .catch(function(err) {
-      //     console.log("ERROR");
-      //     console.log(err);
-      //   });
+      var that = this;
 
-      // this.display(res);
+      const url = "http://localhost:8080/api/budget-category";
+      await axios
+        .get(url)
+        .then(function(res) {
+          that.display(res);
+        })
+        .catch(function(err) {
+          console.log("ERROR");
+          console.log(err);
+        });
     },
     display: function(res) {
-      this.budgets = res.data.budgets;
+      console.log("display!!");
+      console.log(res.data.budgetCategories);
+      this.data.options.budgetCategories = res.data.budgetCategories;
     },
     onClickRegist: function() {
       const url = "http://localhost:8080/cash";
