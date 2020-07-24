@@ -15,7 +15,7 @@
         <el-menu-item index="2-1">item one</el-menu-item>
         <el-menu-item index="2-2">item two</el-menu-item>
         <el-menu-item index="2-3">
-          <a href="/personal-master-setting" target="_blank">個人マスタ登録更新</a>
+          <a href="/personal-master-setting">個人マスタ登録更新</a>
         </el-menu-item>
         <el-submenu index="2-4">
           <template slot="title">item four</template>
@@ -26,7 +26,7 @@
       </el-submenu>
       <el-menu-item index="3" disabled>Info</el-menu-item>
       <el-menu-item index="4">
-        <a href="https://www.ele.me" target="_blank">Orders</a>
+        <a href="https://www.ele.me">Orders</a>
       </el-menu-item>
     </el-menu>
   </el-header>

@@ -111,6 +111,17 @@ CREATE TABLE m_account_category
 );
 
 
+-- API一覧
+CREATE TABLE m_asset_api_list
+(
+	id bigint unsigned NOT NULL,
+	api_cd varchar(64) NOT NULL,
+	name varchar(64),
+	path varchar(64),
+	PRIMARY KEY (id),
+	UNIQUE (id)
+);
+
 -- 予算カテゴリ
 CREATE TABLE m_budget_category
 (

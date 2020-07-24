@@ -17,7 +17,7 @@ public class BudgetCategoryController {
 
     private final BudgetCategoryService budgetCategoryService;
 
-    @GetMapping("/api/budget-category")
+    @GetMapping("/api/ast/budget-category")
     @CrossOrigin
     public ResponseEntity<BudgetCategoryResponse> findAll() {
         List<BudgetCategory> budgetCategories = budgetCategoryService.findAll();
@@ -26,5 +26,4 @@ public class BudgetCategoryController {
                 .build();
         return new ResponseEntity<>(budgetCategoryResponse, HttpStatus.OK);
     }
-    
 }
