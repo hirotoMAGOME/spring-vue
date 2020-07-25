@@ -4,16 +4,18 @@
       <div slot="header" class="clearfix">
         <span>個人マスタ選択</span>
       </div>
-      <el-select filterable placeholder="Select" v-model="selectedBudgetCategories">
+      <el-select filterable placeholder="Select" v-model="selectedAssetApiList">
         <el-option
-          v-for="item in options.budgetCategory"
+          v-for="item in options.assetApiList"
           :key="item.id"
           :label="item.name"
-          :value="item.id"
+          :value="item.api_cd"
         >{{item.name}}</el-option>
       </el-select>
     </el-card>
-    <BudgetCategoryList />
+    <div v-show="selectedAssetApiList==='AST_01'">
+      <BudgetCategoryList />
+    </div>
   </el-main>
 </template>
 <script>
@@ -23,7 +25,6 @@ import axios from "axios";
 import BudgetCategoryList from "./BudgetCategoryList";
 
 //TODO enumで読み込み？
-const API_PATH_AST_01 = "http://localhost:8080/api/ast/budget-category";
 const API_PATH_AST_90 = "http://localhost:8080/api/ast/asset-api-list";
 
 export default {
@@ -34,10 +35,9 @@ export default {
   data() {
     return {
       options: {
-        budgetCategories: [],
         assetApiList: []
       },
-      selectedBudgetCategories: null
+      selectedAssetApiList: "AST_01"
     };
   },
   created: async function() {
@@ -48,8 +48,15 @@ export default {
     refresh: async function() {
       var that = this;
 
+      //GET
+      that.getFromApi();
+      //画面に初期値をセット
+      that.display();
+    },
+    getFromApi:function(){
+      var that = this;
       //GETの実行
-      await axios
+      axios
         .get(API_PATH_AST_90)
         .then(function(res) {
           that.options.assetApiList = res.data.assetApiLists;
@@ -58,43 +65,27 @@ export default {
           console.log("ERROR");
           console.log(err);
         });
-
-      await axios
-        .get(API_PATH_AST_01)
-        .then(function(res) {
-          that.options.budgetCategory = res.data.budgetCategories;
-        })
-        .catch(function(err) {
-          console.log("ERROR");
-          console.log(err);
-        });
-
-      //画面に初期値をセット
-      that.display();
     },
     display: function() {
-      debugger;
 
-      // this.options.budgetCategories = res.data.budgetCategories;
-      // this.options.assetApiList = res.data.assetApiList;
     },
     onClickRegist: function() {
-      var request = {
-        test1: "aaa",
-        test2: "bbb"
-      };
+      // var request = {
+      //   test1: "aaa",
+      //   test2: "bbb"
+      // };
       console.log("regist");
-      axios
-        .post(API_PATH_AST_01, request)
-        .then(function(response) {
-          console.log("ok");
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.log("NG");
-          console.log(error);
-        });
-      console.log("regist2");
+      // axios
+      //   .post(API_PATH_AST_01, request)
+      //   .then(function(response) {
+      //     console.log("ok");
+      //     console.log(response);
+      //   })
+      //   .catch(function(error) {
+      //     console.log("NG");
+      //     console.log(error);
+      //   });
+      // console.log("regist2");
     }
   }
 };
