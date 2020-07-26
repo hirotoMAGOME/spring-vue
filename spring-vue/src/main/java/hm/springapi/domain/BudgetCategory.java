@@ -26,7 +26,7 @@ public class BudgetCategory {
 	private Long id;
 
 	/** ユーザー. */
-	private Long user_id;
+	private Long userId;
 
 	/** 予算カテゴリ名. */
 	private String name;
