@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import hm.springapi.domain.BudgetCategory;
 import hm.springapi.domain.BudgetCategoryRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -19,14 +20,25 @@ public class BudgetCategoryService {
     }
     
     public String createBudgetCategory() {
+    	//TODO DBÇÃNOW()ÇégÇ¡ÇΩï˚Ç™Ç¢Ç¢ÅH
+    	LocalDateTime now = LocalDateTime.now();
+    	
     	BudgetCategory budgetCategory = new BudgetCategory();
-    	budgetCategory.setId((long)10);
+    	
+    	java.lang.System.out.println("bbbbbbbbb1");
+    	java.lang.System.out.println(budgetCategory.getName());
+    	java.lang.System.out.println("aaaaaaaaaa1");
+    	
+    	
     	budgetCategory.setUserId((long)1);
-    	budgetCategory.setName("test");
+    	budgetCategory.setName("test2");
     	budgetCategory.setFixedFlg(true);
-    	budgetCategory.setCreatedAt(java.sql.Date.valueOf("2020-01-01"));
-    	budgetCategory.setUpdatedAt(java.sql.Date.valueOf("2020-01-01"));
-    	budgetCategory.setDeletedAt(java.sql.Date.valueOf("2020-01-01"));
+    	budgetCategory.setCreatedAt(java.sql.Date.valueOf("2020-01-02"));
+    	budgetCategory.setUpdatedAt(java.sql.Date.valueOf("2020-01-02"));
+    	
+    	java.lang.System.out.println("bbbbbbbbb1");
+    	java.lang.System.out.println(budgetCategory.getName());
+    	java.lang.System.out.println("aaaaaaaaaa1");
     	
     	budgetCategoryRepository.save(budgetCategory);
     	
