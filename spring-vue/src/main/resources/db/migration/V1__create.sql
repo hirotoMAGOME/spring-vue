@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS a_asset_history;
 DROP TABLE IF EXISTS a_budget;
 DROP TABLE IF EXISTS m_account;
 DROP TABLE IF EXISTS m_account_category;
+DROP TABLE IF EXISTS m_asset_api_list;
 DROP TABLE IF EXISTS m_budget_category;
 DROP TABLE IF EXISTS m_cls_type;
 DROP TABLE IF EXISTS m_currency;
@@ -111,7 +112,7 @@ CREATE TABLE m_account_category
 );
 
 
--- API一覧
+-- 資産API一覧
 CREATE TABLE m_asset_api_list
 (
 	id bigint unsigned NOT NULL,
@@ -121,6 +122,7 @@ CREATE TABLE m_asset_api_list
 	PRIMARY KEY (id),
 	UNIQUE (id)
 );
+
 
 -- 予算カテゴリ
 CREATE TABLE m_budget_category
@@ -133,8 +135,7 @@ CREATE TABLE m_budget_category
 	updated_at datetime DEFAULT NOW() NOT NULL,
 	deleted_at datetime,
 	PRIMARY KEY (id),
-	UNIQUE (id),
-	UNIQUE (name)
+	UNIQUE (id)
 );
 
 
