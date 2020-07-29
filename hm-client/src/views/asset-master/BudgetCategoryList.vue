@@ -5,7 +5,7 @@
     </div>
     <template>
       <el-row>
-        <el-button type="info" round @click="dialogFormVisible = true">追加</el-button>
+        <el-button type="info" round @click='dialogFormVisible = true'>追加</el-button>
       </el-row>
       <el-table :data="options.budgetCategories" border style="width: 100%">
         <el-table-column prop="id" label="ID" width="180"></el-table-column>

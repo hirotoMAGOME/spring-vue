@@ -1,4 +1,4 @@
-package hm.springapi.controller.ast;
+package hm.springapi.controller.ast.assetmaster;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

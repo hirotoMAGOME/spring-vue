@@ -1,4 +1,4 @@
-package hm.springapi.controller.ast;
+package hm.springapi.controller.ast.assetmaster;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -37,11 +37,13 @@ public class BudgetCategoryController {
     
     @PostMapping("/api/ast/budget-category")
     @CrossOrigin
+    //TODO オブジェクトにしたい
 //    public String receiveBudgetCategory(BudgetCategory budgetCategory) {
     public String receiveBudgetCategory(@RequestBody String body) {
-    	java.lang.System.out.println("bbbbbbbbb");
-    	java.lang.System.out.println(body);
 
-    	return budgetCategoryService.createBudgetCategory();
+    	BudgetCategory budgetCategory = new BudgetCategory();
+    	budgetCategory.setName("aiu");
+    	
+    	return budgetCategoryService.createBudgetCategory(budgetCategory);
     }
 }

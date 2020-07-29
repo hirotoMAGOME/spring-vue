@@ -44,9 +44,9 @@ export default new Router({
       component: () => import(/* webpackChunkName: "currency" */ '@/views/Currency.vue')
     },
     {
-      path: "/personal-master-setting",
-      name: "personalMasterSetting",
-      component: () => import(/* webpackChunkName: "personalMasterSetting" */ '@/views/personal-master-setting/PersonalMasterSetting.vue')
+      path: "/asset-master",
+      name: "assetMaster",
+      component: () => import(/* webpackChunkName: "assetMaster" */ '@/views/asset-master/AssetMaster.vue')
     },
     {
       path: "/json",

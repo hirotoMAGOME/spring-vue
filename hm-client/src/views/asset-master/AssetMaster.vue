@@ -2,7 +2,7 @@
   <el-main>
     <el-card class="box-card" shadow="always" body-style="padding:10px 20px">
       <div slot="header" class="clearfix">
-        <span>個人マスタ選択</span>
+        <span>マスタ選択</span>
       </div>
       <el-select filterable placeholder="Select" v-model="selectedAssetApiList">
         <el-option
@@ -28,7 +28,7 @@ import BudgetCategoryList from "./BudgetCategoryList";
 const API_PATH_AST_90 = "http://localhost:8080/api/ast/asset-api-list";
 
 export default {
-  name: "PersonalMasterSetting",
+  name: "AssetMaster",
   components: {
     BudgetCategoryList
   },

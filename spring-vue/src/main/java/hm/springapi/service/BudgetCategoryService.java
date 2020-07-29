@@ -19,11 +19,9 @@ public class BudgetCategoryService {
         return budgetCategoryRepository.findAll();
     }
     
-    public String createBudgetCategory() {
+    public String createBudgetCategory(BudgetCategory budgetCategory) {
     	//TODO DBÇÃNOW()ÇégÇ¡ÇΩï˚Ç™Ç¢Ç¢ÅH
     	LocalDateTime now = LocalDateTime.now();
-    	
-    	BudgetCategory budgetCategory = new BudgetCategory();
     	
     	java.lang.System.out.println("bbbbbbbbb1");
     	java.lang.System.out.println(budgetCategory.getName());
@@ -33,6 +31,9 @@ public class BudgetCategoryService {
     	budgetCategory.setUserId((long)1);
     	budgetCategory.setName("test2");
     	budgetCategory.setFixedFlg(true);
+//    	budgetCategory.setCreatedAt(java.sql.Date.valueOf("2020-01-02"));
+//    	budgetCategory.setUpdatedAt(java.sql.Date.valueOf("2020-01-02"));
+    	
     	budgetCategory.setCreatedAt(java.sql.Date.valueOf("2020-01-02"));
     	budgetCategory.setUpdatedAt(java.sql.Date.valueOf("2020-01-02"));
     	
