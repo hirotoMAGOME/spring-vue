@@ -5,7 +5,7 @@
     </el-container>
     <el-container class="d-flex flex-row">
       <SharedSideBar style="width:200px" />
-      <div style="width:1720px">
+      <div style="width:1600px">
         <div class="row d-flex flex-row">
           <!-- TODO pageタイトルをcomponent化 -->
           <div class="page-title">
@@ -39,7 +39,8 @@ export default {
 
 <style>
 @import "./css/common/common.css";
-@import "./css/common/app.css";
+@import "./css/app.css";
+
 /* #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

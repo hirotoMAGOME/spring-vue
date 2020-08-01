@@ -49,6 +49,11 @@ export default new Router({
       component: () => import(/* webpackChunkName: "assetMaster" */ '@/views/asset-master/AssetMaster.vue')
     },
     {
+      path: "/develop-tool",
+      name: "developTool",
+      component: () => import(/* webpackChunkName: "json" */ '@/views/develop-tool/DevelopTool.vue')
+    },
+    {
       path: "/json",
       name: "json",
       component: () => import(/* webpackChunkName: "json" */ '@/json/budget-category.json')

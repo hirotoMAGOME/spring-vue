@@ -51,5 +51,5 @@
 </template>
 
 <style>
-@import "./../../css/common/app.css";
+/* @import "./../../css/app.css"; */
 </style>

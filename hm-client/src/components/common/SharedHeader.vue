@@ -26,7 +26,7 @@
       </el-submenu>
       <el-menu-item index="3" disabled>Info</el-menu-item>
       <el-menu-item index="4">
-        <a href="https://www.ele.me">Orders</a>
+        <a href="/develop-tool">開発用</a>
       </el-menu-item>
     </el-menu>
   </el-header>
