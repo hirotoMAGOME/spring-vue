@@ -30,7 +30,7 @@ public class BudgetCategoryService {
     	
     	budgetCategory.setUserId((long)1);
     	budgetCategory.setName("test2");
-    	budgetCategory.setFixedFlg(true);
+    	budgetCategory.setBudgetCategoryType(true);
 //    	budgetCategory.setCreatedAt(java.sql.Date.valueOf("2020-01-02"));
 //    	budgetCategory.setUpdatedAt(java.sql.Date.valueOf("2020-01-02"));
     	

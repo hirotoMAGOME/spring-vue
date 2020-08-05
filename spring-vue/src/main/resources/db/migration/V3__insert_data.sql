@@ -1,10 +1,10 @@
 -- 予算カテゴリ
-INSERT INTO m_budget_category (id, user_id, name, fixed_flg, created_at, updated_at, deleted_at) VALUES ('1', '2', '食費', '1', '2020/1/1 00:00:00', '2020/1/1 00:00:00', '2020/1/1 00:00:00');
-INSERT INTO m_budget_category (id, user_id, name, fixed_flg, created_at, updated_at, deleted_at) VALUES ('2', '2', '洋服', '0', '2020/1/1 00:00:00', '2020/1/1 00:00:00', '2020/1/1 00:00:00');
-INSERT INTO m_budget_category (id, user_id, name, fixed_flg, created_at, updated_at, deleted_at) VALUES ('3', '2', '光熱費', '1', '2020/1/1 00:00:00', '2020/1/1 00:00:00', '2020/1/1 00:00:00');
-INSERT INTO m_budget_category (id, user_id, name, fixed_flg, created_at, updated_at, deleted_at) VALUES ('4', '2', '趣味', '0', '2020/1/1 00:00:00', '2020/1/1 00:00:00', '2020/1/1 00:00:00');
-INSERT INTO m_budget_category (id, user_id, name, fixed_flg, created_at, updated_at, deleted_at) VALUES ('5', '1', '家賃', '1', '2020/1/1 00:00:00', '2020/1/1 00:00:00', '2020/1/1 00:00:00');
-INSERT INTO m_budget_category (id, user_id, name, fixed_flg, created_at, updated_at, deleted_at) VALUES ('6', '2', '家賃', '1', '2020/1/1 00:00:00', '2020/1/1 00:00:00', '2020/1/1 00:00:00');
+INSERT INTO m_budget_category (id, user_id, name, budget_category_type, created_at, updated_at, deleted_at) VALUES ('1', '2', '食費', '01', '2020/1/1 00:00:00', '2020/1/1 00:00:00', '2020/1/1 00:00:00');
+INSERT INTO m_budget_category (id, user_id, name, budget_category_type, created_at, updated_at, deleted_at) VALUES ('2', '2', '洋服', '02', '2020/1/1 00:00:00', '2020/1/1 00:00:00', '2020/1/1 00:00:00');
+INSERT INTO m_budget_category (id, user_id, name, budget_category_type, created_at, updated_at, deleted_at) VALUES ('3', '2', '光熱費', '01', '2020/1/1 00:00:00', '2020/1/1 00:00:00', '2020/1/1 00:00:00');
+INSERT INTO m_budget_category (id, user_id, name, budget_category_type, created_at, updated_at, deleted_at) VALUES ('4', '2', '趣味', '02', '2020/1/1 00:00:00', '2020/1/1 00:00:00', '2020/1/1 00:00:00');
+INSERT INTO m_budget_category (id, user_id, name, budget_category_type, created_at, updated_at, deleted_at) VALUES ('5', '1', '家賃', '01', '2020/1/1 00:00:00', '2020/1/1 00:00:00', '2020/1/1 00:00:00');
+INSERT INTO m_budget_category (id, user_id, name, budget_category_type, created_at, updated_at, deleted_at) VALUES ('6', '2', '家賃', '01', '2020/1/1 00:00:00', '2020/1/1 00:00:00', '2020/1/1 00:00:00');
 
 
 -- 予算

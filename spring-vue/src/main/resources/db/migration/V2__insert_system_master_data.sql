@@ -1,10 +1,13 @@
 -- ドメイン
 INSERT INTO m_domain (domain_cd, name, created_at, updated_at, deleted_at) VALUES ('user_type', 'ユーザー種別', '2020/01/01 00:00:00', '2020/01/01 00:00:00', '2020/01/01 00:00:00');
+INSERT INTO m_domain (domain_cd, name, created_at, updated_at, deleted_at) VALUES ('budget_category_type', '予算カテゴリ種別', '2020/01/01 00:00:00', '2020/01/01 00:00:00', '2020/01/01 00:00:00');
 
 
 -- 区分種別
-INSERT INTO m_cls_type (domain_cd, cls_type_key, cls_type_name, sort, created_at, updated_at, deleted_at) VALUES ('user_type', '01', '管理者', '1', '2020/01/01 00:00:00', '2020/01/01 00:00:00', '2020/01/01 00:00:00');
-INSERT INTO m_cls_type (domain_cd, cls_type_key, cls_type_name, sort, created_at, updated_at, deleted_at) VALUES ('user_type', '02', '一般', '2', '2020/01/01 00:00:00', '2020/01/01 00:00:00', '2020/01/01 00:00:00');
+INSERT INTO m_cls_type (domain_cd, cls_type_key, name, sort, created_at, updated_at, deleted_at) VALUES ('user_type', '01', '管理者', '1', '2020/01/01 00:00:00', '2020/01/01 00:00:00', null);
+INSERT INTO m_cls_type (domain_cd, cls_type_key, name, sort, created_at, updated_at, deleted_at) VALUES ('user_type', '02', '一般', '2', '2020/01/01 00:00:00', '2020/01/01 00:00:00', null);
+INSERT INTO m_cls_type (domain_cd, cls_type_key, name, sort, created_at, updated_at, deleted_at) VALUES ('budget_category_type', '01', '固定費', '1', '2020/01/01 00:00:00', '2020/01/01 00:00:00', null);
+INSERT INTO m_cls_type (domain_cd, cls_type_key, name, sort, created_at, updated_at, deleted_at) VALUES ('budget_category_type', '02', '変動費', '2', '2020/01/01 00:00:00', '2020/01/01 00:00:00', null);
 
 
 -- ユーザー

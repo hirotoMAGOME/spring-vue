@@ -30,6 +30,7 @@ public class BudgetCategoryController {
         BudgetCategoryResponse budgetCategoryResponse = BudgetCategoryResponse.builder()
                 .budgetCategories(budgetCategories)
                 .build();
+        
         return new ResponseEntity<>(budgetCategoryResponse, HttpStatus.OK);
     }
     

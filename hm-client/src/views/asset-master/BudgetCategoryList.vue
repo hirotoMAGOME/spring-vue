@@ -3,28 +3,33 @@
     <div slot="header" class="clearfix">
       <span>予算カテゴリ一覧</span>
     </div>
-    <template>
-      <el-row>
-        <el-button type="info" round @click='dialogFormVisible = true'>追加</el-button>
-      </el-row>
-      <el-table :data="options.budgetCategories" border style="width: 100%">
-        <el-table-column prop="id" label="ID" width="180"></el-table-column>
-        <el-table-column prop="name" label="予算カテゴリ名" width="180"></el-table-column>
-        <el-table-column label="編集" width="180"></el-table-column>
-        <el-table-column label="削除" width="180"></el-table-column>
-      </el-table>
-    </template>
+    <el-row>
+      <el-button type="info" round @click="onClickEdit(0);dialogFormVisible = true;">追加</el-button>
+    </el-row>
+    <el-table :data="options.budgetCategories" border style="width: 100%">
+      <el-table-column prop="id" label="ID" width="180"></el-table-column>
+      <el-table-column prop="name" label="予算カテゴリ名" width="180"></el-table-column>
+      <el-table-column label="編集" width="180">
+        <template slot-scope="scope">
+          <el-button type="info" round @click="onClickEdit(scope.row.id);dialogFormVisible = true;">編集</el-button>
+        </template>
+      </el-table-column>
+      <el-table-column label="削除" width="180"></el-table-column>
+    </el-table>
     <el-dialog title="新規登録" :visible.sync="dialogFormVisible">
       <el-form :model="form">
-        <el-form-item label="name" :label-width="formLabelWidth">
-          <el-input v-model="form.name" autocomplete="off"></el-input>
-        </el-form-item>
-        <!-- <el-form-item label="Zones" :label-width="formLabelWidth">
-          <el-select v-model="form.region" placeholder="Please select a zone">
-            <el-option label="Zone No.1" value="shanghai"></el-option>
-            <el-option label="Zone No.2" value="beijing"></el-option>
-          </el-select>
-        </el-form-item> -->
+        <el-form ref="form" :model="form" label-width="200px" size="medium">
+          <el-form-item label="ID">{{form.id}}</el-form-item>
+          <el-form-item label="予算カテゴリ名">
+            <el-input v-model="form.name"></el-input>
+          </el-form-item>
+          <el-form-item label="固定費/変動費">
+            <el-radio-group v-model="form.resource">
+              <el-radio label="Sponsor"></el-radio>
+              <el-radio label="Venue"></el-radio>
+            </el-radio-group>
+          </el-form-item>
+        </el-form>
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">Cancel</el-button>
@@ -45,11 +50,14 @@ export default {
   data() {
     return {
       options: {
-        budgetCategories: []
+        budgetCategories: [],
+        budgetCategoryType: []
       },
-      dialogFormVisible: false,
+      dialogFormVisible: false, //モーダルの表示状態
       form: {
-        name: null
+        id: null,
+        name: null,
+        budgetCategoryType: false
       }
     };
   },
@@ -80,29 +88,35 @@ export default {
         });
     },
     display: function() {},
-    // onClickRegist: function() {
+    onClickEdit: function(selectedId) {
+      //モーダルに値をセット
+      if (selectedId === 0) {
+        this.form = {
+          id: null,
+          name: null,
+          budgetCategoryType: null
+        };
+      } else {
+        var getData = this.options.budgetCategories.find(
+          v => v.id === selectedId
+        );
 
-    //   var request = {
-    //     test1: "aaa",
-    //     test2: "bbb"
-    //   };
-    //   console.log("regist");
-    //   axios
-    //     .post(API_PATH_AST_01, request)
-    //     .then(function(response) {
-    //       console.log("ok");
-    //       console.log(response);
-    //     })
-    //     .catch(function(error) {
-    //       console.log("NG");
-    //       console.log(error);
-    //     });
-    //   console.log("regist2");
-    // }
+        this.form = {
+          id: getData.id,
+          name: getData.name,
+          budgetCategoryType: getData.budgetCategoryType
+        };
+      }
+
+      //モーダルを開く
+      // this.dialogFormVisible = true;
+    },
     onClickRegist: function() {
       console.log("onClickRegist method実行");
       var request = {
-        name: this.form.name
+        id: this.form.id,
+        name: this.form.name,
+        budgetCategoryType: this.form.budgetCategoryType
       };
 
       axios

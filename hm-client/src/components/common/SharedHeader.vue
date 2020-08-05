@@ -15,7 +15,7 @@
         <el-menu-item index="2-1">item one</el-menu-item>
         <el-menu-item index="2-2">item two</el-menu-item>
         <el-menu-item index="2-3">
-          <a href="/asset-master">個人マスタ登録更新</a>
+          <a href="/asset-master">資産マスタ登録更新</a>
         </el-menu-item>
         <el-submenu index="2-4">
           <template slot="title">item four</template>

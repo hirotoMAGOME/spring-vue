@@ -32,7 +32,7 @@ public class BudgetCategory {
 	private String name;
 
 	/** ŒÅ’è”ïƒtƒ‰ƒO. */
-	private Boolean fixedFlg;
+	private Boolean budgetCategoryType;
 
 	/** ì¬“ú. */
     @Temporal(TemporalType.TIMESTAMP)

@@ -130,7 +130,8 @@ CREATE TABLE m_budget_category
 	id bigint unsigned NOT NULL AUTO_INCREMENT,
 	user_id bigint unsigned NOT NULL,
 	name varchar(64) NOT NULL,
-	fixed_flg boolean DEFAULT '0' NOT NULL,
+	-- 固定費/変動費などを表す種別
+	budget_category_type varchar(2) NOT NULL,
 	created_at datetime DEFAULT NOW() NOT NULL,
 	updated_at datetime DEFAULT NOW() NOT NULL,
 	deleted_at datetime,
@@ -143,13 +144,13 @@ CREATE TABLE m_budget_category
 CREATE TABLE m_cls_type
 (
 	domain_cd varchar(64) NOT NULL,
-	cls_type_key char(2),
-	cls_type_name varchar(64),
+	cls_type_key char(2) NOT NULL,
+	name varchar(64),
 	sort int(100) unsigned DEFAULT 999 NOT NULL,
 	created_at datetime DEFAULT NOW() NOT NULL,
 	updated_at datetime DEFAULT NOW() NOT NULL,
 	deleted_at datetime,
-	UNIQUE (domain_cd, cls_type_key, cls_type_name)
+	UNIQUE (domain_cd, cls_type_key, name)
 );
 
 
