@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ClsTypeRepository extends JpaRepository<ClsType, Long> {
-	public List<ClsType> findByName(String name);
+	public List<ClsType> findByDomainCdOrderByClsTypeKey(String name);
 }

@@ -17,8 +17,8 @@ public class ClsTypeController {
     private final ClsTypeService clsTypeService;
 
     @GetMapping("/api/common/cls-type")
-    public ResponseEntity<ClsTypeResponse> findByName() {
-        List<ClsType> clstype = clsTypeService.findByName();
+    public ResponseEntity<ClsTypeResponse> findByDomainCdOrderByClsTypeKey() {
+        List<ClsType> clstype = clsTypeService.findByDomainCdOrderByClsTypeKey();
         ClsTypeResponse clsTypeResponse = ClsTypeResponse.builder()
                 .clstypes(clstype)
                 .build();

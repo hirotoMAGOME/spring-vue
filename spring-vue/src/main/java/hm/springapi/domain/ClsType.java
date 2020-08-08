@@ -16,11 +16,11 @@ import javax.persistence.TemporalType;
 public class ClsType {
     /** ドメインコード */
     @Column
-    private String domain_cd;
+    private String domainCd;
 
     /** キー */
     @Column
-    private String cls_type_key;
+    private String clsTypeKey;
     
     /** 名称 */
     @Column
@@ -33,16 +33,16 @@ public class ClsType {
     /** 作成日時 */
     @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date created_at;
+    private Date createdAt;
     
     /** 更新日時 */
     @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updated_at;
+    private Date updatedAt;
     
     /** 削除日時 */
     @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date deleted_at;
+    private Date deletedAt;
     
 }
