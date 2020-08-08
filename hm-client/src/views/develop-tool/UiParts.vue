@@ -45,7 +45,8 @@
               :key="item.id"
               :label="item.name"
               :value="item.name"
-            >{{item.name}}</el-option>
+              >{{ item.name }}</el-option
+            >
           </el-select>
         </el-form-item>
         <el-form-item label="Activity time">
@@ -59,7 +60,11 @@
           </el-col>
           <el-col class="line" :span="2">-</el-col>
           <el-col :span="11">
-            <el-time-picker placeholder="Pick a time" v-model="form.date2" style="width: 100%;"></el-time-picker>
+            <el-time-picker
+              placeholder="Pick a time"
+              v-model="form.date2"
+              style="width: 100%;"
+            ></el-time-picker>
           </el-col>
         </el-form-item>
         <el-form-item label="Instant delivery">
@@ -70,7 +75,10 @@
             <el-checkbox label="Online activities" name="type"></el-checkbox>
             <el-checkbox label="Promotion activities" name="type"></el-checkbox>
             <el-checkbox label="Offline activities" name="type"></el-checkbox>
-            <el-checkbox label="Simple brand exposure" name="type"></el-checkbox>
+            <el-checkbox
+              label="Simple brand exposure"
+              name="type"
+            ></el-checkbox>
           </el-checkbox-group>
         </el-form-item>
         <el-form-item label="Resources">
@@ -93,7 +101,7 @@
 
 <script>
 export default {
-  name: "DevelopTool",
+  name: "UiParts",
   data() {
     return {
       form: {
@@ -118,20 +126,20 @@ export default {
           }
         ]
       }
-    };
+    }
   },
   methods: {
     setTemplateNo() {
-      var getElement = document.querySelectorAll(".template-no-area");
-      var count = 1;
+      var getElement = document.querySelectorAll(".template-no-area")
+      var count = 1
       getElement.forEach(element => {
-        element.innerHTML = "( UIパーツ No." + count + " )";
-        count++;
-      });
+        element.innerHTML = "( UIパーツ No." + count + " )"
+        count++
+      })
     }
   },
   mounted: function() {
-    this.setTemplateNo();
+    this.setTemplateNo()
   }
-};
+}
 </script>

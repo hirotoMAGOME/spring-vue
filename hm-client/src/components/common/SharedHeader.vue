@@ -1,5 +1,8 @@
 <template>
-  <el-header id="app-shared-header" style="background-color: rgb(238, 241, 246)">
+  <el-header
+    id="app-shared-header"
+    style="background-color: rgb(238, 241, 246)"
+  >
     <el-menu
       :default-active="activeIndex2"
       class="el-menu-demo"
@@ -25,8 +28,17 @@
         </el-submenu>
       </el-submenu>
       <el-menu-item index="3" disabled>Info</el-menu-item>
-      <el-menu-item index="4">
-        <a href="/develop-tool">開発用</a>
+      <el-submenu index="4">
+        <template slot="title">開発用</template>
+        <el-menu-item index="4-1"
+          ><a href="/develop-tool/ui-parts">画面パーツ</a></el-menu-item
+        >
+        <el-menu-item index="4-2"
+          ><a href="/develop-tool/auto-test">自動テスト</a></el-menu-item
+        >
+      </el-submenu>
+      <el-menu-item index="5">
+        <a href="/develop-tool">sample</a>
       </el-menu-item>
     </el-menu>
   </el-header>
@@ -38,12 +50,12 @@ export default {
     return {
       activeIndex: "1",
       activeIndex2: "1"
-    };
+    }
   },
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
+      console.log(key, keyPath)
     }
   }
-};
+}
 </script>
