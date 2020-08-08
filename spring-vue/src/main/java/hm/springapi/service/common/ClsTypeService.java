@@ -15,8 +15,8 @@ public class ClsTypeService {
 
     private final ClsTypeRepository clsTypeRepository;
 
-    public List<ClsType> findAll() {
-        return clsTypeRepository.findAll();
+    public List<ClsType> findByName() {
+        return clsTypeRepository.findByName("ä«óùé“");
     }
     
 //    public String createBudgetCategory(BudgetCategory budgetCategory) {

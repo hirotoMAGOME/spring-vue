@@ -17,12 +17,12 @@ public class ClsTypeController {
     private final ClsTypeService clsTypeService;
 
     @GetMapping("/api/common/cls-type")
-    public ResponseEntity<ClsTypeResponse> findAll() {
-        List<ClsType> clstype = clsTypeService.findAll();
+    public ResponseEntity<ClsTypeResponse> findByName() {
+        List<ClsType> clstype = clsTypeService.findByName();
         ClsTypeResponse clsTypeResponse = ClsTypeResponse.builder()
                 .clstypes(clstype)
                 .build();
-        System.out.print(clstype);
+
         return new ResponseEntity<>(clsTypeResponse, HttpStatus.OK);
     }
     
