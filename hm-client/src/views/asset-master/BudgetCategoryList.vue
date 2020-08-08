@@ -42,11 +42,13 @@
 /* eslint-disable no-console */
 
 import axios from "axios";
+import common from "@/js/common/common.js";
 
 const API_PATH_AST_01 = "http://localhost:8080/api/ast/budget-category";
 
 export default {
-  name: "PersonalMasterSetting",
+  name: "BudgetCategoryList",
+  mixins:[common],
   data() {
     return {
       options: {
@@ -71,11 +73,16 @@ export default {
 
       //GET
       that.getFromApi();
+
+      var clsTypeList = ["budget_category_type"];
+      that.getClsType(clsTypeList);
+
       //画面に初期値をセット
       that.display();
     },
     getFromApi: function() {
       var that = this;
+
       //GETの実行
       axios
         .get(API_PATH_AST_01)

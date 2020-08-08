@@ -23,12 +23,14 @@
 
 import axios from "axios";
 import BudgetCategoryList from "./BudgetCategoryList";
+import common from "@/js/common/common.js";
 
 //TODO enumで読み込み？
 const API_PATH_AST_90 = "http://localhost:8080/api/ast/asset-api-list";
 
 export default {
   name: "AssetMaster",
+  mixins:[common],
   components: {
     BudgetCategoryList
   },

@@ -15,8 +15,8 @@ public class ClsTypeService {
 
     private final ClsTypeRepository clsTypeRepository;
 
-    public List<ClsType> findByDomainCdOrderByClsTypeKey() {
-        return clsTypeRepository.findByDomainCdOrderByClsTypeKey("user_type");
+    public List<ClsType> findByDomainCdOrderByClsTypeKey(String ClsTypeKey) {
+        return clsTypeRepository.findByDomainCdOrderByClsTypeKey(ClsTypeKey);
     }
     
 //    public String createBudgetCategory(BudgetCategory budgetCategory) {
