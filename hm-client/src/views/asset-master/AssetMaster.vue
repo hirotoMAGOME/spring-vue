@@ -10,10 +10,10 @@
           :key="item.id"
           :label="item.name"
           :value="item.api_cd"
-        >{{item.name}}</el-option>
+        >{{ item.name }}</el-option>
       </el-select>
     </el-card>
-    <div v-show="selectedAssetApiList==='AST_01'">
+    <div v-show="selectedAssetApiList === 'AST_01'">
       <BudgetCategoryList />
     </div>
   </el-main>
@@ -30,7 +30,7 @@ const API_PATH_AST_90 = "http://localhost:8080/api/ast/asset-api-list";
 
 export default {
   name: "AssetMaster",
-  mixins:[common],
+  mixins: [common],
   components: {
     BudgetCategoryList
   },
@@ -55,7 +55,7 @@ export default {
       //画面に初期値をセット
       that.display();
     },
-    getFromApi:function(){
+    getFromApi: function() {
       var that = this;
       //GETの実行
       axios
@@ -68,9 +68,7 @@ export default {
           console.log(err);
         });
     },
-    display: function() {
-
-    },
+    display: function() {},
     onClickRegist: function() {
       // var request = {
       //   test1: "aaa",

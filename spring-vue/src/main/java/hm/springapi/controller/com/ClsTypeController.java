@@ -20,9 +20,9 @@ public class ClsTypeController {
 
     @GetMapping("/api/com/cls-type")
     @CrossOrigin
-    public ResponseEntity<ClsTypeResponse> findByDomainCdOrderByClsTypeKey(@RequestParam(name = "domainCdList", required = false) String domainCdList) {
+    public ResponseEntity<ClsTypeResponse> findByDomainCdIn(@RequestParam(name = "domainCdList", required = false) List<String> domainCdList) {
     	System.out.println(domainCdList);
-        List<ClsType> clstype = clsTypeService.findByDomainCdOrderByClsTypeKey(domainCdList);
+        List<ClsType> clstype = clsTypeService.findByDomainCdIn(domainCdList);
         ClsTypeResponse clsTypeResponse = ClsTypeResponse.builder()
                 .clstypes(clstype)
                 .build();
