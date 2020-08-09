@@ -5,10 +5,7 @@ const API_PATH_COM_01 = "http://localhost:8080/api/com/cls-type"
 export default {
   methods: {
     getClsType: function(domainCdList, toSnakeFromCamelFlg) {
-      if (toSnakeFromCamelFlg) {
-        this.transformationToSnakeFromCamel({ aaa: "aaa" })
-      }
-
+      var that = this
       var returnObj = {}
       if (Array.isArray(domainCdList)) {
         domainCdList.forEach(function(domainCd) {
@@ -27,9 +24,20 @@ export default {
         axios
           .get(API_PATH_COM_01, { params })
           .then(function(res) {
-            returnObj[domainCdList] = res.data.clstypes
+            var returnKey = ""
+
+            if (toSnakeFromCamelFlg) {
+              returnKey = that.transformationToCamelTextFromSnakeText(
+                domainCdList
+              )
+            } else {
+              returnKey = domainCdList
+            }
+            returnObj[returnKey] = res.data.clstypes
           })
-          .catch(function() {})
+          .catch(function() {
+            debugger
+          })
 
         return returnObj
       }
@@ -54,27 +62,16 @@ export default {
       //         return [];
       //     });
     },
-    transformationToCamelFromSnake: function(Snake) {
-      if (this.isObject(Snake)) {
-        console.log("aaa")
-      } else if (this.isArray(Snake)) {
-        console.log("bbb")
-      } else {
-        console.log("ccc")
-      }
+    isArray: function(item) {
+      return Object.prototype.toString.call(item) === "[object Array]"
+    },
+    isObject: function(item) {
+      return typeof item === "object" && item !== null && !this.isArray(item)
     },
     transformationToCamelTextFromSnakeText: function(SnakeText) {
       return SnakeText.replace(/_./g, function(s) {
         return s.charAt(1).toUpperCase()
       })
-    },
-    isArray: function(item) {
-      console.log("isArray起動")
-      return Object.prototype.toString.call(item) === "[object Array]"
-    },
-    isObject: function(item) {
-      console.log("isObject起動")
-      return typeof item === "object" && item !== null && !this.isArray(item)
     }
   }
 }

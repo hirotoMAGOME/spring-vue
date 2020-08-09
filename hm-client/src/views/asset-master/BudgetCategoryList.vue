@@ -11,16 +11,11 @@
           onClickEdit(0)
           dialogFormVisible = true
         "
-        >追加</el-button
-      >
+      >追加</el-button>
     </el-row>
     <el-table :data="options.budgetCategories" border style="width: 100%">
       <el-table-column prop="id" label="ID" width="180"></el-table-column>
-      <el-table-column
-        prop="name"
-        label="予算カテゴリ名"
-        width="180"
-      ></el-table-column>
+      <el-table-column prop="name" label="予算カテゴリ名" width="180"></el-table-column>
       <el-table-column label="編集" width="180">
         <template slot-scope="scope">
           <el-button
@@ -30,8 +25,7 @@
               onClickEdit(scope.row.id)
               dialogFormVisible = true
             "
-            >編集</el-button
-          >
+          >編集</el-button>
         </template>
       </el-table-column>
       <el-table-column label="削除" width="180"></el-table-column>
@@ -59,8 +53,7 @@
             dialogFormVisible = false
             onClickRegist()
           "
-          >Confirm</el-button
-        >
+        >Confirm</el-button>
       </span>
     </el-dialog>
   </el-card>
@@ -96,15 +89,15 @@ export default {
     this.getFromApi()
 
     //GET(種別)
-    var clsTypeList = ["budget_category_type", "user_type"]
+    // var clsTypeList = ["budget_category_type", "user_type"]
+    var clsTypeList = "budget_category_type"
     var res = this.getClsType(clsTypeList, true)
     // console.log(this.options.budgetCategoryType);
 
     setTimeout(function() {
-      that.options.budgetCategoryType = res.budget_category_type
-
-      console.log(that.options.budgetCategoryType)
+      that.options.budgetCategoryType = res.budgetCategoryType
     }, 2000)
+
     //初期値をセット
     this.display()
   },
@@ -124,7 +117,10 @@ export default {
           console.log(err)
         })
     },
-    display: function() {},
+    display: function() {
+      var that = this
+      debugger
+    },
     onClickEdit: function(selectedId) {
       //モーダルに値をセット
       if (selectedId === 0) {

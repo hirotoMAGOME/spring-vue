@@ -10,9 +10,7 @@
           <div class="template-no-area"></div>
           <span>isArray</span>
         </div>
-        <div v-show="testIsArrayErrFlg" style="background-color:red">
-          {{ testIsArrayErrList }}
-        </div>
+        <div v-show="testIsArrayErrFlg" style="background-color:red">{{ testIsArrayErrList }}</div>
       </el-card>
       <!-- isObject -->
       <el-card class="box-card" shadow="always" body-style="padding:10px 20px">
@@ -20,10 +18,20 @@
           <div class="template-no-area"></div>
           <span>isObject</span>
         </div>
-        <div v-show="testIsObjectErrFlg" style="background-color:red">
-          {{ testIsObjectErrList }}
-        </div>
+        <div v-show="testIsObjectErrFlg" style="background-color:red">{{ testIsObjectErrList }}</div>
       </el-card>
+      <!-- testTransformationToCamelTextFromSnakeText -->
+      <el-card class="box-card" shadow="always" body-style="padding:10px 20px">
+        <div slot="header" class="clearfix">
+          <div class="template-no-area"></div>
+          <span>testTransformationToCamelFromSnakeText</span>
+        </div>
+        <div
+          v-show="testTransformationToCamelTextFromSnakeTextErrFlg"
+          style="background-color:red"
+        >{{ testTransformationToCamelTextFromSnakeTextErrList }}</div>
+      </el-card>
+      <!-- ここまで -->
       <el-card class="box-card" shadow="always" body-style="padding:10px 20px">
         <div slot="header" class="clearfix">
           <div class="template-no-area"></div>
@@ -58,16 +66,20 @@ export default {
       testIsArrayErrList: [],
       testIsArrayErrFlg: false,
       testIsObjectErrList: [],
-      testIsObjectErrFlg: false
+      testIsObjectErrFlg: false,
+      testTransformationToCamelTextFromSnakeTextErrList: [],
+      testTransformationToCamelTextFromSnakeTextErrFlg: false
     }
   },
   methods: {
     test: function() {
       this.testIsArray()
       this.testIsObject()
+      this.testTransformationToCamelTextFromSnakeText()
+      this.testTransformationToCamelFromSnake()
     },
     testIsArray: function() {
-      if (this.isArray("aaa")) {
+      if (this.isArray("String")) {
         this.testIsArrayErrList.push("ERROR isArray(001)")
         this.testIsArrayErrFlg = true
       }
@@ -92,6 +104,17 @@ export default {
       if (this.isObject(["aaa", "bbb"])) {
         this.testIsArrayErrList.push("ERROR isObject(003)")
         this.testIsObjectErrFlg = true
+      }
+    },
+    testTransformationToCamelTextFromSnakeText: function() {
+      if (
+        this.transformationToCamelTextFromSnakeText("test_snake_case") !==
+        "testSnakeCase"
+      ) {
+        this.testTransformationToCamelTextFromSnakeTextErrList.push(
+          "ERROR testTransformationToCamelTextFromSnakeText(001)"
+        )
+        this.testTransformationToCamelTextFromSnakeTextErrFlg = true
       }
     }
   },
