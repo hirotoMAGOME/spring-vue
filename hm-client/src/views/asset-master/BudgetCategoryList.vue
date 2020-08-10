@@ -38,9 +38,12 @@
             <el-input v-model="form.name"></el-input>
           </el-form-item>
           <el-form-item label="固定費/変動費">
-            <el-radio-group v-model="form.resource">
-              <el-radio label="Sponsor"></el-radio>
-              <el-radio label="Venue"></el-radio>
+            <el-radio-group v-model="form.budgetCategoryType">
+              <el-radio
+                v-for="v in options.budgetCategoryType"
+                :key="v.clsTypeKey"
+                :label="v.clsTypeKey"
+              >{{v.name}}</el-radio>
             </el-radio-group>
           </el-form-item>
         </el-form>
@@ -86,20 +89,15 @@ export default {
   created: function() {
     var that = this
     //GET
-    this.getFromApi()
+    that.getFromApi()
 
     //GET(種別)
-    // var clsTypeList = ["budget_category_type", "user_type"]
-    var clsTypeList = "budget_category_type"
-    var res = this.getClsType(clsTypeList, true)
-    // console.log(this.options.budgetCategoryType);
-
-    setTimeout(function() {
-      that.options.budgetCategoryType = res.budgetCategoryType
-    }, 2000)
+    that
+      .getClsType("budget_category_type", true)
+      .then(that.setClsType, that.setClsTypeErr)
 
     //初期値をセット
-    this.display()
+    that.display()
   },
   mounted: function() {},
   methods: {
@@ -117,10 +115,14 @@ export default {
           console.log(err)
         })
     },
-    display: function() {
+    setClsType: function(data) {
       var that = this
-      debugger
+      that.options.budgetCategoryType = data.budgetCategoryType
     },
+    setClsTypeErr: function(data) {
+      console.log(data)
+    },
+    display: function() {},
     onClickEdit: function(selectedId) {
       //モーダルに値をセット
       if (selectedId === 0) {
@@ -133,7 +135,7 @@ export default {
         var getData = this.options.budgetCategories.find(
           v => v.id === selectedId
         )
-
+        console.log(getData)
         this.form = {
           id: getData.id,
           name: getData.name,

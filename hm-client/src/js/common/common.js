@@ -6,41 +6,42 @@ export default {
   methods: {
     getClsType: function(domainCdList, toSnakeFromCamelFlg) {
       var that = this
-      var returnObj = {}
-      if (Array.isArray(domainCdList)) {
-        domainCdList.forEach(function(domainCd) {
-          var params = { domainCdList: domainCd }
+      return new Promise(function(resolve, reject) {
+        var returnObj = {}
+        if (Array.isArray(domainCdList)) {
+          domainCdList.forEach(function(domainCd) {
+            var params = { domainCdList: domainCd }
+            axios
+              .get(API_PATH_COM_01, { params })
+              .then(function(res) {
+                returnObj[domainCd] = res.data.clstypes
+                return returnObj
+              })
+              .catch(function() {})
+          })
+        } else {
+          var params = { domainCdList: domainCdList }
           axios
             .get(API_PATH_COM_01, { params })
             .then(function(res) {
-              returnObj[domainCd] = res.data.clstypes
+              var returnKey = ""
+              if (toSnakeFromCamelFlg) {
+                returnKey = that.transformationToCamelTextFromSnakeText(
+                  domainCdList
+                )
+              } else {
+                returnKey = domainCdList
+              }
+              returnObj[returnKey] = res.data.clstypes
+
+              // return returnObj
+              resolve(returnObj)
             })
-            .catch(function() {})
-        })
-
-        return returnObj
-      } else {
-        var params = { domainCdList: domainCdList }
-        axios
-          .get(API_PATH_COM_01, { params })
-          .then(function(res) {
-            var returnKey = ""
-
-            if (toSnakeFromCamelFlg) {
-              returnKey = that.transformationToCamelTextFromSnakeText(
-                domainCdList
-              )
-            } else {
-              returnKey = domainCdList
-            }
-            returnObj[returnKey] = res.data.clstypes
-          })
-          .catch(function() {
-            debugger
-          })
-
-        return returnObj
-      }
+            .catch(function() {
+              reject("error common.js reject")
+            })
+        }
+      })
 
       // var params = { domainCdList };
 
