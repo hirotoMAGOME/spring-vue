@@ -14,7 +14,8 @@ import java.util.List;
 public class ClsTypeService {
 
     private final ClsTypeRepository clsTypeRepository;
-//    OrderByClsTypeKey
+
+//    TODO NULLÇÃÇ∆Ç´Ç…ëSåüçıÇ…ÇµÇΩÇ¢
     public List<ClsType> findByDomainCdIn(List<String> ClsTypeKey) {
         return clsTypeRepository.findByDomainCdIn(ClsTypeKey);
     }
