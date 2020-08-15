@@ -31,4 +31,11 @@ public class BudgetCategoryService {
     	
     	return "success!!";
     }
+    
+    public String deleteBudgetCategory(Long id) {
+    	
+    	budgetCategoryRepository.deleteById(id);
+    	
+    	return "success!!";
+    }
 }

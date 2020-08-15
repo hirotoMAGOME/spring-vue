@@ -1,4 +1,5 @@
 /* 上下左右揃え */
+
 .vertical-middle {
     background: yellow;
     display: inline-block;
@@ -8,6 +9,13 @@
 }
 
 /* カード関連 */
+
 .box-card {
     margin-bottom: 20px;
+}
+
+/* ラジオボタン */
+
+.el-radio-group {
+    vertical-align: bottom;
 }

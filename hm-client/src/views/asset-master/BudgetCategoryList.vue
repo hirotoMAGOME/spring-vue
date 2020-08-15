@@ -28,7 +28,17 @@
           >編集</el-button>
         </template>
       </el-table-column>
-      <el-table-column label="削除" width="180"></el-table-column>
+      <el-table-column label="削除" width="180">
+        <template slot-scope="scope">
+          <el-button
+            type="info"
+            round
+            @click="
+              onClickDelete(scope.row.id)
+            "
+          >削除</el-button>
+        </template>
+      </el-table-column>
     </el-table>
     <el-dialog title="新規登録" :visible.sync="dialogFormVisible">
       <el-form :model="form">
@@ -155,13 +165,27 @@ export default {
       }
 
       axios
-        .post(API_PATH_AST_01, request)
+        .patch(API_PATH_AST_01, request)
         .then(function(response) {
           console.log("ok")
           console.log(response)
         })
         .catch(function(error) {
           console.log("NG")
+          console.log(error)
+        })
+    },
+    onClickDelete: function(selectedId) {
+      // var params = { id: selectedId }
+      //DELETEの実行
+      axios
+        .delete(API_PATH_AST_01 + "/" + selectedId)
+        .then(function(response) {
+          console.log("ok")
+          console.log(response)
+        })
+        .catch(function(error) {
+          console.log("ERROR")
           console.log(error)
         })
     }
