@@ -135,7 +135,7 @@ export default {
         var getData = this.options.budgetCategories.find(
           v => v.id === selectedId
         )
-        console.log(getData)
+
         this.form = {
           id: getData.id,
           name: getData.name,
