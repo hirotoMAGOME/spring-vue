@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import hm.springapi.controller.ast.assetmaster.dto.BudgetCategoryPostReq;
 import hm.springapi.domain.BudgetCategory;
 import hm.springapi.service.BudgetCategoryService;
 
@@ -38,12 +41,15 @@ public class BudgetCategoryController {
     
     @PostMapping("/api/ast/budget-category")
     @CrossOrigin
+    @ResponseBody
     //TODO オブジェクトにしたい
 //    public String receiveBudgetCategory(BudgetCategory budgetCategory) {
-    public String receiveBudgetCategory(@RequestBody String body) {
+    public String receiveBudgetCategory(@RequestBody BudgetCategoryPostReq body) {
 
     	BudgetCategory budgetCategory = new BudgetCategory();
-    	budgetCategory.setName("aiu");
+    	budgetCategory.setName(body.getName());
+    	String aaa = body.getBudgetCategoryType();
+    	budgetCategory.setBudgetCategoryType(aaa);
     	
     	return budgetCategoryService.createBudgetCategory(budgetCategory);
     }

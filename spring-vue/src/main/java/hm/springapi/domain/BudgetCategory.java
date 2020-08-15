@@ -31,7 +31,7 @@ public class BudgetCategory {
 	/** —\ZƒJƒeƒSƒŠ–¼. */
 	private String name;
 
-	/** ŒÅ’è”ïƒtƒ‰ƒO. */
+	/** . */
 	private String budgetCategoryType;
 
 	/** ì¬“ú. */
