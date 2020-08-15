@@ -1,0 +1,29 @@
+:root {
+  --app-width: 1920px;
+  --app-height: 1080px;
+  --shared-side-bar-width: 500px;
+  --app-router-view-width: 1720px;
+}
+/* 共通ヘッダー、サイドバー */
+#app {
+  width: var(--app-width);
+}
+#app-shared-header {
+  width:100%;
+  padding-left: 0px;
+}
+#app-shared-side-bar {
+  width: var(--shared-side-bar-width);
+}
+
+/* ページタイトル */
+.page-title {
+  padding-left: 40px;
+}
+.page-title > h1{
+  margin-bottom: 0px;
+}
+
+#test {
+  background-color: rgb(138, 241, 246);
+}

@@ -3,6 +3,8 @@ package hm.springapi.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,6 +28,12 @@ public class User {
     /** 管理者区分 */
     private String admin_kbn;
     
-    /** 削除フラグ */
-    private Boolean del_flg;
+	/** 作成日時. */
+	private Date createdAt;
+
+	/** 更新日時. */
+	private Date updatedAt;
+
+	/** 削除日時. */
+	private Date deletedAt;
 }

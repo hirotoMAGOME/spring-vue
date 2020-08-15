@@ -83,7 +83,11 @@ export default {
     refresh: async function() {
       const url = "http://localhost:8080/cash";
       const res = await axios.get(url);
-
+      
+      this.display(res);
+console.log(res);
+    },
+    display: function(res){
       this.budgets = res.data.budgets;
     },
     onClickRegist: function() {
@@ -96,9 +100,11 @@ export default {
       axios
         .post(url, request)
         .then(function(response) {
+          console.log("ok");
           console.log(response);
         })
         .catch(function(error) {
+          console.log("NG");
           console.log(error);
         });
       console.log("regist2");
