@@ -53,7 +53,7 @@ public class BudgetCategoryController {
     @CrossOrigin
     @ResponseBody
     public String deleteBudgetCategory(@PathVariable Long id) {
-    	
+//    	TODO —\Z‚ªˆêØ•R‚Ã‚©‚È‚¢‚±‚Æ‚ğŠm”F‚Ìãíœ
     	return budgetCategoryService.deleteBudgetCategory(id);
     }
 }
