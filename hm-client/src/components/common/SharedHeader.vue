@@ -1,8 +1,5 @@
 <template>
-  <el-header
-    id="app-shared-header"
-    style="background-color: rgb(238, 241, 246)"
-  >
+  <el-header id="app-shared-header" style="background-color: rgb(238, 241, 246)">
     <el-menu
       :default-active="activeIndex2"
       class="el-menu-demo"
@@ -15,8 +12,12 @@
       <el-menu-item index="1">ホームへ</el-menu-item>
       <el-submenu index="2">
         <template slot="title">資産管理</template>
-        <el-menu-item index="2-1">item one</el-menu-item>
-        <el-menu-item index="2-2">item two</el-menu-item>
+        <el-menu-item index="2-1">
+          <a href="/budget">予算</a>
+        </el-menu-item>
+        <el-menu-item index="2-2">
+          <a href="/actual">実績</a>
+        </el-menu-item>
         <el-menu-item index="2-3">
           <a href="/asset-master">資産マスタ登録更新</a>
         </el-menu-item>
@@ -30,12 +31,12 @@
       <el-menu-item index="3" disabled>Info</el-menu-item>
       <el-submenu index="4">
         <template slot="title">開発用</template>
-        <el-menu-item index="4-1"
-          ><a href="/develop-tool/ui-parts">画面パーツ</a></el-menu-item
-        >
-        <el-menu-item index="4-2"
-          ><a href="/develop-tool/auto-test">自動テスト</a></el-menu-item
-        >
+        <el-menu-item index="4-1">
+          <a href="/develop-tool/ui-parts">画面パーツ</a>
+        </el-menu-item>
+        <el-menu-item index="4-2">
+          <a href="/develop-tool/auto-test">自動テスト</a>
+        </el-menu-item>
       </el-submenu>
       <el-menu-item index="5">
         <a href="/develop-tool">sample</a>

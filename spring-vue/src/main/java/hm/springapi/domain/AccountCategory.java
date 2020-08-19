@@ -18,16 +18,16 @@ import javax.persistence.OneToMany;
 
 import java.util.List;
 
-@Entity(name="m_account_type")
+@Entity(name="m_account_category")
 @Setter
 @Getter
-public class AccountType {
+public class AccountCategory {
     /** 自動採番ID */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    /** 口座種類名 */
+    /** 口座カテゴリ名 */
     @Column
     private String name;
     
@@ -45,10 +45,5 @@ public class AccountType {
     @Column
     @Temporal(TemporalType.TIMESTAMP)
     private Date deleted_at;
-    
-    /** 外部キー **/
-    @OneToMany(mappedBy="accountType")
-    @JsonManagedReference("AccountType")
-    private List<Account> accounts;
      
 }

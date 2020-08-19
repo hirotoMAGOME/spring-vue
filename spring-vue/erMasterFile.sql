@@ -8,7 +8,6 @@ DROP TABLE IF EXISTS a_asset_history;
 DROP TABLE IF EXISTS a_budget;
 DROP TABLE IF EXISTS m_account;
 DROP TABLE IF EXISTS m_account_category;
-DROP TABLE IF EXISTS m_asset_api_list;
 DROP TABLE IF EXISTS m_budget_category;
 DROP TABLE IF EXISTS m_cls_type;
 DROP TABLE IF EXISTS m_currency;
@@ -20,12 +19,12 @@ DROP TABLE IF EXISTS m_user;
 
 /* Create Tables */
 
--- å£åº§æ®‹é«˜
+-- ŒûÀc‚
 CREATE TABLE a_account_balance
 (
 	id bigint unsigned NOT NULL,
 	account_id bigint unsigned NOT NULL,
-	-- å®Ÿéš›ã®å£åº§æ®‹é«˜ã‚’ç¢ºèªã—ãŸæ—¥
+	-- ÀÛ‚ÌŒûÀc‚‚ğŠm”F‚µ‚½“ú
 	recorded_at datetime DEFAULT NOW() NOT NULL,
 	balance int NOT NULL,
 	currency_id bigint unsigned NOT NULL,
@@ -36,16 +35,16 @@ CREATE TABLE a_account_balance
 );
 
 
--- å®Ÿç¸¾
+-- ÀÑ
 CREATE TABLE a_actual
 (
 	id bigint unsigned NOT NULL AUTO_INCREMENT,
-	-- è¨ˆä¸Šã•ã‚ŒãŸã‚‰è¨ˆä¸Šã•ã‚ŒãŸæœˆã‚’ã€ŒYYYY-MM-01ã€ã®å½¢å¼ã§ã‚»ãƒƒãƒˆ
+	-- Œvã‚³‚ê‚½‚çŒvã‚³‚ê‚½Œ‚ğuYYYY-MM-01v‚ÌŒ`®‚ÅƒZƒbƒg
 	appropriate_month date,
 	settled_at datetime NOT NULL,
 	budget_id bigint unsigned NOT NULL,
 	account_id bigint unsigned NOT NULL,
-	-- æ”¯æ‰•ã£ãŸé‡‘é¡
+	-- x•¥‚Á‚½‹àŠz
 	price int DEFAULT 0 NOT NULL,
 	name varchar(64) NOT NULL,
 	created_at datetime DEFAULT NOW() NOT NULL,
@@ -58,7 +57,7 @@ CREATE TABLE a_actual
 );
 
 
--- è³‡ç”£æ¨ç§»
+-- ‘Y„ˆÚ
 CREATE TABLE a_asset_history
 (
 	id bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -66,14 +65,14 @@ CREATE TABLE a_asset_history
 );
 
 
--- äºˆç®—
+-- —\Z
 CREATE TABLE a_budget
 (
 	id bigint unsigned NOT NULL AUTO_INCREMENT,
-	-- è¨ˆä¸Šã•ã‚ŒãŸã‚‰è¨ˆä¸Šã•ã‚ŒãŸæœˆã‚’ã€ŒYYYY-MM-01ã€ã®å½¢å¼ã§ã‚»ãƒƒãƒˆ
+	-- Œvã‚³‚ê‚½‚çŒvã‚³‚ê‚½Œ‚ğuYYYY-MM-01v‚ÌŒ`®‚ÅƒZƒbƒg
 	appropriate_month date,
 	budget_category_id bigint unsigned NOT NULL,
-	-- è³‡ç”£ãŒå¢—åŠ ã™ã‚‹äºˆå®šãŒãƒ—ãƒ©ã‚¹
+	-- ‘Y‚ª‘‰Á‚·‚é—\’è‚ªƒvƒ‰ƒX
 	amount int DEFAULT 0,
 	name varchar(64) NOT NULL,
 	created_at datetime DEFAULT NOW() NOT NULL,
@@ -86,11 +85,11 @@ CREATE TABLE a_budget
 );
 
 
--- å£åº§
+-- ŒûÀ
 CREATE TABLE m_account
 (
 	id bigint unsigned NOT NULL AUTO_INCREMENT,
-	account_category_id bigint unsigned NOT NULL,
+	account_type_id bigint unsigned NOT NULL,
 	name varchar(64) NOT NULL,
 	created_at datetime DEFAULT NOW() NOT NULL,
 	updated_at datetime DEFAULT NOW() NOT NULL,
@@ -99,7 +98,7 @@ CREATE TABLE m_account
 );
 
 
--- å£åº§ã‚«ãƒ†ã‚´ãƒª
+-- ŒûÀƒJƒeƒSƒŠ[
 CREATE TABLE m_account_category
 (
 	id bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -112,49 +111,37 @@ CREATE TABLE m_account_category
 );
 
 
--- è³‡ç”£APIä¸€è¦§
-CREATE TABLE m_asset_api_list
-(
-	id bigint unsigned NOT NULL,
-	api_cd varchar(64) NOT NULL,
-	name varchar(64),
-	path varchar(64),
-	PRIMARY KEY (id),
-	UNIQUE (id)
-);
-
-
--- äºˆç®—ã‚«ãƒ†ã‚´ãƒª
+-- —\ZƒJƒeƒSƒŠ
 CREATE TABLE m_budget_category
 (
 	id bigint unsigned NOT NULL AUTO_INCREMENT,
 	user_id bigint unsigned NOT NULL,
 	name varchar(64) NOT NULL,
-	-- å›ºå®šè²»/å¤‰å‹•è²»ãªã©ã‚’è¡¨ã™ç¨®åˆ¥
-	budget_category_type varchar(2) NOT NULL,
+	fixed_flg boolean DEFAULT '0' NOT NULL,
 	created_at datetime DEFAULT NOW() NOT NULL,
 	updated_at datetime DEFAULT NOW() NOT NULL,
 	deleted_at datetime,
 	PRIMARY KEY (id),
-	UNIQUE (id)
+	UNIQUE (id),
+	UNIQUE (name)
 );
 
 
--- åŒºåˆ†ç¨®åˆ¥
+-- ‹æ•ªí•Ê
 CREATE TABLE m_cls_type
 (
 	domain_cd varchar(64) NOT NULL,
-	cls_type_key char(2) NOT NULL,
-	name varchar(64),
+	cls_type_key char(2),
+	cls_type_name varchar(64),
 	sort int(100) unsigned DEFAULT 999 NOT NULL,
 	created_at datetime DEFAULT NOW() NOT NULL,
 	updated_at datetime DEFAULT NOW() NOT NULL,
 	deleted_at datetime,
-	UNIQUE (domain_cd, cls_type_key, name)
+	UNIQUE (domain_cd, cls_type_key, cls_type_name)
 );
 
 
--- é€šè²¨
+-- ’Ê‰İ
 CREATE TABLE m_currency
 (
 	id bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -167,7 +154,7 @@ CREATE TABLE m_currency
 );
 
 
--- ãƒ‰ãƒ¡ã‚¤ãƒ³
+-- ƒhƒƒCƒ“
 CREATE TABLE m_domain
 (
 	domain_cd varchar(64) NOT NULL,
@@ -179,7 +166,7 @@ CREATE TABLE m_domain
 );
 
 
--- ãƒ¦ãƒ¼ã‚¶ãƒ¼
+-- ƒ†[ƒU[
 CREATE TABLE m_user
 (
 	id bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -223,7 +210,7 @@ ALTER TABLE a_actual
 
 
 ALTER TABLE m_account
-	ADD FOREIGN KEY (account_category_id)
+	ADD FOREIGN KEY (account_type_id)
 	REFERENCES m_account_category (id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT

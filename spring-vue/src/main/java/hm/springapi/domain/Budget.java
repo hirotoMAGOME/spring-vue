@@ -2,13 +2,19 @@ package hm.springapi.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.AccessLevel;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 //import javax.persistence.JoinColumn;
 //import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -30,11 +36,11 @@ public class Budget {
     /** Œvã”NŒ */
     @Column
     @Temporal(TemporalType.DATE)
-    private Date appropriate_month;
+    private Date appropriateMonth;
     
     /** —\ZƒJƒeƒSƒŠID */
     @Column
-    private Long budget_category_id;
+    private Long budgetCategoryId;
     
     /** —\ZŠz */
     @Column
@@ -47,35 +53,40 @@ public class Budget {
     /** ì¬“ú */
     @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date created_at;
+    private Date createdAt;
     
     /** ì¬Ò */
     @Column
-    private Long created_user_id;
+    private Long createdUserId;
     
     /** XV“ú */
     @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updated_at;
+    private Date updatedAt;
     
     /** XVÒ */
     @Column
-    private Long updated_user_id;
+    private Long updatedUserId;
     
     /** íœ“ú */
     @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date deleted_at;
+    private Date deletedAt;
     
     /** íœÒ */
     @Column
-    private Long deleted_user_id;
+    private Long deletedUserId;
     
+    @Setter(AccessLevel.NONE) 
+  @OneToMany
+//  @JsonBackReference("Account")
+  @JoinColumn(name="budgetId")
+  private List<Actual> actual = new ArrayList<>();
     /****/
 //    @ManyToOne
 //    @JsonBackReference("Account")
 //    @JoinColumn(name="account_type_id",referencedColumnName="id",nullable=false,unique=true,insertable = false, updatable = false)
-//    private AccountType accountType;
+//    private BudgetCategory budgetCategory;
     
     
 }

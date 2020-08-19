@@ -53,6 +53,18 @@ export default new Router({
         )
     },
     {
+      path: "/actual",
+      name: "actual",
+      component: () =>
+        import(/* webpackChunkName: "budget" */ "@/views/actual/Actual.vue")
+    },
+    {
+      path: "/budget",
+      name: "budget",
+      component: () =>
+        import(/* webpackChunkName: "budget" */ "@/views/budget/Budget.vue")
+    },
+    {
       path: "/develop-tool/ui-parts",
       name: "uiParts",
       component: () =>

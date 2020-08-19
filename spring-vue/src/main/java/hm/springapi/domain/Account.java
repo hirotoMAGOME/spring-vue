@@ -49,10 +49,10 @@ public class Account {
     private Date deleted_at;
     
     /****/
-    @ManyToOne
-    @JsonBackReference("Account")
-    @JoinColumn(name="account_type_id",referencedColumnName="id",nullable=false,unique=true,insertable = false, updatable = false)
-    private AccountType accountType;
+//    @ManyToOne
+//    @JsonBackReference("Account")
+//    @JoinColumn(name="account_category_id",referencedColumnName="id",nullable=false,unique=true,insertable = false, updatable = false)
+//    private AccountCategory accountType;
     
     
 }
