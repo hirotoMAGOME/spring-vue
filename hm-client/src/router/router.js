@@ -65,7 +65,7 @@ export default new Router({
       name: "autoTest",
       component: () =>
         import(
-          /* webpackChunkName: "uiParts" */ "@/views/develop-tool/AutoTest.vue"
+          /* webpackChunkName: "autoTest" */ "@/views/develop-tool/AutoTest.vue"
         )
     },
     {
