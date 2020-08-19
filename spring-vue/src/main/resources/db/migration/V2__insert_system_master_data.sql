@@ -18,5 +18,6 @@ INSERT INTO m_user (id, name, mail, password, user_type, created_at, updated_at,
 
 -- 資産API一覧
 INSERT INTO m_asset_api_list (id, api_cd, name, path) VALUES ('1', 'AST_01', '予算カテゴリ', '/api/ast/budget-category');
+INSERT INTO m_asset_api_list (id, api_cd, name, path) VALUES ('2', 'AST_02', '予算', '/api/ast/budget');
 
 
