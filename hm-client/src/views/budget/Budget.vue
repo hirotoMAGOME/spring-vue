@@ -18,6 +18,7 @@
         <span>予算一覧</span>
       </div>
       <el-row>
+        達成状況とかを出す
         <el-button
           type="info"
           round

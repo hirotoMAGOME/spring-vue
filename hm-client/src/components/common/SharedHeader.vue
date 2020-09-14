@@ -13,10 +13,10 @@
       <el-submenu index="2">
         <template slot="title">資産管理</template>
         <el-menu-item index="2-1">
-          <a href="/budget">予算</a>
+          <a href="/cost-performance">サマリー</a>
         </el-menu-item>
         <el-menu-item index="2-2">
-          <a href="/actual">実績</a>
+          <a href="/cost-performance">予実登録更新</a>
         </el-menu-item>
         <el-menu-item index="2-3">
           <a href="/asset-master">資産マスタ登録更新</a>

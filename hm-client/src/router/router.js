@@ -53,10 +53,12 @@ export default new Router({
         )
     },
     {
-      path: "/actual",
-      name: "actual",
+      path: "/cost-performance",
+      name: "cost-performance",
       component: () =>
-        import(/* webpackChunkName: "budget" */ "@/views/actual/Actual.vue")
+        import(
+          /* webpackChunkName: "budget" */ "@/views/actual/CostPerformance.vue"
+        )
     },
     {
       path: "/budget",
