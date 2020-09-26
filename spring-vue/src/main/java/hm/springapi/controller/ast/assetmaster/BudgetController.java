@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import hm.springapi.controller.ast.assetmaster.BudgetResponse;
+import hm.springapi.controller.ast.assetmaster.dto.BudgetPostReq;
 import hm.springapi.domain.Budget;
+import hm.springapi.domain.Actual;
 import hm.springapi.service.BudgetService;
 
 import java.util.List;
@@ -27,6 +29,7 @@ public class BudgetController {
 
     @GetMapping("/api/ast/budget")
     @CrossOrigin
+     
     public ResponseEntity<BudgetResponse> findAll() {
         List<Budget> budgets = budgetService.findAll();
         BudgetResponse budgetResponse = BudgetResponse.builder()
@@ -36,22 +39,26 @@ public class BudgetController {
         return new ResponseEntity<>(budgetResponse, HttpStatus.OK);
     }
     
-//    @PatchMapping("/api/ast/budget-category")
-//    @CrossOrigin
-//    @ResponseBody
-//    public String postBudgetCategory(@RequestBody BudgetCategoryPostReq body) {
-//    	BudgetCategory budgetCategory = new BudgetCategory();
-//    	budgetCategory.setId(body.getId());
-//    	budgetCategory.setName(body.getName());
-//    	budgetCategory.setBudgetCategoryType(body.getBudgetCategoryType());
-//    	
-//    	return budgetCategoryService.createBudgetCategory(budgetCategory);
-//    }
+    @PatchMapping("/api/ast/budget")
+    @CrossOrigin
+    @ResponseBody
+    public String postBudget(@RequestBody BudgetPostReq body) {
+    	Budget budget = new Budget();
+    	budget.setId(body.getId());
+//TODO appropriateMonthÇÕñ¢é¿ëï
+    	budget.setBudgetCategoryId(body.getBudgetCategoryId());
+    	budget.setName(body.getName());
+    	budget.setAmount(body.getAmount());
+
+    	
+    	return budgetService.createBudget(budget);
+    }
     
-//    @DeleteMapping("/api/ast/budget-category/{id}")
-//    @CrossOrigin
-//    @ResponseBody
-//    public String deleteBudgetCategory(@PathVariable Long id) {
-//    	return budgetCategoryService.deleteBudgetCategory(id);
-//    }
+    @DeleteMapping("/api/ast/budget/{id}")
+    @CrossOrigin
+    @ResponseBody
+    public String deleteBudget(@PathVariable Long id) {
+//    	TODO ó\éZÇ™àÍêÿïRÇ√Ç©Ç»Ç¢Ç±Ç∆ÇämîFÇÃè„çÌèú
+    	return budgetService.deleteBudget(id);
+    }
 }

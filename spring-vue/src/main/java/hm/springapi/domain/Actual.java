@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 //import javax.persistence.JoinColumn;
 //import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -34,9 +35,9 @@ public class Actual {
     @Temporal(TemporalType.TIMESTAMP)
     private Date settledAt;
     
-//    /** ó\éZID */
-//    @Column
-//    private Integer budgetId;
+    /** ó\éZID */
+    @Column
+    private Integer budgetId;
     
     /** å˚ç¿ID */
     @Column

@@ -234,8 +234,9 @@ export default {
       console.log("onClickRegist method実行")
       var request = {
         id: this.form.id,
+        budgetCategoryId: this.form.budgetCategoryId,
         name: this.form.name,
-        budgetCategoryType: this.form.budgetCategoryType
+        amount: this.form.amount
       }
 
       axios

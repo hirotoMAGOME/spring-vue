@@ -57,7 +57,7 @@ export default new Router({
       name: "cost-performance",
       component: () =>
         import(
-          /* webpackChunkName: "budget" */ "@/views/actual/CostPerformance.vue"
+          /* webpackChunkName: "budget" */ "@/views/cost-performance/CostPerformance.vue"
         )
     },
     {

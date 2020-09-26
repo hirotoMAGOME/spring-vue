@@ -77,11 +77,12 @@ public class Budget {
     @Column
     private Long deletedUserId;
     
-    @Setter(AccessLevel.NONE) 
-  @OneToMany
-//  @JsonBackReference("Account")
-  @JoinColumn(name="budgetId")
-  private List<Actual> actual = new ArrayList<>();
+//    @Setter(AccessLevel.NONE) 
+//  @OneToMany
+//  @JoinColumn(name="budgetId")
+//  private List<Actual> actual = new ArrayList<>();
+    
+    
     /****/
 //    @ManyToOne
 //    @JsonBackReference("Account")
