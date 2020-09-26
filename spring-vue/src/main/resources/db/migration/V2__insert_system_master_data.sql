@@ -19,14 +19,19 @@ INSERT INTO m_user (id, name, mail, password, user_type, created_at, updated_at,
 -- 資産API一覧
 INSERT INTO m_asset_api_list (id, api_cd, name, path) VALUES ('1', 'AST_01', '予算カテゴリ', '/api/ast/budget-category');
 INSERT INTO m_asset_api_list (id, api_cd, name, path) VALUES ('2', 'AST_02', '予算', '/api/ast/budget');
+INSERT INTO m_asset_api_list (id, api_cd, name, path) VALUES ('3', 'AST_03', '口座カテゴリ', '/api/ast/account-category');
+INSERT INTO m_asset_api_list (id, api_cd, name, path) VALUES ('4', 'AST_04', '口座', '/api/ast/account');
+INSERT INTO m_asset_api_list (id, api_cd, name, path) VALUES ('5', 'AST_05', '通貨', '/api/ast/currency');
 
 
 -- 口座カテゴリ
-INSERT INTO m_account_category (id, user_id, name, created_at, updated_at, deleted_at) VALUES ('1', '1', '現金', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
-INSERT INTO m_account_category (id, user_id, name, created_at, updated_at, deleted_at) VALUES ('2', '1', '銀行口座', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
-INSERT INTO m_account_category (id, user_id, name, created_at, updated_at, deleted_at) VALUES ('3', '1', 'FX口座', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
-INSERT INTO m_account_category (id, user_id, name, created_at, updated_at, deleted_at) VALUES ('4', '1', '株式口座', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
-INSERT INTO m_account_category (id, user_id, name, created_at, updated_at, deleted_at) VALUES ('5', '1', '仮想通貨口座', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
+INSERT INTO m_account_category (id, user_id, name, created_at, updated_at, deleted_at) VALUES ('1', '2', '現金', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
+INSERT INTO m_account_category (id, user_id, name, created_at, updated_at, deleted_at) VALUES ('2', '2', '銀行口座', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
+INSERT INTO m_account_category (id, user_id, name, created_at, updated_at, deleted_at) VALUES ('3', '2', 'FX口座', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
+INSERT INTO m_account_category (id, user_id, name, created_at, updated_at, deleted_at) VALUES ('4', '2', '株式口座', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
+INSERT INTO m_account_category (id, user_id, name, created_at, updated_at, deleted_at) VALUES ('5', '2', '仮想通貨口座', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
+INSERT INTO m_account_category (id, user_id, name, created_at, updated_at, deleted_at) VALUES ('6', '2', 'クレジットカード', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
+INSERT INTO m_account_category (id, user_id, name, created_at, updated_at, deleted_at) VALUES ('7', '2', 'プリペイドカード', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
 
 
 -- 口座

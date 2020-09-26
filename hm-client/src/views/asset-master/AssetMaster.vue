@@ -10,7 +10,8 @@
           :key="item.id"
           :label="item.name"
           :value="item.api_cd"
-        >{{ item.name }}</el-option>
+          >{{ item.name }}</el-option
+        >
       </el-select>
     </el-card>
     <div v-show="selectedAssetApiList === 'AST_01'">
@@ -18,6 +19,9 @@
     </div>
     <div v-show="selectedAssetApiList === 'AST_02'">
       <BudgetList />
+    </div>
+    <div v-show="selectedAssetApiList === 'AST_03'">
+      <AccountCategoryList />
     </div>
   </el-main>
 </template>
@@ -27,6 +31,7 @@
 import axios from "axios"
 import BudgetCategoryList from "./BudgetCategoryList"
 import BudgetList from "./BudgetList"
+import AccountCategoryList from "./AccountCategoryList"
 import common from "@/js/common/common.js"
 
 //TODO enumで読み込み？
@@ -37,7 +42,8 @@ export default {
   mixins: [common],
   components: {
     BudgetCategoryList,
-    BudgetList
+    BudgetList,
+    AccountCategoryList
   },
   data() {
     return {

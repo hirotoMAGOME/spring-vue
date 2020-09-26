@@ -11,19 +11,35 @@
           onClickEdit(0)
           dialogFormVisible = true
         "
-      >追加</el-button>予算カテゴリ：
-      <el-select filterable placeholder="Select" v-model="selectedBudgetCategory">
+        >追加</el-button
+      >予算カテゴリ：
+      <el-select
+        filterable
+        placeholder="Select"
+        v-model="selectedBudgetCategory"
+      >
         <el-option
           v-for="item in options.budgetCategories"
           :key="item.id"
           :label="item.name"
           :value="item.id"
-        >{{ item.name }}</el-option>
+          >{{ item.name }}</el-option
+        >
       </el-select>
     </el-row>
+    <div class="balloon2">
+      <p>TODO 削除機能はとりあえず物理削除。</p>
+      <p>
+        論理削除や非表示フラグなどはあってもいいかも。月末しか変更できないようにとか。
+      </p>
+    </div>
     <el-table :data="options.budgets" border style="width: 100%">
       <el-table-column prop="id" label="ID" width="180"></el-table-column>
-      <el-table-column prop="budgetCategoryId" label="予算カテゴリ名" width="180"></el-table-column>
+      <el-table-column
+        prop="budgetCategoryId"
+        label="予算カテゴリ名"
+        width="180"
+      ></el-table-column>
       <el-table-column prop="name" label="予算名" width="180"></el-table-column>
       <el-table-column prop="amount" label="予算" width="180"></el-table-column>
       <el-table-column label="編集" width="180">
@@ -35,18 +51,15 @@
               onClickEdit(scope.row.id)
               dialogFormVisible = true
             "
-          >編集</el-button>
+            >編集</el-button
+          >
         </template>
       </el-table-column>
       <el-table-column label="削除" width="180">
         <template slot-scope="scope">
-          <el-button
-            type="info"
-            round
-            @click="
-              onClickDelete(scope.row.id)
-            "
-          >削除</el-button>
+          <el-button type="info" round @click="onClickDelete(scope.row.id)"
+            >削除</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
@@ -55,13 +68,18 @@
         <el-form ref="form" :model="form" label-width="200px" size="medium">
           <el-form-item label="ID">{{ form.id }}</el-form-item>
           <el-form-item label="予算カテゴリ">
-            <el-select filterable placeholder="Select" v-model="form.budgetCategoryId">
+            <el-select
+              filterable
+              placeholder="Select"
+              v-model="form.budgetCategoryId"
+            >
               <el-option
                 v-for="item in options.budgetCategories"
                 :key="item.id"
                 :label="item.name"
                 :value="item.id"
-              >{{ item.name }}</el-option>
+                >{{ item.name }}</el-option
+              >
             </el-select>
           </el-form-item>
           <el-form-item label="予算名">
@@ -90,7 +108,8 @@
             dialogFormVisible = false
             onClickRegist()
           "
-        >Confirm</el-button>
+          >Confirm</el-button
+        >
       </span>
     </el-dialog>
   </el-card>
