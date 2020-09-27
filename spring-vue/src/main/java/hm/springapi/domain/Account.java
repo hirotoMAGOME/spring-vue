@@ -26,27 +26,22 @@ public class Account {
     private Long id;
 
     /** 口座種類ID */
-    @Column
-    private Long account_type_id;
+    private Long accountCategoryId;
     
     /** 口座名 */
-    @Column
     private String name;
     
     /** 作成日時 */
-    @Column
     @Temporal(TemporalType.TIMESTAMP)
-    private Date created_at;
-    
-    /** 更新日時 */
-    @Column
+	private Date createdAt;
+
+	/** 更新日時. */
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updated_at;
-    
-    /** 削除日時 */
-    @Column
+	private Date updatedAt;
+
+	/** 削除日時. */
     @Temporal(TemporalType.TIMESTAMP)
-    private Date deleted_at;
+	private Date deletedAt;
     
     /****/
 //    @ManyToOne

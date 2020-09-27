@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import hm.springapi.controller.ast.assetmaster.dto.BudgetCategoryDeleteReq;
 import hm.springapi.controller.ast.assetmaster.dto.BudgetCategoryPostReq;
 import hm.springapi.domain.BudgetCategory;
 import hm.springapi.service.BudgetCategoryService;

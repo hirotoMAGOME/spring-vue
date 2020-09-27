@@ -21,6 +21,9 @@ public class AccountCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+	/** ユーザー. */
+	private Long userId;
+    
     /** 口座カテゴリ名 */
     private String name;
     

@@ -12,7 +12,7 @@
 	<category_index>0</category_index>
 	<zoom>0.75</zoom>
 	<x>0</x>
-	<y>0</y>
+	<y>35</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -138,7 +138,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-07-05 02:02:13</creation_date>
-			<updated_date>2020-09-27 02:24:42</updated_date>
+			<updated_date>2020-09-27 11:30:57</updated_date>
 			<model_property>
 				<name>プロジェクト名</name>
 				<value></value>
@@ -689,6 +689,54 @@
 		</word>
 		<word>
 			<id>32</id>
+			<length>null</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>true</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>対象ユーザーID</logical_name>
+			<physical_name>user_id</physical_name>
+			<type>bigint</type>
+		</word>
+		<word>
+			<id>33</id>
+			<length>null</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>true</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>対象ユーザーID</logical_name>
+			<physical_name>user_id</physical_name>
+			<type>bigint</type>
+		</word>
+		<word>
+			<id>34</id>
+			<length>null</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>true</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>対象ユーザーID</logical_name>
+			<physical_name>user_id</physical_name>
+			<type>bigint</type>
+		</word>
+		<word>
+			<id>35</id>
 			<length>2</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -947,7 +995,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>32</word_id>
+					<word_id>35</word_id>
 					<id>14</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -1500,28 +1548,6 @@
 				<b>192</b>
 			</color>
 			<connections>
-				<relation>
-					<id>1</id>
-					<source>2</source>
-					<target>6</target>
-						<source_xp>-1</source_xp>
-						<source_yp>-1</source_yp>
-						<target_xp>-1</target_xp>
-						<target_yp>-1</target_yp>
-						<color>
-							<r>0</r>
-							<g>0</g>
-							<b>0</b>
-						</color>
-					<child_cardinality>1..n</child_cardinality>
-					<parent_cardinality>1</parent_cardinality>
-					<reference_for_pk>true</reference_for_pk>
-					<name></name>
-					<on_delete_action>RESTRICT</on_delete_action>
-					<on_update_action>RESTRICT</on_update_action>
-					<referenced_column>null</referenced_column>
-					<referenced_complex_unique_key>null</referenced_complex_unique_key>
-				</relation>
 			</connections>
 			<physical_name>m_budget_category</physical_name>
 			<logical_name>予算カテゴリ</logical_name>
@@ -1564,18 +1590,17 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
+					<word_id>34</word_id>
 					<id>27</id>
-					<referenced_column>10</referenced_column>
-					<relation>1</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
-					<logical_name>対象ユーザーID</logical_name>
-					<physical_name>user_id</physical_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
 					<type>bigint</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
-					<foreign_key>true</foreign_key>
+					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
 					<primary_key>false</primary_key>
 					<unique_key>false</unique_key>
@@ -1692,7 +1717,7 @@
 			</color>
 			<connections>
 				<relation>
-					<id>2</id>
+					<id>1</id>
 					<source>3</source>
 					<target>7</target>
 						<source_xp>-1</source_xp>
@@ -1724,7 +1749,7 @@
 				<normal_column>
 					<id>30</id>
 					<referenced_column>15</referenced_column>
-					<relation>2</relation>
+					<relation>1</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -1898,7 +1923,7 @@
 			</color>
 			<connections>
 				<relation>
-					<id>3</id>
+					<id>2</id>
 					<source>12</source>
 					<target>8</target>
 						<source_xp>-1</source_xp>
@@ -1962,8 +1987,8 @@
 				</normal_column>
 				<normal_column>
 					<id>35</id>
-					<referenced_column>52</referenced_column>
-					<relation>3</relation>
+					<referenced_column>53</referenced_column>
+					<relation>2</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name>口座カテゴリID</logical_name>
@@ -2056,7 +2081,7 @@
 			</color>
 			<connections>
 				<relation>
-					<id>4</id>
+					<id>3</id>
 					<source>5</source>
 					<target>9</target>
 						<source_xp>-1</source_xp>
@@ -2078,7 +2103,7 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 				<relation>
-					<id>5</id>
+					<id>4</id>
 					<source>8</source>
 					<target>9</target>
 						<source_xp>-1</source_xp>
@@ -2209,7 +2234,7 @@
 				<normal_column>
 					<id>40</id>
 					<referenced_column>21</referenced_column>
-					<relation>4</relation>
+					<relation>3</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name>予算ID</logical_name>
@@ -2243,7 +2268,7 @@
 				<normal_column>
 					<id>41</id>
 					<referenced_column>34</referenced_column>
-					<relation>5</relation>
+					<relation>4</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name>口座ID</logical_name>
@@ -2369,7 +2394,7 @@
 			</color>
 			<connections>
 				<relation>
-					<id>6</id>
+					<id>5</id>
 					<source>8</source>
 					<target>10</target>
 						<source_xp>-1</source_xp>
@@ -2391,7 +2416,7 @@
 					<referenced_complex_unique_key>null</referenced_complex_unique_key>
 				</relation>
 				<relation>
-					<id>7</id>
+					<id>6</id>
 					<source>11</source>
 					<target>10</target>
 						<source_xp>-1</source_xp>
@@ -2456,7 +2481,7 @@
 				<normal_column>
 					<id>45</id>
 					<referenced_column>34</referenced_column>
-					<relation>6</relation>
+					<relation>5</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name>口座ID</logical_name>
@@ -2556,7 +2581,7 @@
 				<normal_column>
 					<id>48</id>
 					<referenced_column>49</referenced_column>
-					<relation>7</relation>
+					<relation>6</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name>通貨ID</logical_name>
@@ -2603,8 +2628,8 @@
 		</table>
 		<table>
 			<id>11</id>
-			<height>179</height>
-			<width>198</width>
+			<height>204</height>
+			<width>213</width>
 				<font_name>Yu Gothic UI</font_name>
 				<font_size>9</font_size>
 			<x>1256</x>
@@ -2657,8 +2682,41 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>23</word_id>
+					<word_id>32</word_id>
 					<id>50</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>bigint</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>23</word_id>
+					<id>51</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2691,7 +2749,7 @@
 				</normal_column>
 				<normal_column>
 					<word_id>13</word_id>
-					<id>51</id>
+					<id>52</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2750,28 +2808,6 @@
 				<b>192</b>
 			</color>
 			<connections>
-				<relation>
-					<id>8</id>
-					<source>2</source>
-					<target>12</target>
-						<source_xp>-1</source_xp>
-						<source_yp>-1</source_yp>
-						<target_xp>-1</target_xp>
-						<target_yp>-1</target_yp>
-						<color>
-							<r>0</r>
-							<g>0</g>
-							<b>0</b>
-						</color>
-					<child_cardinality>1..n</child_cardinality>
-					<parent_cardinality>1</parent_cardinality>
-					<reference_for_pk>true</reference_for_pk>
-					<name></name>
-					<on_delete_action>RESTRICT</on_delete_action>
-					<on_update_action>RESTRICT</on_update_action>
-					<referenced_column>null</referenced_column>
-					<referenced_complex_unique_key>null</referenced_complex_unique_key>
-				</relation>
 			</connections>
 			<physical_name>m_account_category</physical_name>
 			<logical_name>口座カテゴリ</logical_name>
@@ -2782,7 +2818,7 @@
 			<columns>
 				<normal_column>
 					<word_id>11</word_id>
-					<id>52</id>
+					<id>53</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -2814,18 +2850,17 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<id>53</id>
-					<referenced_column>10</referenced_column>
-					<relation>8</relation>
+					<word_id>33</word_id>
+					<id>54</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
-					<logical_name>対象ユーザーID</logical_name>
-					<physical_name>user_id</physical_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
 					<type>bigint</type>
 					<constraint></constraint>
 					<default_value></default_value>
 					<auto_increment>false</auto_increment>
-					<foreign_key>true</foreign_key>
+					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
 					<primary_key>false</primary_key>
 					<unique_key>false</unique_key>
@@ -2849,7 +2884,7 @@
 				</normal_column>
 				<normal_column>
 					<word_id>18</word_id>
-					<id>54</id>
+					<id>55</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3971,15 +4006,15 @@
 					<direct_test_data>
 						<data>
 							<column_data>
-								<column_id>52</column_id>
+								<column_id>53</column_id>
 								<value>1</value>
 							</column_data>
 							<column_data>
-								<column_id>53</column_id>
+								<column_id>54</column_id>
 								<value>2</value>
 							</column_data>
 							<column_data>
-								<column_id>54</column_id>
+								<column_id>55</column_id>
 								<value>現金</value>
 							</column_data>
 							<column_data>
@@ -3997,15 +4032,15 @@
 						</data>
 						<data>
 							<column_data>
-								<column_id>52</column_id>
-								<value>2</value>
-							</column_data>
-							<column_data>
 								<column_id>53</column_id>
 								<value>2</value>
 							</column_data>
 							<column_data>
 								<column_id>54</column_id>
+								<value>2</value>
+							</column_data>
+							<column_data>
+								<column_id>55</column_id>
 								<value>銀行口座</value>
 							</column_data>
 							<column_data>
@@ -4023,15 +4058,15 @@
 						</data>
 						<data>
 							<column_data>
-								<column_id>52</column_id>
+								<column_id>53</column_id>
 								<value>3</value>
 							</column_data>
 							<column_data>
-								<column_id>53</column_id>
+								<column_id>54</column_id>
 								<value>2</value>
 							</column_data>
 							<column_data>
-								<column_id>54</column_id>
+								<column_id>55</column_id>
 								<value>FX口座</value>
 							</column_data>
 							<column_data>
@@ -4049,15 +4084,15 @@
 						</data>
 						<data>
 							<column_data>
-								<column_id>52</column_id>
+								<column_id>53</column_id>
 								<value>4</value>
 							</column_data>
 							<column_data>
-								<column_id>53</column_id>
+								<column_id>54</column_id>
 								<value>2</value>
 							</column_data>
 							<column_data>
-								<column_id>54</column_id>
+								<column_id>55</column_id>
 								<value>株式口座</value>
 							</column_data>
 							<column_data>
@@ -4075,15 +4110,15 @@
 						</data>
 						<data>
 							<column_data>
-								<column_id>52</column_id>
+								<column_id>53</column_id>
 								<value>5</value>
 							</column_data>
 							<column_data>
-								<column_id>53</column_id>
+								<column_id>54</column_id>
 								<value>2</value>
 							</column_data>
 							<column_data>
-								<column_id>54</column_id>
+								<column_id>55</column_id>
 								<value>仮想通貨口座</value>
 							</column_data>
 							<column_data>
@@ -4101,15 +4136,15 @@
 						</data>
 						<data>
 							<column_data>
-								<column_id>52</column_id>
+								<column_id>53</column_id>
 								<value>6</value>
 							</column_data>
 							<column_data>
-								<column_id>53</column_id>
+								<column_id>54</column_id>
 								<value>2</value>
 							</column_data>
 							<column_data>
-								<column_id>54</column_id>
+								<column_id>55</column_id>
 								<value>クレジットカード</value>
 							</column_data>
 							<column_data>
@@ -4127,15 +4162,15 @@
 						</data>
 						<data>
 							<column_data>
-								<column_id>52</column_id>
+								<column_id>53</column_id>
 								<value>7</value>
 							</column_data>
 							<column_data>
-								<column_id>53</column_id>
+								<column_id>54</column_id>
 								<value>2</value>
 							</column_data>
 							<column_data>
-								<column_id>54</column_id>
+								<column_id>55</column_id>
 								<value>プリペイドカード</value>
 							</column_data>
 							<column_data>
@@ -4156,7 +4191,7 @@
 						<test_data_num>0</test_data_num>
 						<data_def_list>
 							<data_def>
-								<column_id>52</column_id>
+								<column_id>53</column_id>
 								<type>format</type>
 								<repeat_num>1</repeat_num>
 								<template>%</template>
@@ -4171,7 +4206,7 @@
 								</modified_values>
 							</data_def>
 							<data_def>
-								<column_id>53</column_id>
+								<column_id>54</column_id>
 								<type>foreign.key</type>
 								<repeat_num>1</repeat_num>
 								<template>%</template>
@@ -4186,7 +4221,7 @@
 								</modified_values>
 							</data_def>
 							<data_def>
-								<column_id>54</column_id>
+								<column_id>55</column_id>
 								<type>format</type>
 								<repeat_num>1</repeat_num>
 								<template>口座カテゴリ名_%</template>

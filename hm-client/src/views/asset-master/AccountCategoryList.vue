@@ -79,7 +79,7 @@ export default {
   data() {
     return {
       options: {
-        AccountCategories: []
+        accountCategories: []
       },
       dialogFormVisible: false, //モーダルの表示状態
       form: {

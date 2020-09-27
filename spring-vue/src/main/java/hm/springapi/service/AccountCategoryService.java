@@ -22,7 +22,8 @@ public class AccountCategoryService {
     public String createAccountCategory(AccountCategory accountCategory) {
     	
     	Date date = new Date();
-
+//    	TODO userID‚ğƒƒOƒCƒ“î•ñ‚©‚çæ“¾
+    	accountCategory.setUserId((long)1);
     	accountCategory.setCreatedAt(date);
     	accountCategory.setUpdatedAt(date);
     	
