@@ -10,9 +10,9 @@
 		<right_margin>30</right_margin>
 	</page_setting>
 	<category_index>0</category_index>
-	<zoom>0.75</zoom>
-	<x>0</x>
-	<y>35</y>
+	<zoom>1.0</zoom>
+	<x>218</x>
+	<y>36</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
@@ -138,7 +138,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-07-05 02:02:13</creation_date>
-			<updated_date>2020-09-27 11:30:57</updated_date>
+			<updated_date>2020-10-04 02:46:44</updated_date>
 			<model_property>
 				<name>プロジェクト名</name>
 				<value></value>
@@ -4487,6 +4487,181 @@
 						</data_def_list>
 					</repeat_test_data>
 				</table_test_data>
+				<table_test_data>
+					<table_id>11</table_id>
+					<direct_test_data>
+						<data>
+							<column_data>
+								<column_id>49</column_id>
+								<value>1</value>
+							</column_data>
+							<column_data>
+								<column_id>50</column_id>
+								<value>1</value>
+							</column_data>
+							<column_data>
+								<column_id>51</column_id>
+								<value>円</value>
+							</column_data>
+							<column_data>
+								<column_id>52</column_id>
+								<value>￥</value>
+							</column_data>
+							<column_data>
+								<column_id>0</column_id>
+								<value>2020/01/01 00:00:00</value>
+							</column_data>
+							<column_data>
+								<column_id>1</column_id>
+								<value>2020/01/01 00:00:00</value>
+							</column_data>
+							<column_data>
+								<column_id>2</column_id>
+								<value>NULL</value>
+							</column_data>
+						</data>
+						<data>
+							<column_data>
+								<column_id>49</column_id>
+								<value>2</value>
+							</column_data>
+							<column_data>
+								<column_id>50</column_id>
+								<value>1</value>
+							</column_data>
+							<column_data>
+								<column_id>51</column_id>
+								<value>ドル</value>
+							</column_data>
+							<column_data>
+								<column_id>52</column_id>
+								<value>＄</value>
+							</column_data>
+							<column_data>
+								<column_id>0</column_id>
+								<value>2020/01/01 00:00:00</value>
+							</column_data>
+							<column_data>
+								<column_id>1</column_id>
+								<value>2020/01/01 00:00:00</value>
+							</column_data>
+							<column_data>
+								<column_id>2</column_id>
+								<value>NULL</value>
+							</column_data>
+						</data>
+					</direct_test_data>
+					<repeat_test_data>
+						<test_data_num>0</test_data_num>
+						<data_def_list>
+							<data_def>
+								<column_id>49</column_id>
+								<type>format</type>
+								<repeat_num>1</repeat_num>
+								<template>%</template>
+								<from>1</from>
+								<to>100</to>
+								<increment>1</increment>
+								<select>1</select>
+								<select>2</select>
+								<select>3</select>
+								<select>4</select>
+								<modified_values>
+								</modified_values>
+							</data_def>
+							<data_def>
+								<column_id>50</column_id>
+								<type>format</type>
+								<repeat_num>1</repeat_num>
+								<template>%</template>
+								<from>1</from>
+								<to>100</to>
+								<increment>1</increment>
+								<select>1</select>
+								<select>2</select>
+								<select>3</select>
+								<select>4</select>
+								<modified_values>
+								</modified_values>
+							</data_def>
+							<data_def>
+								<column_id>51</column_id>
+								<type>format</type>
+								<repeat_num>1</repeat_num>
+								<template>通貨名_%</template>
+								<from>1</from>
+								<to>100</to>
+								<increment>1</increment>
+								<select>通貨名_1</select>
+								<select>通貨名_2</select>
+								<select>通貨名_3</select>
+								<select>通貨名_4</select>
+								<modified_values>
+								</modified_values>
+							</data_def>
+							<data_def>
+								<column_id>52</column_id>
+								<type>format</type>
+								<repeat_num>1</repeat_num>
+								<template>マーク_%</template>
+								<from>1</from>
+								<to>100</to>
+								<increment>1</increment>
+								<select>マーク_1</select>
+								<select>マーク_2</select>
+								<select>マーク_3</select>
+								<select>マーク_4</select>
+								<modified_values>
+								</modified_values>
+							</data_def>
+							<data_def>
+								<column_id>0</column_id>
+								<type>format</type>
+								<repeat_num>1</repeat_num>
+								<template>2000-01-% 12:00:00.000</template>
+								<from>1</from>
+								<to>100</to>
+								<increment>1</increment>
+								<select>2000-01-01 12:00:00.000</select>
+								<select>2000-01-02 12:00:00.000</select>
+								<select>2000-01-03 12:00:00.000</select>
+								<select>2000-01-04 12:00:00.000</select>
+								<modified_values>
+								</modified_values>
+							</data_def>
+							<data_def>
+								<column_id>1</column_id>
+								<type>format</type>
+								<repeat_num>1</repeat_num>
+								<template>2000-01-% 12:00:00.000</template>
+								<from>1</from>
+								<to>100</to>
+								<increment>1</increment>
+								<select>2000-01-01 12:00:00.000</select>
+								<select>2000-01-02 12:00:00.000</select>
+								<select>2000-01-03 12:00:00.000</select>
+								<select>2000-01-04 12:00:00.000</select>
+								<modified_values>
+								</modified_values>
+							</data_def>
+							<data_def>
+								<column_id>2</column_id>
+								<type>format</type>
+								<repeat_num>1</repeat_num>
+								<template>2000-01-% 12:00:00.000</template>
+								<from>1</from>
+								<to>100</to>
+								<increment>1</increment>
+								<select>2000-01-01 12:00:00.000</select>
+								<select>2000-01-02 12:00:00.000</select>
+								<select>2000-01-03 12:00:00.000</select>
+								<select>2000-01-04 12:00:00.000</select>
+								<modified_values>
+								</modified_values>
+							</data_def>
+						</data_def_list>
+					</repeat_test_data>
+				</table_test_data>
 			</test_data>
 			<test_data>
 				<name>V3__insert_data</name>
@@ -5644,6 +5819,238 @@
 								<select>2</select>
 								<select>3</select>
 								<select>4</select>
+								<modified_values>
+								</modified_values>
+							</data_def>
+						</data_def_list>
+					</repeat_test_data>
+				</table_test_data>
+				<table_test_data>
+					<table_id>10</table_id>
+					<direct_test_data>
+						<data>
+							<column_data>
+								<column_id>44</column_id>
+								<value>1</value>
+							</column_data>
+							<column_data>
+								<column_id>45</column_id>
+								<value>1</value>
+							</column_data>
+							<column_data>
+								<column_id>46</column_id>
+								<value>2020/10/01 00:00:00</value>
+							</column_data>
+							<column_data>
+								<column_id>47</column_id>
+								<value>5000</value>
+							</column_data>
+							<column_data>
+								<column_id>48</column_id>
+								<value>1</value>
+							</column_data>
+							<column_data>
+								<column_id>0</column_id>
+								<value>2020/10/01 00:00:00</value>
+							</column_data>
+							<column_data>
+								<column_id>1</column_id>
+								<value>2020/10/01 00:00:00</value>
+							</column_data>
+							<column_data>
+								<column_id>2</column_id>
+								<value>NULL</value>
+							</column_data>
+						</data>
+						<data>
+							<column_data>
+								<column_id>44</column_id>
+								<value>2</value>
+							</column_data>
+							<column_data>
+								<column_id>45</column_id>
+								<value>1</value>
+							</column_data>
+							<column_data>
+								<column_id>46</column_id>
+								<value>2020/10/03 00:00:00</value>
+							</column_data>
+							<column_data>
+								<column_id>47</column_id>
+								<value>10000</value>
+							</column_data>
+							<column_data>
+								<column_id>48</column_id>
+								<value>1</value>
+							</column_data>
+							<column_data>
+								<column_id>0</column_id>
+								<value>2020/10/01 00:00:00</value>
+							</column_data>
+							<column_data>
+								<column_id>1</column_id>
+								<value>2020/10/01 00:00:00</value>
+							</column_data>
+							<column_data>
+								<column_id>2</column_id>
+								<value>NULL</value>
+							</column_data>
+						</data>
+						<data>
+							<column_data>
+								<column_id>44</column_id>
+								<value>3</value>
+							</column_data>
+							<column_data>
+								<column_id>45</column_id>
+								<value>2</value>
+							</column_data>
+							<column_data>
+								<column_id>46</column_id>
+								<value>2020/10/01 00:00:00</value>
+							</column_data>
+							<column_data>
+								<column_id>47</column_id>
+								<value>3000</value>
+							</column_data>
+							<column_data>
+								<column_id>48</column_id>
+								<value>2</value>
+							</column_data>
+							<column_data>
+								<column_id>0</column_id>
+								<value>2020/10/01 00:00:00</value>
+							</column_data>
+							<column_data>
+								<column_id>1</column_id>
+								<value>2020/10/01 00:00:00</value>
+							</column_data>
+							<column_data>
+								<column_id>2</column_id>
+								<value>NULL</value>
+							</column_data>
+						</data>
+					</direct_test_data>
+					<repeat_test_data>
+						<test_data_num>0</test_data_num>
+						<data_def_list>
+							<data_def>
+								<column_id>44</column_id>
+								<type>format</type>
+								<repeat_num>1</repeat_num>
+								<template>%</template>
+								<from>1</from>
+								<to>100</to>
+								<increment>1</increment>
+								<select>1</select>
+								<select>2</select>
+								<select>3</select>
+								<select>4</select>
+								<modified_values>
+								</modified_values>
+							</data_def>
+							<data_def>
+								<column_id>45</column_id>
+								<type>foreign.key</type>
+								<repeat_num>1</repeat_num>
+								<template>%</template>
+								<from>1</from>
+								<to>100</to>
+								<increment>1</increment>
+								<select>1</select>
+								<select>2</select>
+								<select>3</select>
+								<select>4</select>
+								<modified_values>
+								</modified_values>
+							</data_def>
+							<data_def>
+								<column_id>46</column_id>
+								<type>format</type>
+								<repeat_num>1</repeat_num>
+								<template>2000-01-% 12:00:00.000</template>
+								<from>1</from>
+								<to>100</to>
+								<increment>1</increment>
+								<select>2000-01-01 12:00:00.000</select>
+								<select>2000-01-02 12:00:00.000</select>
+								<select>2000-01-03 12:00:00.000</select>
+								<select>2000-01-04 12:00:00.000</select>
+								<modified_values>
+								</modified_values>
+							</data_def>
+							<data_def>
+								<column_id>47</column_id>
+								<type>format</type>
+								<repeat_num>1</repeat_num>
+								<template>%</template>
+								<from>1</from>
+								<to>100</to>
+								<increment>1</increment>
+								<select>1</select>
+								<select>2</select>
+								<select>3</select>
+								<select>4</select>
+								<modified_values>
+								</modified_values>
+							</data_def>
+							<data_def>
+								<column_id>48</column_id>
+								<type>foreign.key</type>
+								<repeat_num>1</repeat_num>
+								<template>%</template>
+								<from>1</from>
+								<to>100</to>
+								<increment>1</increment>
+								<select>1</select>
+								<select>2</select>
+								<select>3</select>
+								<select>4</select>
+								<modified_values>
+								</modified_values>
+							</data_def>
+							<data_def>
+								<column_id>0</column_id>
+								<type>format</type>
+								<repeat_num>1</repeat_num>
+								<template>2000-01-% 12:00:00.000</template>
+								<from>1</from>
+								<to>100</to>
+								<increment>1</increment>
+								<select>2000-01-01 12:00:00.000</select>
+								<select>2000-01-02 12:00:00.000</select>
+								<select>2000-01-03 12:00:00.000</select>
+								<select>2000-01-04 12:00:00.000</select>
+								<modified_values>
+								</modified_values>
+							</data_def>
+							<data_def>
+								<column_id>1</column_id>
+								<type>format</type>
+								<repeat_num>1</repeat_num>
+								<template>2000-01-% 12:00:00.000</template>
+								<from>1</from>
+								<to>100</to>
+								<increment>1</increment>
+								<select>2000-01-01 12:00:00.000</select>
+								<select>2000-01-02 12:00:00.000</select>
+								<select>2000-01-03 12:00:00.000</select>
+								<select>2000-01-04 12:00:00.000</select>
+								<modified_values>
+								</modified_values>
+							</data_def>
+							<data_def>
+								<column_id>2</column_id>
+								<type>format</type>
+								<repeat_num>1</repeat_num>
+								<template>2000-01-% 12:00:00.000</template>
+								<from>1</from>
+								<to>100</to>
+								<increment>1</increment>
+								<select>2000-01-01 12:00:00.000</select>
+								<select>2000-01-02 12:00:00.000</select>
+								<select>2000-01-03 12:00:00.000</select>
+								<select>2000-01-04 12:00:00.000</select>
 								<modified_values>
 								</modified_values>
 							</data_def>

@@ -23,3 +23,9 @@ INSERT INTO a_actual (id, appropriate_month, settled_at, budget_id, account_id, 
 INSERT INTO a_actual (id, appropriate_month, settled_at, budget_id, account_id, price, name, created_at, created_user_id, updated_at, updated_user_id, deleted_at, deleted_user_id) VALUES ('3', null, '2020-02-02 12:00:00', '1', '2', '8000', '寿司', '2020-01-01 00:00:00', '1', '2020-01-01 00:00:00', '1', null, null);
 
 
+-- 口座残高
+INSERT INTO a_account_balance (id, account_id, recorded_at, balance, currency_id, created_at, updated_at, deleted_at) VALUES ('1', '1', '2020/10/01 00:00:00', '5000', '1', '2020/10/01 00:00:00', '2020/10/01 00:00:00', null);
+INSERT INTO a_account_balance (id, account_id, recorded_at, balance, currency_id, created_at, updated_at, deleted_at) VALUES ('2', '1', '2020/10/03 00:00:00', '10000', '1', '2020/10/01 00:00:00', '2020/10/01 00:00:00', null);
+INSERT INTO a_account_balance (id, account_id, recorded_at, balance, currency_id, created_at, updated_at, deleted_at) VALUES ('3', '2', '2020/10/01 00:00:00', '3000', '2', '2020/10/01 00:00:00', '2020/10/01 00:00:00', null);
+
+

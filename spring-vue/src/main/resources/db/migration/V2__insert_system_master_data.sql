@@ -41,3 +41,8 @@ INSERT INTO m_account (id, account_category_id, name, created_at, updated_at, de
 INSERT INTO m_account (id, account_category_id, name, created_at, updated_at, deleted_at) VALUES ('4', '5', 'bitFlyer', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
 
 
+-- 通貨
+INSERT INTO m_currency (id, user_id, name, mark, created_at, updated_at, deleted_at) VALUES ('1', '1', '円', '￥', '2020/01/01 00:00:00', '2020/01/01 00:00:00', null);
+INSERT INTO m_currency (id, user_id, name, mark, created_at, updated_at, deleted_at) VALUES ('2', '1', 'ドル', '＄', '2020/01/01 00:00:00', '2020/01/01 00:00:00', null);
+
+

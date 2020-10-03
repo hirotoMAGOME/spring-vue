@@ -158,6 +158,7 @@ CREATE TABLE m_cls_type
 CREATE TABLE m_currency
 (
 	id bigint unsigned NOT NULL AUTO_INCREMENT,
+	user_id bigint unsigned NOT NULL,
 	name varchar(64) NOT NULL,
 	mark varchar(64) NOT NULL,
 	created_at datetime DEFAULT NOW() NOT NULL,
@@ -249,22 +250,6 @@ ALTER TABLE a_account_balance
 ALTER TABLE m_cls_type
 	ADD FOREIGN KEY (domain_cd)
 	REFERENCES m_domain (domain_cd)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE m_account_category
-	ADD FOREIGN KEY (user_id)
-	REFERENCES m_user (id)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE m_budget_category
-	ADD FOREIGN KEY (user_id)
-	REFERENCES m_user (id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
