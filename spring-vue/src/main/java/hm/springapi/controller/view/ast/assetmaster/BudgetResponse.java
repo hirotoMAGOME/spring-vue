@@ -1,4 +1,4 @@
-package hm.springapi.controller.ast.assetmaster;
+package hm.springapi.controller.view.ast.assetmaster;
 
 import lombok.Builder;
 import lombok.Getter;

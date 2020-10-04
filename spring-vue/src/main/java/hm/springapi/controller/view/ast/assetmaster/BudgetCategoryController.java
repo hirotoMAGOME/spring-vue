@@ -1,4 +1,4 @@
-package hm.springapi.controller.ast.assetmaster;
+package hm.springapi.controller.view.ast.assetmaster;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import hm.springapi.controller.ast.assetmaster.dto.BudgetCategoryPostReq;
+import hm.springapi.controller.view.ast.assetmaster.dto.BudgetCategoryPostReq;
 import hm.springapi.domain.BudgetCategory;
 import hm.springapi.service.BudgetCategoryService;
 
