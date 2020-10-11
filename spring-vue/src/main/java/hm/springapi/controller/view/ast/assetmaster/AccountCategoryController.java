@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hm.springapi.controller.view.ast.assetmaster.dto.AccountCategoryDeleteReq;
 import hm.springapi.controller.view.ast.assetmaster.dto.AccountCategoryPostReq;
-import hm.springapi.domain.AccountCategory;
+import hm.springapi.dao.entity.AccountCategory;
 import hm.springapi.service.AccountCategoryService;
 
 import java.util.List;

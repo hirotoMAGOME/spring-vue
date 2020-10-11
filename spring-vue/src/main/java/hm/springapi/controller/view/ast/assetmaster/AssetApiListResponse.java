@@ -2,9 +2,10 @@ package hm.springapi.controller.view.ast.assetmaster;
 
 import lombok.Builder;
 import lombok.Getter;
-import hm.springapi.domain.AssetApiList;
 
 import java.util.List;
+
+import hm.springapi.dao.entity.AssetApiList;
 
 @Getter
 @Builder

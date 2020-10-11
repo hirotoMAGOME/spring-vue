@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import hm.springapi.controller.ast.actual.ActualResponse;
-import hm.springapi.domain.Actual;
+import hm.springapi.dao.entity.Actual;
 import hm.springapi.service.ActualService;
 
 import java.util.List;

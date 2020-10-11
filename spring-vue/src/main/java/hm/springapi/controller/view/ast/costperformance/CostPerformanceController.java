@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import hm.springapi.controller.ast.assetmaster.BudgetResponse;
-import hm.springapi.domain.Budget;
+import hm.springapi.dao.entity.Budget;
 import hm.springapi.service.BudgetService;
 
 import java.util.List;

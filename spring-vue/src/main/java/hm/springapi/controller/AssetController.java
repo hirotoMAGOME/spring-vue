@@ -5,7 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import hm.springapi.domain.Account;
+
+import hm.springapi.dao.entity.Account;
 import hm.springapi.service.AccountService;
 
 import java.util.List;

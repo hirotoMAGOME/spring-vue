@@ -3,8 +3,8 @@ package hm.springapi.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import hm.springapi.domain.AccountCategory;
-import hm.springapi.domain.AccountCategoryRepository;
+import hm.springapi.dao.entity.AccountCategory;
+import hm.springapi.dao.entity.AccountCategoryRepository;
 
 import java.util.Date;
 import java.util.List;

@@ -1,4 +1,4 @@
-package hm.springapi.domain;
+package hm.springapi.dao.entity;
 
 import java.util.List;
 

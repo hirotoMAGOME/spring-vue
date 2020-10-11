@@ -3,8 +3,10 @@ package hm.springapi.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import hm.springapi.domain.AccountBalance;
-import hm.springapi.domain.AccountBalanceRepository;
+
+import hm.springapi.dao.entity.AccountBalance;
+import hm.springapi.dao.entity.AccountBalanceRepository;
+import hm.springapi.dao.entity.BudgetRepository;
 
 import java.util.Date;
 import java.util.List;

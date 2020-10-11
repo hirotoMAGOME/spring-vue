@@ -3,10 +3,11 @@ package hm.springapi.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import hm.springapi.domain.Budget;
-import hm.springapi.domain.BudgetRepository;
-import hm.springapi.domain.Actual;
-import hm.springapi.domain.ActualRepository;
+
+import hm.springapi.dao.entity.Actual;
+import hm.springapi.dao.entity.ActualRepository;
+import hm.springapi.dao.entity.Budget;
+import hm.springapi.dao.entity.BudgetRepository;
 
 import java.util.List;
 

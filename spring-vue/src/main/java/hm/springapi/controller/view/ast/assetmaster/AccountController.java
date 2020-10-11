@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hm.springapi.controller.view.ast.assetmaster.dto.AccountDeleteReq;
 import hm.springapi.controller.view.ast.assetmaster.dto.AccountPostReq;
-import hm.springapi.domain.Account;
+import hm.springapi.dao.entity.Account;
 import hm.springapi.service.AccountService;
 
 import java.util.List;

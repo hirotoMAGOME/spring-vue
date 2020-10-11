@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import hm.springapi.domain.Budget;
+import hm.springapi.dao.entity.Budget;
 import hm.springapi.service.CashService;
 
 import java.util.List;

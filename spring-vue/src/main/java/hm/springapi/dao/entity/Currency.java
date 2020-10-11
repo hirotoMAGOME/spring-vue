@@ -1,9 +1,10 @@
-package hm.springapi.domain;
+package hm.springapi.dao.entity;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,30 +12,25 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity(name="m_budget_category")
+@Entity
 @Setter
 @Getter
-/**
- * 予算カテゴリ モデルクラス.
- * 
- */
-public class BudgetCategory {
-
-	/** ID. */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+public class Currency {
+    /** 自動採番ID */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
 	/** ユーザー. */
 	private Long userId;
+	
+    /** 通貨名 */
+    private String name;
 
-	/** 予算カテゴリ名. */
-	private String name;
+    /** マーク */
+    private String mark;
 
-	/** . */
-	private String budgetCategoryType;
-
-	/** 作成日時. */
+    /** 作成日時 */
     @Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
 
@@ -45,5 +41,4 @@ public class BudgetCategory {
 	/** 削除日時. */
     @Temporal(TemporalType.TIMESTAMP)
 	private Date deletedAt;
-	
 }

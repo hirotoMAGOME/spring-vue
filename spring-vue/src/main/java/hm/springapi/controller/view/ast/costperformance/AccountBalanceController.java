@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import hm.springapi.controller.view.ast.costperformance.AccountBalanceResponse;
-import hm.springapi.domain.AccountBalance;
+import hm.springapi.dao.entity.AccountBalance;
 import hm.springapi.service.AccountBalanceService;
 
 import java.util.List;

@@ -2,9 +2,10 @@ package hm.springapi.controller;
 
 import lombok.Builder;
 import lombok.Getter;
-import hm.springapi.domain.Budget;
 
 import java.util.*;
+
+import hm.springapi.dao.entity.Budget;
 
 @Getter
 @Builder

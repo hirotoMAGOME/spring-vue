@@ -1,4 +1,4 @@
-package hm.springapi.domain;
+package hm.springapi.dao.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,20 +16,28 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-@Entity(name="m_account")
+@Entity(name="a_account_balance")
 @Setter
 @Getter
-public class Account {
+public class AccountBalance {
     /** ©“®Ì”ÔID */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /** ŒûÀí—ŞID */
-    private Long accountCategoryId;
+    /** ŒûÀID */
+    private Long accountId;
     
-    /** ŒûÀ–¼ */
-    private String name;
+    /** ‹L’ “ú */
+    @Temporal(TemporalType.TIMESTAMP)
+	private Date recordedAt;
+    
+    /** c‚ */
+    @Column
+    private Long balance;
+    
+    /** ’Ê‰İID */
+    private Long currencyId;
     
     /** ì¬“ú */
     @Temporal(TemporalType.TIMESTAMP)

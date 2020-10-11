@@ -3,8 +3,8 @@ package hm.springapi.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import hm.springapi.domain.Actual;
-import hm.springapi.domain.ActualRepository;
+import hm.springapi.dao.entity.Actual;
+import hm.springapi.dao.entity.ActualRepository;
 
 import java.util.Date;
 import java.util.List;
