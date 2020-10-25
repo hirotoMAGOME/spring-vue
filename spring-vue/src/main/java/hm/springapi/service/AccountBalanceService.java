@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import hm.springapi.dao.entity.AccountBalance;
 import hm.springapi.dao.entity.AccountBalanceRepository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,10 @@ public class AccountBalanceService {
         return accountBalanceRepository.findAll();
     }
     
+//    public List<AccountBalance> findByAccountId(Long accountId) {
+//        return accountBalanceRepository.findByAccountId(accountId);
+//    }
+    
     //List‚¶‚á‚È‚¢‚ñ‚¾‚¯‚Ç‚Ë
 //    public Optional<AccountBalance> findById(Long id){
 //    	return accountBalanceRepository.findById(id);
@@ -30,16 +35,17 @@ public class AccountBalanceService {
     	return accountBalanceRepository.findById(id);
     }
     
-//    public String createAccount(Account account) {
-//
-//    	Date date = new Date();
-//    	account.setCreatedAt(date);
-//    	account.setUpdatedAt(date);
-//    	
-//    	accountRepository.save(account);
-//    	
-//    	return "success!!";
-//    }
+    public String createAccountBalance(AccountBalance accountBalance) {
+
+    	accountBalance.setId(null);
+    	Date date = new Date();
+    	accountBalance.setCreatedAt(date);
+    	accountBalance.setUpdatedAt(date);
+    	
+    	accountBalanceRepository.save(accountBalance);
+    	
+    	return "success!!";
+    }
 //    
 //    public String deleteAccount(Long id) {
 //    	

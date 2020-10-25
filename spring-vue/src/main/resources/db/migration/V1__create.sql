@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS m_user;
 -- 口座残高
 CREATE TABLE a_account_balance
 (
-	id bigint unsigned NOT NULL,
+	id bigint unsigned NOT NULL AUTO_INCREMENT,
 	account_id bigint unsigned NOT NULL,
 	-- 実際の口座残高を確認した日
 	recorded_at datetime DEFAULT NOW() NOT NULL,

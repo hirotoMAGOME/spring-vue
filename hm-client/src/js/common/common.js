@@ -42,26 +42,6 @@ export default {
             })
         }
       })
-
-      // var params = { domainCdList };
-
-      // //axiosのconfigを変えて、配列の形式を変更する
-      // //OK http://localhost:8080/api/com/cls-type?domainCdList=budget_category_type&domainCdList=user_type
-      // //NG http://localhost:8080/api/com/cls-type?domainCdList[]=budget_category_type&domainCdList[]=user_type
-      // let myAxios = axios.create({
-      //     paramsSerializer: params => Qs.stringify(params, { arrayFormat: 'repeat' })
-      // })
-
-      // //GETの実行
-      // myAxios
-      //     .get(API_PATH_COM_01, { params })
-      //     .then(function (res) {
-      //         console.log("aaa");
-      //         return res.data;
-      //     })
-      //     .catch(function () {
-      //         return [];
-      //     });
     },
     isArray: function(item) {
       return Object.prototype.toString.call(item) === "[object Array]"

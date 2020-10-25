@@ -79,7 +79,7 @@
             type="primary"
             @click="
             dialogFormVisible = false
-            onClickRegist()
+            onClickRegistAPI()
           "
           >Confirm</el-button>
         </span>
@@ -172,8 +172,8 @@ export default {
       //モーダルを開く
       // this.dialogFormVisible = true;
     },
-    onClickRegist: function() {
-      console.log("onClickRegist method実行")
+    onClickRegistAPI: function() {
+      console.log("onClickRegistAPI method実行")
       var request = {
         id: this.form.id,
         name: this.form.name,

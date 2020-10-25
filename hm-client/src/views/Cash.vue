@@ -34,7 +34,7 @@
           金額
           <input v-model="actual.price" placeholder="edit me" />
         </p>
-        <a class="btn btn-primary" @click="onClickRegist">登録</a>
+        <a class="btn btn-primary" @click="onClickRegistAPI">登録</a>
       </div>
     </div>
   </div>
@@ -90,7 +90,7 @@ console.log(res);
     display: function(res){
       this.budgets = res.data.budgets;
     },
-    onClickRegist: function() {
+    onClickRegistAPI: function() {
       const url = "http://localhost:8080/cash";
       var request = {
         test1: "aaa",

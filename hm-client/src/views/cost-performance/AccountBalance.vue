@@ -6,8 +6,7 @@
     <div class="balloon2">
       <p>TODO 履歴ボタンに削除の処理が残っている。履歴画面への遷移に変更する</p>
     </div>
-    <el-table :data="options.accountBalances" border style="width: 100%">
-      <el-table-column prop="id" label="ID" width="180"></el-table-column>
+    <el-table :data="options.latestAccountBalances" border style="width: 100%">
       <el-table-column
         prop="accountId"
         label="口座名"
@@ -29,7 +28,7 @@
             type="info"
             round
             @click="
-              onClickEdit(scope.row.id)
+              onClickEdit(scope.row.accountId)
               dialogFormVisible = true
             "
             >編集</el-button
@@ -44,30 +43,25 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog title="登録" :visible.sync="dialogFormVisible">
+
+    <el-dialog title="最新の口座状況の登録" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form ref="form" :model="form" label-width="200px" size="medium">
           <el-form-item label="口座名">{{ form.accountId }}</el-form-item>
-          <el-form-item label="予算カテゴリ">
-            <el-select
-              filterable
-              placeholder="Select"
-              v-model="form.budgetCategoryId"
+          <el-form-item label="記帳日時">
+            <el-date-picker
+              v-model="recordedAt"
+              type="date"
+              placeholder="口座残高を確認した日付"
+              :picker-options="pickerOptions"
             >
-              <el-option
-                v-for="item in options.budgetCategories"
-                :key="item.id"
-                :label="item.name"
-                :value="item.id"
-                >{{ item.name }}</el-option
-              >
-            </el-select>
+            </el-date-picker>
           </el-form-item>
-          <el-form-item label="予算名">
-            <el-input v-model="form.name"></el-input>
+          <el-form-item label="残高">
+            <el-input v-model="form.balance"></el-input>
           </el-form-item>
-          <el-form-item label="予算">
-            <el-input v-model="form.amount"></el-input>
+          <el-form-item label="通貨">
+            <el-input v-model="form.balance"></el-input>
           </el-form-item>
         </el-form>
       </el-form>
@@ -77,7 +71,7 @@
           type="primary"
           @click="
             dialogFormVisible = false
-            onClickRegist()
+            onClickPostApi()
           "
           >Confirm</el-button
         >
@@ -99,7 +93,7 @@ export default {
   data() {
     return {
       options: {
-        accountBalances: []
+        latestAccountBalances: []
       },
       dialogFormVisible: false, //モーダルの表示状態
       form: {
@@ -107,7 +101,42 @@ export default {
         recordedAt: null,
         balance: null,
         currencyId: null
-      }
+      },
+      history: {
+        accountId: null,
+        accountBalanceHistory: []
+      },
+      pickerOptions: {
+        //datepicker用
+        disabledDate(time) {
+          return time.getTime() > Date.now()
+        },
+        shortcuts: [
+          {
+            text: "Today",
+            onClick(picker) {
+              picker.$emit("pick", new Date())
+            }
+          },
+          {
+            text: "Yesterday",
+            onClick(picker) {
+              const date = new Date()
+              date.setTime(date.getTime() - 3600 * 1000 * 24)
+              picker.$emit("pick", date)
+            }
+          },
+          {
+            text: "A week ago",
+            onClick(picker) {
+              const date = new Date()
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+              picker.$emit("pick", date)
+            }
+          }
+        ]
+      },
+      recordedAt: "" //datepicker用 defaultの設定を共通化したい
     }
   },
   created: function() {
@@ -143,7 +172,7 @@ export default {
       axios
         .get(API_PATH_AST_21)
         .then(function(res) {
-          that.options.accountBalances = res.data.accountBalances
+          that.options.latestAccountBalances = res.data.accountBalances
         })
         .catch(function(err) {
           console.log("ERROR")
@@ -163,47 +192,38 @@ export default {
       //   name: "指定なし"
       // })
 
-      that.options.accountBalances.sort(
+      that.options.latestAccountBalances.sort(
         that.objectArraySort("accountId", "asc")
       )
     },
     onClickEdit: function(selectedId) {
       //モーダルに値をセット
-      if (selectedId === 0) {
-        this.form = {
-          id: null,
-          budgetCategoryId: null,
-          name: null,
-          amount: null
-        }
-      } else {
-        var getData = this.options.accountBalances.find(
-          v => v.id === selectedId
-        )
 
-        this.form = {
-          id: getData.id,
-          budgetCategoryId: getData.budgetCategoryId,
-          name: getData.name,
-          amount: getData.amount
-        }
+      var getAccountBalance = this.options.latestAccountBalances.find(
+        v => v.accountId === selectedId
+      )
+
+      this.form = {
+        accountId: getAccountBalance.accountId,
+        recordedAt: getAccountBalance.recordedAt,
+        balance: getAccountBalance.balance,
+        currencyId: getAccountBalance.currencyId
       }
-      console.log(this.form)
-      //モーダルを開く
-      // this.dialogFormVisible = true;
     },
-    onClickRegist: function() {
+    onClickPostApi: function() {
       var that = this
-      console.log("onClickRegist method実行")
+      console.log("onClickPostApi method実行")
+
+      //POSTリクエスト項目
       var request = {
-        id: this.form.id,
-        budgetCategoryId: this.form.budgetCategoryId,
-        name: this.form.name,
-        amount: this.form.amount
+        accountId: this.form.accountId,
+        recordedAt: this.form.recordedAt,
+        balance: this.form.balance,
+        currencyId: 1 //TODOマスタから取得
       }
 
       axios
-        .patch(API_PATH_AST_21, request)
+        .post(API_PATH_AST_21, request)
         .then(function(response) {
           console.log("ok")
           console.log(response)
@@ -211,20 +231,6 @@ export default {
         })
         .catch(function(error) {
           console.log("NG")
-          console.log(error)
-        })
-    },
-    onClickDelete: function(selectedId) {
-      // var params = { id: selectedId }
-      //DELETEの実行
-      axios
-        .delete(API_PATH_AST_21 + "/" + selectedId)
-        .then(function(response) {
-          console.log("ok")
-          console.log(response)
-        })
-        .catch(function(error) {
-          console.log("ERROR")
           console.log(error)
         })
     }

@@ -85,7 +85,7 @@ export default {
         })
     },
     display: function() {},
-    onClickRegist: function() {
+    onClickRegistAPI: function() {
       // var request = {
       //   test1: "aaa",
       //   test2: "bbb"

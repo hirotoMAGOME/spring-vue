@@ -1,6 +1,6 @@
 <template>
   <el-main>
-    <el-card class="box-card" shadow="always" body-style="padding:10px 20px">
+    <!-- <el-card class="box-card" shadow="always" body-style="padding:10px 20px">
       <div slot="header" class="clearfix">
         <span>メニュー</span>
       </div>
@@ -13,7 +13,7 @@
           >{{ item.name }}</el-option
         >
       </el-select>
-    </el-card>
+    </el-card> -->
     <el-card class="box-card" shadow="always" body-style="padding:10px 20px">
       <div slot="header" class="clearfix">
         <span>予実管理</span>
@@ -82,7 +82,7 @@
             type="primary"
             @click="
               dialogFormVisible = false
-              onClickRegist()
+              onClickRegistAPI()
             "
             >Confirm</el-button
           >
@@ -185,8 +185,8 @@ export default {
       //モーダルを開く
       // this.dialogFormVisible = true;
     },
-    onClickRegist: function() {
-      console.log("onClickRegist method実行")
+    onClickRegistAPI: function() {
+      console.log("onClickRegistAPI method実行")
       var request = {
         id: this.form.id,
         name: this.form.name,

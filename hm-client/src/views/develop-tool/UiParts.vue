@@ -19,16 +19,17 @@
       <el-card class="box-card" shadow="always" body-style="padding:10px 20px">
         <div slot="header" class="clearfix">
           <div class="template-no-area"></div>
-          <el-button
-            type="info"
-            round
-            @click="
-              dialogFormVisible = true
-            "
-          >モーダル(中)</el-button>
+          <el-button type="info" round @click="dialogFormVisible = true"
+            >モーダル(中)</el-button
+          >
           <el-dialog title="新規登録" :visible.sync="dialogFormVisible">
             <el-form :model="form">
-              <el-form ref="form" :model="form" label-width="200px" size="medium">
+              <el-form
+                ref="form"
+                :model="form"
+                label-width="200px"
+                size="medium"
+              >
                 <el-form-item label="ID">{{ input.input1 }}</el-form-item>
                 <el-form-item label="予算カテゴリ名">
                   <el-input v-model="input.input1"></el-input>
@@ -40,10 +41,11 @@
               <el-button
                 type="primary"
                 @click="
-            dialogFormVisible = false
-            onClickRegist()
-          "
-              >Confirm</el-button>
+                  dialogFormVisible = false
+                  onClickRegistAPI()
+                "
+                >Confirm</el-button
+              >
             </span>
           </el-dialog>
         </div>
@@ -71,8 +73,18 @@
               :key="item.id"
               :label="item.name"
               :value="item.name"
-            >{{ item.name }}</el-option>
+              >{{ item.name }}</el-option
+            >
           </el-select>
+        </el-form-item>
+        <el-form-item label="datepicker">
+          <el-date-picker
+            v-model="datepickerValue2"
+            type="date"
+            placeholder="Pick a day"
+            :picker-options="pickerOptions"
+          >
+          </el-date-picker>
         </el-form-item>
         <el-form-item label="Activity time">
           <el-col :span="11">
@@ -85,7 +97,11 @@
           </el-col>
           <el-col class="line" :span="2">-</el-col>
           <el-col :span="11">
-            <el-time-picker placeholder="Pick a time" v-model="form.date2" style="width: 100%;"></el-time-picker>
+            <el-time-picker
+              placeholder="Pick a time"
+              v-model="form.date2"
+              style="width: 100%;"
+            ></el-time-picker>
           </el-col>
         </el-form-item>
         <el-form-item label="Instant delivery">
@@ -96,7 +112,10 @@
             <el-checkbox label="Online activities" name="type"></el-checkbox>
             <el-checkbox label="Promotion activities" name="type"></el-checkbox>
             <el-checkbox label="Offline activities" name="type"></el-checkbox>
-            <el-checkbox label="Simple brand exposure" name="type"></el-checkbox>
+            <el-checkbox
+              label="Simple brand exposure"
+              name="type"
+            ></el-checkbox>
           </el-checkbox-group>
         </el-form-item>
         <el-form-item label="Resources">
@@ -163,7 +182,38 @@ export default {
         input3: null,
         input4: null,
         input5: null
-      }
+      },
+      pickerOptions: {
+        //datepicker用
+        disabledDate(time) {
+          return time.getTime() > Date.now()
+        },
+        shortcuts: [
+          {
+            text: "Today",
+            onClick(picker) {
+              picker.$emit("pick", new Date())
+            }
+          },
+          {
+            text: "Yesterday",
+            onClick(picker) {
+              const date = new Date()
+              date.setTime(date.getTime() - 3600 * 1000 * 24)
+              picker.$emit("pick", date)
+            }
+          },
+          {
+            text: "A week ago",
+            onClick(picker) {
+              const date = new Date()
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+              picker.$emit("pick", date)
+            }
+          }
+        ]
+      },
+      datepickerValue2: "" //datepicker用,
     }
   },
   methods: {

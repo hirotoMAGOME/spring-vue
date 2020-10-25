@@ -8,7 +8,6 @@ import lombok.Setter;
 @Setter
 @Getter
 public class AccountBalancePostReq {
-	private Long id;
 	private Long accountId;
 	private Date recordedAt;
 	private Long balance;
