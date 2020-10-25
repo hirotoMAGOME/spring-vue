@@ -37,7 +37,10 @@
       </el-table-column>
       <el-table-column label="履歴" width="180">
         <template slot-scope="scope">
-          <el-button type="info" round @click="onClickDelete(scope.row.id)"
+          <el-button
+            type="info"
+            round
+            @click="onClickGetApi(scope.row.accountId)"
             >履歴</el-button
           >
         </template>
@@ -85,7 +88,8 @@
 import axios from "axios"
 import common from "@/js/common/common.js"
 
-const API_PATH_AST_21 = "http://localhost:8080/api/ast/account-balance"
+const API_PATH_CPF_01 = "http://localhost:8080/api/ast/account-balance"
+const API_PATH_CPF_05 = "http://localhost:8080/api/ast/account-balance-history"
 
 export default {
   name: "AccountBalance",
@@ -170,7 +174,7 @@ export default {
 
       //GETの実行
       axios
-        .get(API_PATH_AST_21)
+        .get(API_PATH_CPF_01)
         .then(function(res) {
           that.options.latestAccountBalances = res.data.accountBalances
         })
@@ -223,7 +227,7 @@ export default {
       }
 
       axios
-        .post(API_PATH_AST_21, request)
+        .post(API_PATH_CPF_01, request)
         .then(function(response) {
           console.log("ok")
           console.log(response)
@@ -232,6 +236,25 @@ export default {
         .catch(function(error) {
           console.log("NG")
           console.log(error)
+        })
+    },
+    onClickGetApi: function(accountId) {
+      var that = this
+
+      //GETの実行
+      axios
+        .get(API_PATH_CPF_05, {
+          params: {
+            accountId: accountId
+          }
+        })
+        .then(function(res) {
+          // TODO 動作確認してないよ
+          that.history = res.data.accountBalances
+        })
+        .catch(function(err) {
+          console.log("ERROR")
+          console.log(err)
         })
     }
   }

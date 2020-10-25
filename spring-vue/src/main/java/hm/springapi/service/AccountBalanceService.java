@@ -21,15 +21,9 @@ public class AccountBalanceService {
         return accountBalanceRepository.findAll();
     }
     
-//    public List<AccountBalance> findByAccountId(Long accountId) {
-//        return accountBalanceRepository.findByAccountId(accountId);
-//    }
-    
-    //List‚¶‚á‚È‚¢‚ñ‚¾‚¯‚Ç‚Ë
-//    public Optional<AccountBalance> findById(Long id){
-//    	return accountBalanceRepository.findById(id);
-//    }
-    
+    public List<AccountBalance> findByAccountId(Long accountId) {
+        return accountBalanceRepository.findByAccountId(accountId);
+    }
     
     public Optional<AccountBalance> findById(Long id){
     	return accountBalanceRepository.findById(id);
