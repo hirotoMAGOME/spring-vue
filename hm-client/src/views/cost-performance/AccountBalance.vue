@@ -1,7 +1,7 @@
 <template>
   <el-card class="box-card" shadow="always" body-style="padding:10px 20px">
     <div slot="header" class="clearfix">
-      <span>口座管理</span>
+      <span>口座残高管理</span>
     </div>
     <div class="balloon2">
       <p>TODO 履歴ボタンに削除の処理が残っている。履歴画面への遷移に変更する</p>
@@ -41,7 +41,7 @@
             type="info"
             round
             @click="
-              onClickGetApi(scope.row.accountId)
+              onClickOpenHistory(scope.row.accountId, scope.row.currencyId)
               historyDialogVisible = true
             "
             >履歴</el-button
@@ -102,8 +102,9 @@
 import axios from "axios"
 import common from "@/js/common/common.js"
 
-const API_PATH_CPF_01 = "http://localhost:8080/api/ast/account-balance"
-const API_PATH_CPF_05 = "http://localhost:8080/api/ast/account-balance-history"
+//口座残高管理API
+const API_PATH_CPF_21 =
+  "http://localhost:8080/api/ast/account-balance-management"
 
 export default {
   name: "AccountBalance",
@@ -111,7 +112,8 @@ export default {
   data() {
     return {
       options: {
-        latestAccountBalances: []
+        latestAccountBalances: [],
+        accountBalanceHistory: []
       },
       dialogFormVisible: false, //モーダルの表示状態
       historyDialogVisible: false, //履歴モーダルの表示状態
@@ -189,9 +191,10 @@ export default {
 
       //GETの実行
       axios
-        .get(API_PATH_CPF_01)
+        .get(API_PATH_CPF_21)
         .then(function(res) {
-          that.options.latestAccountBalances = res.data.accountBalances
+          that.options.latestAccountBalances = res.data.latestAccountBalance
+          that.options.accountBalanceHistory = res.data.accountBalanceHistory
         })
         .catch(function(err) {
           console.log("ERROR")
@@ -242,7 +245,7 @@ export default {
       }
 
       axios
-        .post(API_PATH_CPF_01, request)
+        .post(API_PATH_CPF_21, request)
         .then(function(response) {
           console.log("ok")
           console.log(response)
@@ -253,25 +256,17 @@ export default {
           console.log(error)
         })
     },
-    onClickGetApi: function(accountId) {
+    onClickOpenHistory: function(accountId, currencyId) {
       var that = this
 
-      that.historyDialog.accountNm = accountId
-
-      //GETの実行
-      axios
-        .get(API_PATH_CPF_05, {
-          params: {
-            accountId: accountId
-          }
-        })
-        .then(function(res) {
-          that.historyDialog.history = res.data.accountBalances
-        })
-        .catch(function(err) {
-          console.log("ERROR")
-          console.log(err)
-        })
+      var getDialogData = that.options.accountBalanceHistory.filter(function(
+        value
+      ) {
+        return value.accountId === accountId && value.currencyId === currencyId
+      })
+      that.historyDialog.accountNm = getDialogData[0].accountId //TODO accountId=>accountNm
+      that.historyDialog.history =
+        getDialogData[0].accountBalanceHistoryFiltered
     }
   }
 }
