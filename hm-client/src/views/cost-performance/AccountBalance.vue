@@ -40,7 +40,10 @@
           <el-button
             type="info"
             round
-            @click="onClickGetApi(scope.row.accountId)"
+            @click="
+              onClickGetApi(scope.row.accountId)
+              historyDialogVisible = true
+            "
             >履歴</el-button
           >
         </template>
@@ -80,6 +83,17 @@
         >
       </span>
     </el-dialog>
+
+    <el-dialog title="履歴の確認" :visible.sync="historyDialogVisible">
+      口座名：{{ historyDialog.accountNm }}
+      <el-table :data="historyDialog.history" border style="width: 100%">
+        <el-table-column prop="balance" label="残高"></el-table-column>
+        <el-table-column
+          prop="recordedAt"
+          label="最終記録日時"
+        ></el-table-column>
+      </el-table>
+    </el-dialog>
   </el-card>
 </template>
 <script>
@@ -100,15 +114,16 @@ export default {
         latestAccountBalances: []
       },
       dialogFormVisible: false, //モーダルの表示状態
+      historyDialogVisible: false, //履歴モーダルの表示状態
       form: {
         accountId: null,
         recordedAt: null,
         balance: null,
         currencyId: null
       },
-      history: {
-        accountId: null,
-        accountBalanceHistory: []
+      historyDialog: {
+        accountNm: null,
+        history: []
       },
       pickerOptions: {
         //datepicker用
@@ -241,6 +256,8 @@ export default {
     onClickGetApi: function(accountId) {
       var that = this
 
+      that.historyDialog.accountNm = accountId
+
       //GETの実行
       axios
         .get(API_PATH_CPF_05, {
@@ -249,8 +266,7 @@ export default {
           }
         })
         .then(function(res) {
-          // TODO 動作確認してないよ
-          that.history = res.data.accountBalances
+          that.historyDialog.history = res.data.accountBalances
         })
         .catch(function(err) {
           console.log("ERROR")

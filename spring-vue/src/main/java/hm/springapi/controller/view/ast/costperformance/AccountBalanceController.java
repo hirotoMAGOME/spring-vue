@@ -4,29 +4,23 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import hm.springapi.controller.view.ast.assetmaster.BudgetCategoryResponse;
-import hm.springapi.controller.view.ast.assetmaster.dto.BudgetCategoryPostReq;
 import hm.springapi.controller.view.ast.costperformance.AccountBalanceResponse;
+import hm.springapi.controller.view.ast.costperformance.dto.AccountBalanceManagementGetRes;
+import hm.springapi.controller.view.ast.costperformance.dto.AccountBalanceHistory;
 import hm.springapi.controller.view.ast.costperformance.dto.AccountBalancePostReq;
 import hm.springapi.dao.entity.AccountBalance;
-import hm.springapi.dao.entity.BudgetCategory;
 import hm.springapi.service.AccountBalanceService;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -87,6 +81,60 @@ public class AccountBalanceController {
                 .build();
 
         return new ResponseEntity<>(accountBalanceResponse, HttpStatus.OK);
+    }
+
+    @GetMapping("/api/ast/account-balance-management")
+    @CrossOrigin
+    public ResponseEntity<AccountBalanceManagementGetRes> accountBalanceManagement() {
+        //レスポンスの第1階層セット用インスタンス
+        ArrayList <AccountBalance> latestAccountBalance = new ArrayList<>();
+        ArrayList <AccountBalanceHistory> accountBalanceHistory = new ArrayList<>();
+    	
+    	//全取得
+        List<AccountBalance> accountBalancesAll = accountBalanceService.findAll();
+        
+        //ループ対象チェック用
+        ArrayList<String> accountIdCurrencyIdFinishedList = new ArrayList<String>();
+        
+        //全件ループ
+        accountBalancesAll.forEach(s -> {
+        	//作業済みかどうかの照合用の文字列
+            String checkTemp = "{" + s.getAccountId() + "," + s.getCurrencyId() + "}";
+
+            //accountIdとcurrencyIdの組み合わせごとに配列を作成する
+            if(!accountIdCurrencyIdFinishedList.contains(checkTemp)) {
+            	//accountIdとcurrencyIdを指定してAccountBalanceを取得
+            	ArrayList<AccountBalance> accountBalanceHistoryFiltered = accountBalanceService.findByAccountIdAndCurrencyId(s.getAccountId(),s.getCurrencyId());
+            	
+            	//accountBalanceHistoryの作成
+                AccountBalanceHistory accountBalanceHistoryTemp = new AccountBalanceHistory();
+                
+                accountBalanceHistoryTemp.setAccountId(s.getAccountId());
+                accountBalanceHistoryTemp.setCurrencyId(s.getCurrencyId());
+                accountBalanceHistoryTemp.setAccountBalanceHistoryFiltered(accountBalanceHistoryFiltered);
+            	
+                //accountBalanceHistoryの保存
+                accountBalanceHistory.add(accountBalanceHistoryTemp);
+                
+                //latestAccountBalanceの作成
+                AccountBalance addAccountBalance = accountBalanceHistoryFiltered.stream().max(Comparator.comparing(AccountBalance::getRecordedAt)).orElse(null);
+                
+                //latestAccountBalanceの保存
+                latestAccountBalance.add(addAccountBalance);
+                
+                //完了したaccountIdとcurrencyIdの組み合わせを作業済みとして保存
+                accountIdCurrencyIdFinishedList.add(checkTemp);
+            }
+
+        });
+
+        //レスポンスの作成
+    	AccountBalanceManagementGetRes accountBalanceManagementResponse = AccountBalanceManagementGetRes.builder()
+                .latestAccountBalance(latestAccountBalance)
+                .accountBalanceHistory(accountBalanceHistory)
+                .build();
+
+        return new ResponseEntity<>(accountBalanceManagementResponse, HttpStatus.OK);
     }
     
     @PostMapping("/api/ast/account-balance")

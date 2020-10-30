@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import hm.springapi.dao.entity.AccountBalance;
 import hm.springapi.dao.entity.AccountBalanceRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +24,14 @@ public class AccountBalanceService {
     
     public List<AccountBalance> findByAccountId(Long accountId) {
         return accountBalanceRepository.findByAccountId(accountId);
+    }
+    
+    public List<AccountBalance> findByAccountIdOrderByRecordedAtDesc(Long accountId) {
+        return accountBalanceRepository.findByAccountIdOrderByRecordedAtDesc(accountId);
+    }
+    
+    public ArrayList<AccountBalance> findByAccountIdAndCurrencyId(Long accountId,Long currencyId) {
+        return accountBalanceRepository.findByAccountIdAndCurrencyId(accountId,currencyId);
     }
     
     public Optional<AccountBalance> findById(Long id){
