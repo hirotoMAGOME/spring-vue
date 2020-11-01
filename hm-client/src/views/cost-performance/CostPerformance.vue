@@ -14,81 +14,7 @@
         >
       </el-select>
     </el-card> -->
-    <el-card class="box-card" shadow="always" body-style="padding:10px 20px">
-      <div slot="header" class="clearfix">
-        <span>予実管理</span>
-      </div>
-      <el-row>
-        <el-button
-          type="info"
-          round
-          @click="
-            onClickEdit(0)
-            dialogFormVisible = true
-          "
-          >追加</el-button
-        >
-      </el-row>
-      <el-table :data="options.budgetCategories" border style="width: 100%">
-        <el-table-column prop="id" label="ID" width="180"></el-table-column>
-        <el-table-column
-          prop="name"
-          label="予算カテゴリ名"
-          width="180"
-        ></el-table-column>
-        <el-table-column label="編集" width="180">
-          <template slot-scope="scope">
-            <el-button
-              type="info"
-              round
-              @click="
-                onClickEdit(scope.row.id)
-                dialogFormVisible = true
-              "
-              >編集</el-button
-            >
-          </template>
-        </el-table-column>
-        <el-table-column label="削除" width="180">
-          <template slot-scope="scope">
-            <el-button type="info" round @click="onClickDelete(scope.row.id)"
-              >削除</el-button
-            >
-          </template>
-        </el-table-column>
-      </el-table>
-      <el-dialog title="新規登録" :visible.sync="dialogFormVisible">
-        <el-form :model="form">
-          <el-form ref="form" :model="form" label-width="200px" size="medium">
-            <el-form-item label="ID">{{ form.id }}</el-form-item>
-            <el-form-item label="予算カテゴリ名">
-              <el-input v-model="form.name"></el-input>
-            </el-form-item>
-            <el-form-item label="固定費/変動費">
-              <el-radio-group v-model="form.budgetCategoryType">
-                <el-radio
-                  v-for="v in options.budgetCategoryType"
-                  :key="v.clsTypeKey"
-                  :label="v.clsTypeKey"
-                  >{{ v.name }}</el-radio
-                >
-              </el-radio-group>
-            </el-form-item>
-          </el-form>
-        </el-form>
-        <span slot="footer" class="dialog-footer">
-          <el-button @click="dialogFormVisible = false">Cancel</el-button>
-          <el-button
-            type="primary"
-            @click="
-              dialogFormVisible = false
-              onClickRegistAPI()
-            "
-            >Confirm</el-button
-          >
-        </span>
-      </el-dialog>
-    </el-card>
+    <BudgetActualManagement />
     <AccountBalance />
   </el-main>
 </template>
@@ -96,6 +22,7 @@
 /* eslint-disable no-console */
 
 import axios from "axios"
+import BudgetActualManagement from "./BudgetActualManagement"
 import AccountBalance from "./AccountBalance"
 import common from "@/js/common/common.js"
 
@@ -105,7 +32,8 @@ export default {
   name: "CostPerformance",
   mixins: [common],
   components: {
-    AccountBalance
+    AccountBalance,
+    BudgetActualManagement
   },
   data() {
     return {

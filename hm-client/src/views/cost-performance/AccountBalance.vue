@@ -4,7 +4,7 @@
       <span>口座残高管理</span>
     </div>
     <div class="balloon2">
-      <p>TODO 履歴ボタンに削除の処理が残っている。履歴画面への遷移に変更する</p>
+      <p>TODO !!</p>
     </div>
     <el-table :data="options.latestAccountBalances" border style="width: 100%">
       <el-table-column
