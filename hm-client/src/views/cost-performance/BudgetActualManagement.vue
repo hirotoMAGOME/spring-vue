@@ -1,22 +1,29 @@
 <template>
   <el-card class="box-card" shadow="always" body-style="padding:10px 20px">
     <div slot="header" class="clearfix">
-      <span>口座残高管理</span>
+      <span>予実管理</span>
+      <div class="balloon2">
+        <p>
+          TODO いろいろフィルタで絞り込む。予算カテゴリや「今月の予算」など？
+        </p>
+      </div>
     </div>
-    <el-table :data="options.latestAccountBalances" border style="width: 100%">
+    <el-row>
+      <el-button
+        type="info"
+        round
+        @click="
+          onClickEdit(0)
+          dialogFormVisible = true
+        "
+        >追加</el-button
+      >
+    </el-row>
+    <el-table :data="options.budgetCategories" border style="width: 100%">
+      <el-table-column prop="id" label="ID" width="180"></el-table-column>
       <el-table-column
-        prop="accountId"
-        label="口座名"
-        width="180"
-      ></el-table-column>
-      <el-table-column
-        prop="balance"
-        label="残高"
-        width="180"
-      ></el-table-column>
-      <el-table-column
-        prop="recordedAt"
-        label="最終記録日時"
+        prop="name"
+        label="予算カテゴリ名"
         width="180"
       ></el-table-column>
       <el-table-column label="編集" width="180">
@@ -25,46 +32,37 @@
             type="info"
             round
             @click="
-              onClickEdit(scope.row.accountId)
+              onClickEdit(scope.row.id)
               dialogFormVisible = true
             "
-            >編集</el-button
+            >実績</el-button
           >
         </template>
       </el-table-column>
-      <el-table-column label="履歴" width="180">
+      <el-table-column label="削除→予算の変更履歴とか？" width="180">
         <template slot-scope="scope">
-          <el-button
-            type="info"
-            round
-            @click="
-              onClickOpenHistory(scope.row.accountId, scope.row.currencyId)
-              historyDialogVisible = true
-            "
-            >履歴</el-button
+          <el-button type="info" round @click="onClickDelete(scope.row.id)">
+            削除</el-button
           >
         </template>
       </el-table-column>
     </el-table>
-
-    <el-dialog title="最新の口座状況の登録" :visible.sync="dialogFormVisible">
+    <el-dialog title="新規登録" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form ref="form" :model="form" label-width="200px" size="medium">
-          <el-form-item label="口座名">{{ form.accountId }}</el-form-item>
-          <el-form-item label="記帳日時">
-            <el-date-picker
-              v-model="recordedAt"
-              type="date"
-              placeholder="口座残高を確認した日付"
-              :picker-options="pickerOptions"
-            >
-            </el-date-picker>
+          <el-form-item label="ID">{{ form.id }}</el-form-item>
+          <el-form-item label="予算カテゴリ名">
+            <el-input v-model="form.name"></el-input>
           </el-form-item>
-          <el-form-item label="残高">
-            <el-input v-model="form.balance"></el-input>
-          </el-form-item>
-          <el-form-item label="通貨">
-            <el-input v-model="form.balance"></el-input>
+          <el-form-item label="固定費/変動費">
+            <el-radio-group v-model="form.budgetCategoryType">
+              <el-radio
+                v-for="v in options.budgetCategoryType"
+                :key="v.clsTypeKey"
+                :label="v.clsTypeKey"
+                >{{ v.name }}</el-radio
+              >
+            </el-radio-group>
           </el-form-item>
         </el-form>
       </el-form>
@@ -74,22 +72,11 @@
           type="primary"
           @click="
             dialogFormVisible = false
-            onClickPostApi()
+            onClickRegistAPI()
           "
           >Confirm</el-button
         >
       </span>
-    </el-dialog>
-
-    <el-dialog title="履歴の確認" :visible.sync="historyDialogVisible">
-      口座名：{{ historyDialog.accountNm }}
-      <el-table :data="historyDialog.history" border style="width: 100%">
-        <el-table-column prop="balance" label="残高"></el-table-column>
-        <el-table-column
-          prop="recordedAt"
-          label="最終記録日時"
-        ></el-table-column>
-      </el-table>
     </el-dialog>
   </el-card>
 </template>
@@ -100,11 +87,10 @@ import axios from "axios"
 import common from "@/js/common/common.js"
 
 //口座残高管理API
-const API_PATH_CPF_21 =
-  "http://localhost:8080/api/ast/account-balance-management"
+const API_PATH_CPF_22 = "http://localhost:8080/api/ast/asset-budget-actual"
 
 export default {
-  name: "AccountBalance",
+  name: "BudgetActualManagement",
   mixins: [common],
   data() {
     return {
@@ -188,7 +174,7 @@ export default {
 
       //GETの実行
       axios
-        .get(API_PATH_CPF_21)
+        .get(API_PATH_CPF_22)
         .then(function(res) {
           that.options.latestAccountBalances = res.data.latestAccountBalance
           that.options.accountBalanceHistory = res.data.accountBalanceHistory
@@ -242,7 +228,7 @@ export default {
       }
 
       axios
-        .post(API_PATH_CPF_21, request)
+        .post(API_PATH_CPF_22, request)
         .then(function(response) {
           console.log("ok")
           console.log(response)

@@ -50,17 +50,11 @@ export default {
     }
   },
   created: function() {
-    var that = this
+    // var that = this
     //GET
-    that.getFromApi()
-
-    //GET(種別)
-    // that
-    //   .getClsType("budget_category_type", true)
-    //   .then(that.setClsType, that.setClsTypeErr)
-
+    // that.getFromApi()
     //初期値をセット
-    that.display()
+    // that.display()
   },
   mounted: function() {},
   methods: {
