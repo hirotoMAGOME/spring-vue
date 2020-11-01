@@ -7,6 +7,7 @@ import hm.springapi.dao.entity.Budget;
 import hm.springapi.dao.entity.BudgetCategory;
 import hm.springapi.dao.entity.BudgetRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,8 +17,13 @@ public class BudgetService {
 
     private final BudgetRepository budgetRepository;
 
+    //TODO ArrayList‚É‚»‚ë‚¦‚é
     public List<Budget> findAll() {
         return budgetRepository.findAll();
+    }
+    
+    public ArrayList<Budget> findByBudgetCategoryId(Long budgetCategoryId) {
+        return budgetRepository.findByBudgetCategoryId(budgetCategoryId);
     }
     
     public String createBudget(Budget budget) {

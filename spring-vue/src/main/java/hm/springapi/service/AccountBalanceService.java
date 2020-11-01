@@ -10,7 +10,6 @@ import hm.springapi.dao.entity.AccountBalanceRepository;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,11 +20,6 @@ public class AccountBalanceService {
     public List<AccountBalance> findAll() {
         return accountBalanceRepository.findAll();
     }
-    
-    
-//    public List<AccountBalance> findByAccountIdOrderByRecordedAtDesc(Long accountId) {
-//        return accountBalanceRepository.findByAccountIdOrderByRecordedAtDesc(accountId);
-//    }
     
     public ArrayList<AccountBalance> findByAccountIdAndCurrencyId(Long accountId,Long currencyId) {
         return accountBalanceRepository.findByAccountIdAndCurrencyId(accountId,currencyId);
@@ -42,11 +36,4 @@ public class AccountBalanceService {
     	
     	return "success!!";
     }
-//    
-//    public String deleteAccount(Long id) {
-//    	
-//    	accountRepository.deleteById(id);
-//    	
-//    	return "success!!";
-//    }
 }
