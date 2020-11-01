@@ -7,11 +7,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import hm.springapi.controller.view.ast.costperformance.AccountBalanceResponse;
 import hm.springapi.controller.view.ast.costperformance.dto.AccountBalanceManagementGetRes;
 import hm.springapi.controller.view.ast.costperformance.dto.AccountBalanceHistory;
 import hm.springapi.controller.view.ast.costperformance.dto.AccountBalancePostReq;
@@ -27,61 +25,6 @@ import java.util.List;
 public class AccountBalanceController {
 
     private final AccountBalanceService accountBalanceService;
-
-//    @GetMapping("/api/ast/account-balance")
-//    @CrossOrigin
-//    public ResponseEntity<AccountBalanceResponse> findAll() {
-//        List<AccountBalance> accountBalances = accountBalanceService.findAll();
-//        AccountBalanceResponse accountBalanceResponse = AccountBalanceResponse.builder()
-//                .accountBalances(accountBalances)
-//                .build();
-//        
-//        return new ResponseEntity<>(accountBalanceResponse, HttpStatus.OK);
-//    }
-    
-    @GetMapping("/api/ast/account-balance")
-    @CrossOrigin
-    public ResponseEntity<AccountBalanceResponse> findAll() {
-        List<AccountBalance> accountBalancesAll = accountBalanceService.findAll();
-        
-        ArrayList <Long> checkList = new ArrayList<>();
-        ArrayList <AccountBalance> accountBalances = new ArrayList<>();
-
-        //最も最近の日付をとる処理が抜けてる。加えて、accountIdとcurrencyIdの複合キーで最新日付をとる必要がある。
-        accountBalancesAll.forEach(s -> {
-
-            Long id = s.getId();
-            Long accountId = s.getAccountId();
-
-            if(!checkList.contains(accountId)) {
-
-                //OPtionalの使い方わからず
-             	AccountBalance addAccountBalance = accountBalanceService.findById(id).orElse(null);
-
-            	accountBalances.add(addAccountBalance);
-            	checkList.add(accountId);
-            }
-        });
-
-        
-        AccountBalanceResponse accountBalanceResponse = AccountBalanceResponse.builder()
-                .accountBalances(accountBalances)
-                .build();
-
-        return new ResponseEntity<>(accountBalanceResponse, HttpStatus.OK);
-    }
-
-    @GetMapping("/api/ast/account-balance-history")
-    @CrossOrigin
-    public ResponseEntity<AccountBalanceResponse> findByAccountId(@RequestParam("accountId") Long accountId) {
-        
-        List<AccountBalance> accountBalanceHistories = accountBalanceService.findByAccountId(accountId);
-        AccountBalanceResponse accountBalanceResponse = AccountBalanceResponse.builder()
-                .accountBalances(accountBalanceHistories)
-                .build();
-
-        return new ResponseEntity<>(accountBalanceResponse, HttpStatus.OK);
-    }
 
     @GetMapping("/api/ast/account-balance-management")
     @CrossOrigin

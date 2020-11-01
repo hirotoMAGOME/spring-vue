@@ -22,20 +22,13 @@ public class AccountBalanceService {
         return accountBalanceRepository.findAll();
     }
     
-    public List<AccountBalance> findByAccountId(Long accountId) {
-        return accountBalanceRepository.findByAccountId(accountId);
-    }
     
-    public List<AccountBalance> findByAccountIdOrderByRecordedAtDesc(Long accountId) {
-        return accountBalanceRepository.findByAccountIdOrderByRecordedAtDesc(accountId);
-    }
+//    public List<AccountBalance> findByAccountIdOrderByRecordedAtDesc(Long accountId) {
+//        return accountBalanceRepository.findByAccountIdOrderByRecordedAtDesc(accountId);
+//    }
     
     public ArrayList<AccountBalance> findByAccountIdAndCurrencyId(Long accountId,Long currencyId) {
         return accountBalanceRepository.findByAccountIdAndCurrencyId(accountId,currencyId);
-    }
-    
-    public Optional<AccountBalance> findById(Long id){
-    	return accountBalanceRepository.findById(id);
     }
     
     public String createAccountBalance(AccountBalance accountBalance) {

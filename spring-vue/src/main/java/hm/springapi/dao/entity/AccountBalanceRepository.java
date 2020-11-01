@@ -9,10 +9,8 @@ import hm.springapi.dao.entity.AccountBalance;
 
 @Repository
 public interface AccountBalanceRepository extends JpaRepository<AccountBalance, Long> {
-
-	List<AccountBalance> findByAccountId(Long accountId);
 	
-	List<AccountBalance> findByAccountIdOrderByRecordedAtDesc(Long accountId);
+//	List<AccountBalance> findByAccountIdOrderByRecordedAtDesc(Long accountId);
 	
 	ArrayList<AccountBalance> findByAccountIdAndCurrencyId(Long accountId,Long currencyId);
 }
