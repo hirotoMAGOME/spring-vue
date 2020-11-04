@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import hm.springapi.controller.ast.assetmaster.BudgetResponse;
+import hm.springapi.controller.view.ast.assetmaster.BudgetResponse;
 import hm.springapi.controller.view.ast.assetmaster.dto.BudgetPostReq;
 import hm.springapi.dao.entity.Actual;
 import hm.springapi.dao.entity.Budget;
