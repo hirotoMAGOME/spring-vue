@@ -10,5 +10,7 @@ import java.util.List;
 @Getter
 @Builder
 public class BudgetActualGetRes {
+	//TODO budgetCategories‚ğbudgetCategoriesBudgets‚É–¼Ì•ÏX‚µ‚½‚¢
     private List<BudgetCategoriesBudgets> budgetCategories;
+    private List<BudgetsActuals> budgetsActuals;
 }

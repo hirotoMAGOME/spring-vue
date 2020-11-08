@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hm.springapi.controller.view.ast.costperformance.dto.BudgetActualGetRes;
 import hm.springapi.controller.view.ast.costperformance.dto.BudgetCategoriesBudgets;
+import hm.springapi.controller.view.ast.costperformance.dto.BudgetsActuals;
 import hm.springapi.dao.entity.Actual;
 import hm.springapi.dao.entity.Budget;
 import hm.springapi.dao.entity.BudgetCategory;
@@ -33,6 +34,7 @@ public class BudgetActualController {
     public ResponseEntity<BudgetActualGetRes> findAll() {
         //レスポンスの第1階層セット用インスタンス
         ArrayList <BudgetCategoriesBudgets> budgetCategories = new ArrayList<>();
+        ArrayList <BudgetsActuals> budgetsActuals = new ArrayList<>();
     	
         //budgetCategoryの全件取得
         List<BudgetCategory> budgetCategoryAll = budgetCategoryService.findAll();
@@ -43,7 +45,7 @@ public class BudgetActualController {
         	ArrayList<Budget> budgetTemp = budgetService.findByBudgetCategoryId(bc.getId());
         	//budgetCategoriesの作成
         	BudgetCategoriesBudgets addBudgetCategory = new BudgetCategoriesBudgets();
-
+        	
         	//全件ループ(b=budget)
         	budgetTemp.forEach(b -> {
             	//actualの合計金額用の変数
@@ -79,10 +81,33 @@ public class BudgetActualController {
         	});
         	
         });
+        
+        
+        //budgetCategoryの全件取得
+        List<Budget> budgetAll = budgetService.findAll();
+        budgetAll.forEach(b2 -> {
+        	//budgetActualsの作成
+        	BudgetsActuals addBudgetsActuals = new BudgetsActuals();
+        	
+        	//actualsの作成
+        	ArrayList<Actual> actuals = new ArrayList<>();
+        	
+    		//Actualの取得
+    		ArrayList<Actual> actualTemp = actualService.findByBudgetId(b2.getId());
+
+    		addBudgetsActuals.setId(b2.getId());
+    		addBudgetsActuals.setName(b2.getName());
+    		addBudgetsActuals.setActuals(actualTemp);
+    		
+            //budgetCategoriesの保存
+    		budgetsActuals.add(addBudgetsActuals);
+        });
+    
+        //レスポンスにセット
         BudgetActualGetRes budgetActualGetResponse = BudgetActualGetRes.builder()
                 .budgetCategories(budgetCategories)
+                .budgetsActuals(budgetsActuals)
                 .build();        
-        
         
         return new ResponseEntity<>(budgetActualGetResponse, HttpStatus.OK);
     }
