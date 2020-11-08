@@ -17,6 +17,7 @@ import hm.springapi.service.BudgetCategoryService;
 import hm.springapi.service.BudgetService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -25,7 +26,7 @@ public class BudgetActualController {
 
     private final BudgetCategoryService budgetCategoryService;
     private final BudgetService budgetService;
-//    private final ActualService actualService;
+    private final ActualService actualService;
 
     @GetMapping("/api/ast/asset-budget-actual")
     @CrossOrigin
@@ -46,23 +47,31 @@ public class BudgetActualController {
         	//全件ループ(b=budget)
         	budgetTemp.forEach(b -> {
             	//actualの合計金額用の変数
-//        		ArrayList<Integer> sumPrice = new ArrayList<Integer>();
+        		ArrayList<Integer> sumPrice = new ArrayList<Integer>();
 
         		//Actualの取得
-//        		ArrayList<Actual> actualTemp = actualService.findByBudgetId(b.getId());
+        		ArrayList<Actual> actualTemp = actualService.findByBudgetId(b.getId());
                 
         		//TODO かなり無駄なループ、GROUP BYで解決する
         		//全件ループ(a=actual)
-//        		actualTemp.forEach(a -> {
-//            		sumPrice.add(a.getPrice());
-//            	});
+        		actualTemp.forEach(a -> {
+            		sumPrice.add(a.getPrice());
+            		System.out.println(a.getPrice());
+            	});
         		
             	addBudgetCategory.setBudgetCategoryId(bc.getId());
                 addBudgetCategory.setBudgetCategoryType(bc
                 		.getBudgetCategoryType());
+                //budgetIdに同じ値が重複されてセットされてしまう。初期化できていないか、最終ループで更新されている。
                 addBudgetCategory.setBudgetId(b.getId());
                 addBudgetCategory.setBudgetName(b.getName());
                 addBudgetCategory.setAmount(b.getAmount());
+                //TODO 値が0のまま
+                addBudgetCategory.setPrice(sumPrice.stream().mapToInt(i -> i).sum());
+//
+//                double test = sumPrice.stream().mapToDouble(i -> i).sum();
+//                System.out.println("test");
+//                System.out.println(b.getId());
 
 
                 //budgetCategoriesの保存

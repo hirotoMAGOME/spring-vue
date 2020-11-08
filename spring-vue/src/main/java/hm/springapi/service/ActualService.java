@@ -20,8 +20,8 @@ public class ActualService {
         return actualRepository.findAll();
     }
 
-	public ArrayList<Actual> findByBudgetId(Long id) {
-		return actualRepository.findByBudgetId();
+	public ArrayList<Actual> findByBudgetId(Long budgetId) {
+		return actualRepository.findByBudgetId(budgetId);
 	}
     
 //    public String createBudgetCategory(BudgetCategory budgetCategory) {

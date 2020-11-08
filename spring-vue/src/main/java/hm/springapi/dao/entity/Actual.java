@@ -37,11 +37,11 @@ public class Actual {
     
     /** —\ZID */
     @Column
-    private Integer budgetId;
+    private Long budgetId;
     
     /** ŒûÀID */
     @Column
-    private Integer accountId;
+    private Long accountId;
     
     /** ‹àŠz */
     @Column
