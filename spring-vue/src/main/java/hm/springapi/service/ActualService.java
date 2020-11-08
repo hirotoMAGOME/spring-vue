@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import hm.springapi.dao.entity.Actual;
 import hm.springapi.dao.entity.ActualRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +19,10 @@ public class ActualService {
     public List<Actual> findAll() {
         return actualRepository.findAll();
     }
+
+	public ArrayList<Actual> findByBudgetId(Long id) {
+		return actualRepository.findByBudgetId();
+	}
     
 //    public String createBudgetCategory(BudgetCategory budgetCategory) {
 //

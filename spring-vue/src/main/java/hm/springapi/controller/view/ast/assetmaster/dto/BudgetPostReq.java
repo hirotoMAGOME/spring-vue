@@ -10,6 +10,6 @@ public class BudgetPostReq {
 	private Long id;
 	private Date appropriateMonth;
 	private Long budgetCategoryId;
-	private Long amount;
+	private Integer amount;
 	private String name;
 }

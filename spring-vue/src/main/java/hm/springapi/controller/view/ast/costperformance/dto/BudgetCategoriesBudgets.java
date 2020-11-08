@@ -6,11 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
-import hm.springapi.dao.entity.AccountBalance;
-import hm.springapi.dao.entity.Actual;
-import hm.springapi.dao.entity.Budget;
 
 @Setter
 @Getter
@@ -19,7 +14,9 @@ import hm.springapi.dao.entity.Budget;
 @AllArgsConstructor
 public class BudgetCategoriesBudgets {
     private Long budgetCategoryId;
-    private String name;
     private String budgetCategoryType;
-    private List<Budget> budgets;
+    private Long budgetId;
+    private String budgetName;
+    private Integer amount;
+    private Integer price;
 }

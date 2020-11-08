@@ -44,7 +44,7 @@ public class Budget {
     
     /** —\ŽZŠz */
     @Column
-    private Long amount;
+    private Integer amount;
     
     /** —\ŽZ–¼ */
     @Column

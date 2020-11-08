@@ -20,10 +20,15 @@
       >
     </el-row>
     <el-table :data="options.budgetCategories" border style="width: 100%">
-      <el-table-column prop="id" label="ID" width="180"></el-table-column>
       <el-table-column
-        prop="name"
-        label="予算カテゴリ名"
+        prop="budgetName"
+        label="予算名(カテゴリ名)"
+        width="180"
+      ></el-table-column>
+      <el-table-column prop="amount" label="予算" width="180"></el-table-column>
+      <el-table-column
+        prop="price"
+        label="実績(計)"
         width="180"
       ></el-table-column>
       <el-table-column label="編集" width="180">
@@ -95,8 +100,7 @@ export default {
   data() {
     return {
       options: {
-        latestAccountBalances: [],
-        accountBalanceHistory: []
+        budgetCategories: []
       },
       dialogFormVisible: false, //モーダルの表示状態
       historyDialogVisible: false, //履歴モーダルの表示状態
@@ -109,38 +113,7 @@ export default {
       historyDialog: {
         accountNm: null,
         history: []
-      },
-      pickerOptions: {
-        //datepicker用
-        disabledDate(time) {
-          return time.getTime() > Date.now()
-        },
-        shortcuts: [
-          {
-            text: "Today",
-            onClick(picker) {
-              picker.$emit("pick", new Date())
-            }
-          },
-          {
-            text: "Yesterday",
-            onClick(picker) {
-              const date = new Date()
-              date.setTime(date.getTime() - 3600 * 1000 * 24)
-              picker.$emit("pick", date)
-            }
-          },
-          {
-            text: "A week ago",
-            onClick(picker) {
-              const date = new Date()
-              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
-              picker.$emit("pick", date)
-            }
-          }
-        ]
-      },
-      recordedAt: "" //datepicker用 defaultの設定を共通化したい
+      }
     }
   },
   created: function() {
@@ -176,8 +149,7 @@ export default {
       axios
         .get(API_PATH_CPF_22)
         .then(function(res) {
-          that.options.latestAccountBalances = res.data.latestAccountBalance
-          that.options.accountBalanceHistory = res.data.accountBalanceHistory
+          that.options.budgetCategories = res.data.budgetCategories
         })
         .catch(function(err) {
           console.log("ERROR")
@@ -192,14 +164,10 @@ export default {
     //   console.log(data)
     // },
     display: function(that) {
-      // that.options.budgetCategories.push({
-      //   id: 0,
-      //   name: "指定なし"
-      // })
-
-      that.options.latestAccountBalances.sort(
-        that.objectArraySort("accountId", "asc")
-      )
+      // that.options.latestAccountBalances.sort(
+      //   that.objectArraySort("accountId", "asc")
+      // )
+      console.log(that)
     },
     onClickEdit: function(selectedId) {
       //モーダルに値をセット

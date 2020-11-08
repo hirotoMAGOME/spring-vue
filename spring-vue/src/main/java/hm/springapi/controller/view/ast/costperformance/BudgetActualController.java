@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hm.springapi.controller.view.ast.costperformance.dto.BudgetActualGetRes;
 import hm.springapi.controller.view.ast.costperformance.dto.BudgetCategoriesBudgets;
+import hm.springapi.dao.entity.Actual;
 import hm.springapi.dao.entity.Budget;
 import hm.springapi.dao.entity.BudgetCategory;
+import hm.springapi.service.ActualService;
 import hm.springapi.service.BudgetCategoryService;
 import hm.springapi.service.BudgetService;
 
@@ -23,6 +25,7 @@ public class BudgetActualController {
 
     private final BudgetCategoryService budgetCategoryService;
     private final BudgetService budgetService;
+//    private final ActualService actualService;
 
     @GetMapping("/api/ast/asset-budget-actual")
     @CrossOrigin
@@ -33,21 +36,38 @@ public class BudgetActualController {
         //budgetCategoryの全件取得
         List<BudgetCategory> budgetCategoryAll = budgetCategoryService.findAll();
         
-        //全件ループ
-        budgetCategoryAll.forEach(s -> {
+        //全件ループ(bc=budget_category)
+        budgetCategoryAll.forEach(bc -> {
         	//budgetCategoryIdを指定してBudgetを取得
-        	ArrayList<Budget> budgetTemp = budgetService.findByBudgetCategoryId(s.getId());
-        	
+        	ArrayList<Budget> budgetTemp = budgetService.findByBudgetCategoryId(bc.getId());
         	//budgetCategoriesの作成
         	BudgetCategoriesBudgets addBudgetCategory = new BudgetCategoriesBudgets();
-            
-        	addBudgetCategory.setBudgetCategoryId(s.getId());
-            addBudgetCategory.setName(s.getName());
-            addBudgetCategory.setBudgetCategoryType(s.getBudgetCategoryType());
-            addBudgetCategory.setBudgets(budgetTemp);
-            
-            //budgetCategoriesの保存
-            budgetCategories.add(addBudgetCategory);
+
+        	//全件ループ(b=budget)
+        	budgetTemp.forEach(b -> {
+            	//actualの合計金額用の変数
+//        		ArrayList<Integer> sumPrice = new ArrayList<Integer>();
+
+        		//Actualの取得
+//        		ArrayList<Actual> actualTemp = actualService.findByBudgetId(b.getId());
+                
+        		//TODO かなり無駄なループ、GROUP BYで解決する
+        		//全件ループ(a=actual)
+//        		actualTemp.forEach(a -> {
+//            		sumPrice.add(a.getPrice());
+//            	});
+        		
+            	addBudgetCategory.setBudgetCategoryId(bc.getId());
+                addBudgetCategory.setBudgetCategoryType(bc
+                		.getBudgetCategoryType());
+                addBudgetCategory.setBudgetId(b.getId());
+                addBudgetCategory.setBudgetName(b.getName());
+                addBudgetCategory.setAmount(b.getAmount());
+
+
+                //budgetCategoriesの保存
+                budgetCategories.add(addBudgetCategory);
+        	});
         	
         });
         BudgetActualGetRes budgetActualGetResponse = BudgetActualGetRes.builder()
