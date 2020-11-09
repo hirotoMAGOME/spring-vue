@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import hm.springapi.controller.view.ast.costperformance.dto.BudgetActualGetRes;
 import hm.springapi.controller.view.ast.costperformance.dto.BudgetCategoriesBudgets;
 import hm.springapi.controller.view.ast.costperformance.dto.BudgetsActuals;
+import hm.springapi.dao.entity.Account;
 import hm.springapi.dao.entity.Actual;
 import hm.springapi.dao.entity.Budget;
 import hm.springapi.dao.entity.BudgetCategory;
+import hm.springapi.service.AccountService;
 import hm.springapi.service.ActualService;
 import hm.springapi.service.BudgetCategoryService;
 import hm.springapi.service.BudgetService;
@@ -28,6 +30,7 @@ public class BudgetActualController {
     private final BudgetCategoryService budgetCategoryService;
     private final BudgetService budgetService;
     private final ActualService actualService;
+    private final AccountService accountService;
 
     @GetMapping("/api/ast/asset-budget-actual")
     @CrossOrigin
@@ -35,6 +38,7 @@ public class BudgetActualController {
         //レスポンスの第1階層セット用インスタンス
         ArrayList <BudgetCategoriesBudgets> budgetCategoriesBudgets = new ArrayList<>();
         ArrayList <BudgetsActuals> budgetsActuals = new ArrayList<>();
+        ArrayList <Account> accounts = new ArrayList<>();
     	
         //budgetCategoryの全件取得
         List<BudgetCategory> budgetCategoryAll = budgetCategoryService.findAll();
@@ -92,11 +96,16 @@ public class BudgetActualController {
             //budgetCategoriesの保存
     		budgetsActuals.add(addBudgetsActuals);
         });
+        
+        //accountの全件取得
+//         accounts = accountService.findAllOrderBySortAsc();
+        accounts = accountService.findAll();
     
         //レスポンスにセット
         BudgetActualGetRes budgetActualGetResponse = BudgetActualGetRes.builder()
                 .budgetCategoriesBudgets(budgetCategoriesBudgets)
                 .budgetsActuals(budgetsActuals)
+                .accounts(accounts)
                 .build();        
         
         return new ResponseEntity<>(budgetActualGetResponse, HttpStatus.OK);

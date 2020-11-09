@@ -92,10 +92,12 @@ CREATE TABLE m_account
 	id bigint unsigned NOT NULL AUTO_INCREMENT,
 	account_category_id bigint unsigned NOT NULL,
 	name varchar(64) NOT NULL,
+	sort int DEFAULT 0 NOT NULL,
 	created_at datetime DEFAULT NOW() NOT NULL,
 	updated_at datetime DEFAULT NOW() NOT NULL,
 	deleted_at datetime,
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	UNIQUE (sort)
 );
 
 

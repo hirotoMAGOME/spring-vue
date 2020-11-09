@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import hm.springapi.dao.entity.Account;
 import hm.springapi.dao.entity.AccountRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class AccountService {
 
     private final AccountRepository accountRepository;
 
-    public List<Account> findAll() {
+    public ArrayList<Account> findAll() {
         return accountRepository.findAll();
     }
     
@@ -37,4 +38,8 @@ public class AccountService {
     	
     	return "success!!";
     }
+
+//	public ArrayList<Account> findAllOrderBySort() {
+//		return accountRepository.findAllOrderBySort();
+//	}
 }

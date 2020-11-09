@@ -35,10 +35,10 @@ INSERT INTO m_account_category (id, user_id, name, created_at, updated_at, delet
 
 
 -- 口座
-INSERT INTO m_account (id, account_category_id, name, created_at, updated_at, deleted_at) VALUES ('1', '1', '財布', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
-INSERT INTO m_account (id, account_category_id, name, created_at, updated_at, deleted_at) VALUES ('2', '2', '三菱UFJ', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
-INSERT INTO m_account (id, account_category_id, name, created_at, updated_at, deleted_at) VALUES ('3', '2', '三井住友', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
-INSERT INTO m_account (id, account_category_id, name, created_at, updated_at, deleted_at) VALUES ('4', '5', 'bitFlyer', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
+INSERT INTO m_account (id, account_category_id, name, sort, created_at, updated_at, deleted_at) VALUES ('1', '1', '財布', '1', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
+INSERT INTO m_account (id, account_category_id, name, sort, created_at, updated_at, deleted_at) VALUES ('2', '2', '三菱UFJ', '2', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
+INSERT INTO m_account (id, account_category_id, name, sort, created_at, updated_at, deleted_at) VALUES ('3', '2', '三井住友', '3', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
+INSERT INTO m_account (id, account_category_id, name, sort, created_at, updated_at, deleted_at) VALUES ('4', '5', 'bitFlyer', '4', '2020-01-01 00:00:00', '2020-01-01 00:00:00', null);
 
 
 -- 通貨

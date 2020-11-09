@@ -31,6 +31,9 @@ public class Account {
     /** ŒûÀ–¼ */
     private String name;
     
+    /** •\¦‡ */
+    private Integer sort;
+    
     /** ì¬“ú */
     @Temporal(TemporalType.TIMESTAMP)
 	private Date createdAt;
