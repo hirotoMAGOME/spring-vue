@@ -11,6 +11,6 @@ import java.util.List;
 @Builder
 public class BudgetActualGetRes {
 	//TODO budgetCategories‚ğbudgetCategoriesBudgets‚É–¼Ì•ÏX‚µ‚½‚¢
-    private List<BudgetCategoriesBudgets> budgetCategories;
+    private List<BudgetCategoriesBudgets> budgetCategoriesBudgets;
     private List<BudgetsActuals> budgetsActuals;
 }

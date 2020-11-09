@@ -33,7 +33,7 @@ public class BudgetActualController {
     @CrossOrigin
     public ResponseEntity<BudgetActualGetRes> findAll() {
         //レスポンスの第1階層セット用インスタンス
-        ArrayList <BudgetCategoriesBudgets> budgetCategories = new ArrayList<>();
+        ArrayList <BudgetCategoriesBudgets> budgetCategoriesBudgets = new ArrayList<>();
         ArrayList <BudgetsActuals> budgetsActuals = new ArrayList<>();
     	
         //budgetCategoryの全件取得
@@ -43,7 +43,7 @@ public class BudgetActualController {
         budgetCategoryAll.forEach(bc -> {
         	//budgetCategoryIdを指定してBudgetを取得
         	ArrayList<Budget> budgetTemp = budgetService.findByBudgetCategoryId(bc.getId());
-        	//budgetCategoriesの作成
+        	//budgetCategoriesBudgetsの作成
         	BudgetCategoriesBudgets addBudgetCategory = new BudgetCategoriesBudgets();
         	
         	//全件ループ(b=budget)
@@ -76,8 +76,8 @@ public class BudgetActualController {
 //                System.out.println(b.getId());
 
 
-                //budgetCategoriesの保存
-                budgetCategories.add(addBudgetCategory);
+                //budgetCategoriesBudgetsの保存
+                budgetCategoriesBudgets.add(addBudgetCategory);
         	});
         	
         });
@@ -88,9 +88,6 @@ public class BudgetActualController {
         budgetAll.forEach(b2 -> {
         	//budgetActualsの作成
         	BudgetsActuals addBudgetsActuals = new BudgetsActuals();
-        	
-        	//actualsの作成
-        	ArrayList<Actual> actuals = new ArrayList<>();
         	
     		//Actualの取得
     		ArrayList<Actual> actualTemp = actualService.findByBudgetId(b2.getId());
@@ -105,7 +102,7 @@ public class BudgetActualController {
     
         //レスポンスにセット
         BudgetActualGetRes budgetActualGetResponse = BudgetActualGetRes.builder()
-                .budgetCategories(budgetCategories)
+                .budgetCategoriesBudgets(budgetCategoriesBudgets)
                 .budgetsActuals(budgetsActuals)
                 .build();        
         

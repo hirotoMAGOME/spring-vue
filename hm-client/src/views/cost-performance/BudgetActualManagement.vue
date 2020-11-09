@@ -19,7 +19,11 @@
         >追加</el-button
       >
     </el-row>
-    <el-table :data="options.budgetCategories" border style="width: 100%">
+    <el-table
+      :data="options.budgetCategoriesBudgets"
+      border
+      style="width: 100%"
+    >
       <el-table-column
         prop="budgetName"
         label="予算名(カテゴリ名)"
@@ -40,14 +44,22 @@
               onClickEdit(scope.row.id)
               dialogFormVisible = true
             "
-            >実績</el-button
+            >編集</el-button
           >
         </template>
       </el-table-column>
-      <el-table-column label="削除→予算の変更履歴とか？" width="180">
+      <el-table-column label="実績" width="180">
         <template slot-scope="scope">
-          <el-button type="info" round @click="onClickDelete(scope.row.id)">
-            削除</el-button
+          <el-button
+            type="info"
+            label="scope.row.id"
+            round
+            @click="
+              onClickOpenHistory(scope.row.budgetId)
+              historyDialogVisible = true
+            "
+          >
+            実績</el-button
           >
         </template>
       </el-table-column>
@@ -83,6 +95,18 @@
         >
       </span>
     </el-dialog>
+    <!-- TODO 時刻の表示フォーマット -->
+    <el-dialog title="実績の確認" :visible.sync="historyDialogVisible">
+      予算名：{{ historyDialog.budgetName }}
+      <el-table :data="historyDialog.history" border style="width: 100%">
+        <el-table-column prop="name" label="残高"></el-table-column>
+        <el-table-column prop="price" label="金額"></el-table-column>
+        <el-table-column
+          prop="settledAt"
+          label="最終記録日時"
+        ></el-table-column>
+      </el-table>
+    </el-dialog>
   </el-card>
 </template>
 <script>
@@ -100,7 +124,8 @@ export default {
   data() {
     return {
       options: {
-        budgetCategories: []
+        budgetCategoriesBudgets: [],
+        budgetsActuals: []
       },
       dialogFormVisible: false, //モーダルの表示状態
       historyDialogVisible: false, //履歴モーダルの表示状態
@@ -111,7 +136,7 @@ export default {
         currencyId: null
       },
       historyDialog: {
-        accountNm: null,
+        budgetName: null,
         history: []
       }
     }
@@ -149,7 +174,10 @@ export default {
       axios
         .get(API_PATH_CPF_22)
         .then(function(res) {
-          that.options.budgetCategories = res.data.budgetCategories
+          that.options.budgetCategoriesBudgets =
+            res.data.budgetCategoriesBudgets
+
+          that.options.budgetsActuals = res.data.budgetsActuals
         })
         .catch(function(err) {
           console.log("ERROR")
@@ -183,41 +211,41 @@ export default {
         currencyId: getAccountBalance.currencyId
       }
     },
-    onClickPostApi: function() {
+    // onClickPostApi: function() {
+    //   var that = this
+    //   console.log("onClickPostApi method実行")
+
+    //   //POSTリクエスト項目
+    //   var request = {
+    //     accountId: this.form.accountId,
+    //     recordedAt: this.form.recordedAt,
+    //     balance: this.form.balance,
+    //     currencyId: 1 //TODOマスタから取得
+    //   }
+
+    //   axios
+    //     .post(API_PATH_CPF_22, request)
+    //     .then(function(response) {
+    //       console.log("ok")
+    //       console.log(response)
+    //       that.openSuccessNotification(true)
+    //     })
+    //     .catch(function(error) {
+    //       console.log("NG")
+    //       console.log(error)
+    //     })
+    // },
+    onClickOpenHistory: function(budgetId) {
       var that = this
-      console.log("onClickPostApi method実行")
+      let getDialogData = Array
 
-      //POSTリクエスト項目
-      var request = {
-        accountId: this.form.accountId,
-        recordedAt: this.form.recordedAt,
-        balance: this.form.balance,
-        currencyId: 1 //TODOマスタから取得
-      }
-
-      axios
-        .post(API_PATH_CPF_22, request)
-        .then(function(response) {
-          console.log("ok")
-          console.log(response)
-          that.openSuccessNotification(true)
-        })
-        .catch(function(error) {
-          console.log("NG")
-          console.log(error)
-        })
-    },
-    onClickOpenHistory: function(accountId, currencyId) {
-      var that = this
-
-      var getDialogData = that.options.accountBalanceHistory.filter(function(
-        value
-      ) {
-        return value.accountId === accountId && value.currencyId === currencyId
+      console.log(budgetId)
+      getDialogData = that.options.budgetsActuals.filter(function(value) {
+        return value.id === budgetId
       })
-      that.historyDialog.accountNm = getDialogData[0].accountId //TODO accountId=>accountNm
-      that.historyDialog.history =
-        getDialogData[0].accountBalanceHistoryFiltered
+      console.log(getDialogData)
+      that.historyDialog.budgetName = getDialogData[0].name
+      that.historyDialog.history = getDialogData[0].actuals
     }
   }
 }
