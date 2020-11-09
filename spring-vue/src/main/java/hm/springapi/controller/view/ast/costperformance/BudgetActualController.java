@@ -43,11 +43,12 @@ public class BudgetActualController {
         budgetCategoryAll.forEach(bc -> {
         	//budgetCategoryIdを指定してBudgetを取得
         	ArrayList<Budget> budgetTemp = budgetService.findByBudgetCategoryId(bc.getId());
-        	//budgetCategoriesBudgetsの作成
-        	BudgetCategoriesBudgets addBudgetCategory = new BudgetCategoriesBudgets();
         	
         	//全件ループ(b=budget)
         	budgetTemp.forEach(b -> {
+            	//budgetCategoriesBudgetsの作成
+            	BudgetCategoriesBudgets addBudgetCategory = new BudgetCategoriesBudgets();
+            	
             	//actualの合計金額用の変数
         		ArrayList<Integer> sumPrice = new ArrayList<Integer>();
 
@@ -58,23 +59,15 @@ public class BudgetActualController {
         		//全件ループ(a=actual)
         		actualTemp.forEach(a -> {
             		sumPrice.add(a.getPrice());
-            		System.out.println(a.getPrice());
             	});
         		
             	addBudgetCategory.setBudgetCategoryId(bc.getId());
                 addBudgetCategory.setBudgetCategoryType(bc
                 		.getBudgetCategoryType());
-                //budgetIdに同じ値が重複されてセットされてしまう。初期化できていないか、最終ループで更新されている。
                 addBudgetCategory.setBudgetId(b.getId());
                 addBudgetCategory.setBudgetName(b.getName());
                 addBudgetCategory.setAmount(b.getAmount());
-                //TODO 値が0のまま
                 addBudgetCategory.setPrice(sumPrice.stream().mapToInt(i -> i).sum());
-//
-//                double test = sumPrice.stream().mapToDouble(i -> i).sum();
-//                System.out.println("test");
-//                System.out.println(b.getId());
-
 
                 //budgetCategoriesBudgetsの保存
                 budgetCategoriesBudgets.add(addBudgetCategory);
