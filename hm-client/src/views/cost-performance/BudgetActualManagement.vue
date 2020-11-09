@@ -101,6 +101,7 @@
       <el-table :data="historyDialog.history" border style="width: 100%">
         <el-table-column prop="name" label="残高"></el-table-column>
         <el-table-column prop="price" label="金額"></el-table-column>
+        <el-table-column prop="accountId" label="口座"></el-table-column>
         <el-table-column
           prop="settledAt"
           label="最終記録日時"

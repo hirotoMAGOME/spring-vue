@@ -18,6 +18,7 @@ import hm.springapi.controller.view.ast.assetmaster.dto.AccountPostReq;
 import hm.springapi.dao.entity.Account;
 import hm.springapi.service.AccountService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -29,7 +30,7 @@ public class AccountController {
     @GetMapping("/api/ast/account")
     @CrossOrigin
     public ResponseEntity<AccountResponse> findAll() {
-        List<Account> accounts = accountService.findAll();
+        ArrayList<Account> accounts = accountService.findAll();
         AccountResponse accountResponse = AccountResponse.builder()
                 .accounts(accounts)
                 .build();

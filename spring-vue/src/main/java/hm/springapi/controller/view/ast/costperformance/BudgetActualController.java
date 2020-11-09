@@ -98,8 +98,8 @@ public class BudgetActualController {
         });
         
         //accountの全件取得
-//         accounts = accountService.findAllOrderBySortAsc();
-        accounts = accountService.findAll();
+         accounts = accountService.findByIdIsNotNullOrderBySort();
+//        accounts = accountService.findAll();
     
         //レスポンスにセット
         BudgetActualGetRes budgetActualGetResponse = BudgetActualGetRes.builder()

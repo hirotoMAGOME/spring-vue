@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
 	ArrayList<Account> findAll();
-//	ArrayList<Account> findAllOrderBySort();
+	ArrayList<Account> findByIdIsNotNullOrderBySort();
 }

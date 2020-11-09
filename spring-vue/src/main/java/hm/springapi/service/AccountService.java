@@ -39,7 +39,7 @@ public class AccountService {
     	return "success!!";
     }
 
-//	public ArrayList<Account> findAllOrderBySort() {
-//		return accountRepository.findAllOrderBySort();
-//	}
+	public ArrayList<Account> findByIdIsNotNullOrderBySort() {
+		return accountRepository.findByIdIsNotNullOrderBySort();
+	}
 }
