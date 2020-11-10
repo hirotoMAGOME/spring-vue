@@ -2,6 +2,19 @@
   <el-card class="box-card" shadow="always" body-style="padding:10px 20px">
     <div slot="header" class="clearfix">
       <span>予実管理</span>
+      <el-select
+        filterable
+        v-model="selectedMonth"
+        @change="changeMonthsSelect"
+      >
+        <el-option
+          v-for="item in options.months"
+          :key="item.number"
+          :label="item.name"
+          :value="item.name"
+          >{{ item.name }}</el-option
+        >
+      </el-select>
       <div class="balloon2">
         <p>
           TODO いろいろフィルタで絞り込む。予算カテゴリや「今月の予算」など？
@@ -126,8 +139,10 @@ export default {
     return {
       options: {
         budgetCategoriesBudgets: [],
-        budgetsActuals: []
+        budgetsActuals: [],
+        months: []
       },
+      selectedMonth: null, //対象月プルダウン
       dialogFormVisible: false, //モーダルの表示状態
       historyDialogVisible: false, //履歴モーダルの表示状態
       form: {
@@ -196,7 +211,11 @@ export default {
       // that.options.latestAccountBalances.sort(
       //   that.objectArraySort("accountId", "asc")
       // )
-      console.log(that)
+
+      let dObj = new Date()
+      let thisMonth = String(100 + dObj.getMonth() + 1).substr(1, 2)
+      that.selectedMonth = thisMonth + "月"
+      that.options.months = that.setMonthsSelect(thisMonth)
     },
     onClickEdit: function(selectedId) {
       //モーダルに値をセット
@@ -247,6 +266,25 @@ export default {
       console.log(getDialogData)
       that.historyDialog.budgetName = getDialogData[0].name
       that.historyDialog.history = getDialogData[0].actuals
+    },
+    //プルダウンのセット用
+    setMonthsSelect: function(thisMonth) {
+      var returnObj = []
+      for (let i = 0; i < 3; i++) {
+        let num = (Number(thisMonth) - i) % 12
+        let name = num + "月"
+
+        returnObj.push({
+          number: num,
+          name: name
+        })
+      }
+
+      return returnObj
+    },
+    //プルダウンのchangeアクション用
+    changeMonthsSelect: function(month) {
+      console.log(month)
     }
   }
 }
