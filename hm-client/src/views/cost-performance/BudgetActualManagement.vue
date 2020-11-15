@@ -11,7 +11,7 @@
           v-for="item in options.months"
           :key="item.number"
           :label="item.name"
-          :value="item.name"
+          :value="item.number"
           >{{ item.name }}</el-option
         >
       </el-select>
@@ -143,6 +143,7 @@ export default {
         months: []
       },
       selectedMonth: null, //対象月プルダウン
+      thisMonth: null,
       dialogFormVisible: false, //モーダルの表示状態
       historyDialogVisible: false, //履歴モーダルの表示状態
       form: {
@@ -159,6 +160,11 @@ export default {
   },
   created: function() {
     var that = this
+
+    let dObj = new Date()
+    that.thisMonth = String(100 + dObj.getMonth() + 1).substr(1, 2)
+    that.selectedMonth = String(100 + dObj.getMonth() + 1).substr(1, 2)
+
     //GET
     that.getFromApi()
 
@@ -188,7 +194,11 @@ export default {
 
       //GETの実行
       axios
-        .get(API_PATH_CPF_22)
+        .get(API_PATH_CPF_22, {
+          params: {
+            appropriateMonth: that.selectedMonth
+          }
+        })
         .then(function(res) {
           that.options.budgetCategoriesBudgets =
             res.data.budgetCategoriesBudgets
@@ -208,14 +218,7 @@ export default {
     //   console.log(data)
     // },
     display: function(that) {
-      // that.options.latestAccountBalances.sort(
-      //   that.objectArraySort("accountId", "asc")
-      // )
-
-      let dObj = new Date()
-      let thisMonth = String(100 + dObj.getMonth() + 1).substr(1, 2)
-      that.selectedMonth = thisMonth + "月"
-      that.options.months = that.setMonthsSelect(thisMonth)
+      that.options.months = that.setMonthsSelect(that.thisMonth)
     },
     onClickEdit: function(selectedId) {
       //モーダルに値をセット
@@ -259,11 +262,10 @@ export default {
       var that = this
       let getDialogData = Array
 
-      console.log(budgetId)
       getDialogData = that.options.budgetsActuals.filter(function(value) {
         return value.id === budgetId
       })
-      console.log(getDialogData)
+
       that.historyDialog.budgetName = getDialogData[0].name
       that.historyDialog.history = getDialogData[0].actuals
     },
@@ -285,6 +287,7 @@ export default {
     //プルダウンのchangeアクション用
     changeMonthsSelect: function(month) {
       console.log(month)
+      this.getFromApi()
     }
   }
 }

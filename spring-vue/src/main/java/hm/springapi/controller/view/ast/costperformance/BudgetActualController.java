@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import hm.springapi.controller.view.ast.costperformance.dto.BudgetActualGetRes;
@@ -34,7 +35,8 @@ public class BudgetActualController {
 
     @GetMapping("/api/ast/asset-budget-actual")
     @CrossOrigin
-    public ResponseEntity<BudgetActualGetRes> findAll() {
+    public ResponseEntity<BudgetActualGetRes> findAll(@RequestParam("appropriateMonth") String appropriateMonth) {
+    	System.out.println(appropriateMonth);System.out.println(appropriateMonth);System.out.println(appropriateMonth);
         //レスポンスの第1階層セット用インスタンス
         ArrayList <BudgetCategoriesBudgets> budgetCategoriesBudgets = new ArrayList<>();
         ArrayList <BudgetsActuals> budgetsActuals = new ArrayList<>();
