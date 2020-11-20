@@ -26,6 +26,9 @@
           >{{ item.name }}</el-option
         >
       </el-select>
+      <el-button type="info" round @click="onClickBudgetFix()"
+        >予算の確定</el-button
+      >
     </el-row>
     <div class="balloon2">
       <p>TODO 削除機能はとりあえず物理削除。</p>
@@ -121,6 +124,7 @@ import axios from "axios"
 import common from "@/js/common/common.js"
 
 const API_PATH_AST_02 = "http://localhost:8080/api/ast/budget"
+const API_PATH_AST_06 = "http://localhost:8080/api/ast/budget-fix"
 
 export default {
   name: "BudgetList",
@@ -281,6 +285,26 @@ export default {
         })
         .catch(function(error) {
           console.log("ERROR")
+          console.log(error)
+        })
+    },
+    onClickBudgetFix: function() {
+      var that = this
+
+      var request = {
+        userId: 2,
+        appropriateMonth: "2020-11-01"
+      }
+
+      axios
+        .patch(API_PATH_AST_06, request)
+        .then(function(response) {
+          console.log("ok")
+          console.log(response)
+          that.openSuccessNotification(true)
+        })
+        .catch(function(error) {
+          console.log("NG")
           console.log(error)
         })
     }

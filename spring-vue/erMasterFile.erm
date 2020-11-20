@@ -12,16 +12,16 @@
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
 	<x>25</x>
-	<y>311</y>
+	<y>15</y>
 	<default_color>
 		<r>128</r>
 		<g>128</g>
 		<b>192</b>
 	</default_color>
 	<color>
-		<r>255</r>
-		<g>255</g>
-		<b>255</b>
+		<r>128</r>
+		<g>128</g>
+		<b>192</b>
 	</color>
 	<font_name>Yu Gothic UI</font_name>
 	<font_size>9</font_size>
@@ -138,7 +138,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-07-05 02:02:13</creation_date>
-			<updated_date>2020-11-10 22:19:52</updated_date>
+			<updated_date>2020-11-20 23:30:55</updated_date>
 			<model_property>
 				<name>プロジェクト名</name>
 				<value></value>
@@ -5787,7 +5787,7 @@
 							</column_data>
 							<column_data>
 								<column_id>53</column_id>
-								<value>null</value>
+								<value>2020/9/1</value>
 							</column_data>
 							<column_data>
 								<column_id>54</column_id>

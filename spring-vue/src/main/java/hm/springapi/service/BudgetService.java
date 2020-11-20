@@ -25,15 +25,15 @@ public class BudgetService {
     public ArrayList<Budget> findByBudgetCategoryId(Long budgetCategoryId) {
         return budgetRepository.findByBudgetCategoryId(budgetCategoryId);
     }
-    
+
     public String createBudget(Budget budget) {
 
     	Date date = new Date();
 //    	TODO userID‚ğƒƒOƒCƒ“î•ñ‚©‚çæ“¾
     	budget.setCreatedAt(date);
     	budget.setUpdatedAt(date);
-    	budget.setCreatedUserId((long)1);
-    	budget.setUpdatedUserId((long)1);
+    	budget.setCreatedUserId((long)2);
+    	budget.setUpdatedUserId((long)2);
     	budgetRepository.save(budget);
     	
     	return "success!!";
@@ -45,4 +45,15 @@ public class BudgetService {
     	
     	return "success!!";
     }
+    
+    public ArrayList<Budget> findByCreatedUserId(Long createdUserId) {
+    	
+    	return budgetRepository.findByCreatedUserId(createdUserId);
+    }
+    
+    public ArrayList<Budget> findByCreatedUserIdAndAppropriateMonth(Long createdUserId,Date appropriateMonth) {
+    	
+    	return budgetRepository.findByCreatedUserIdAndAppropriateMonth(createdUserId,appropriateMonth);
+    }
+    
 }

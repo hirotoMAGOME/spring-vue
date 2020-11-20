@@ -14,11 +14,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import hm.springapi.controller.view.ast.assetmaster.BudgetResponse;
+import hm.springapi.controller.view.ast.assetmaster.dto.BudgetFixPostReq;
 import hm.springapi.controller.view.ast.assetmaster.dto.BudgetPostReq;
 import hm.springapi.dao.entity.Actual;
 import hm.springapi.dao.entity.Budget;
 import hm.springapi.service.BudgetService;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -29,7 +35,6 @@ public class BudgetController {
 
     @GetMapping("/api/ast/budget")
     @CrossOrigin
-     
     public ResponseEntity<BudgetResponse> findAll() {
         List<Budget> budgets = budgetService.findAll();
         BudgetResponse budgetResponse = BudgetResponse.builder()
@@ -61,4 +66,78 @@ public class BudgetController {
 //    	TODO 予算が一切紐づかないことを確認の上削除
     	return budgetService.deleteBudget(id);
     }
+    
+    //TODO userIdは固定値で2をセット。そもそもbudetの登録の時ってuserIdどうなってたっけ？
+    @PatchMapping("/api/ast/budget-fix")
+    @CrossOrigin
+    @ResponseBody
+    public String budgetFix(@RequestBody BudgetFixPostReq body) {
+    	//TODO リクエストの型チェックができてない
+    	//appropriateMonth: "2020-11-16aaa"　でも通ってしまうので、バリデーションを入れる必要あり
+    	
+    	
+    	//body:2020-11-01
+    	//TODO 業務チェック
+    	
+    	Date requestFirstDate = getFirstDate(body.getAppropriateMonth());
+
+    	Date today = new Date();
+   		Date firstDate = getFirstDate(today);
+    		
+       	if(requestFirstDate.compareTo(firstDate) < 0) {
+       		//TODO ERRORを画面に返す
+       		System.out.println("過去の予算は確定できません");
+       	}
+        	
+       	ArrayList<Budget> checkAlreadyExist = budgetService.findByCreatedUserIdAndAppropriateMonth(body.getUserId(),requestFirstDate);
+
+       	if(checkAlreadyExist.size() > 0) {
+       		//TODO ERRORを返す
+       		System.out.println("既に予算を確定済みです");
+       	}
+        	
+    	
+    	//更新
+    	if(body.getAppropriateMonth() == null ) {
+    		
+    	}
+    	Long tempUserId = (long) 2;
+    	//TODO userIdは固定値ではなくリクエストを使用する。body.getUserId()
+        ArrayList<Budget> budgets = budgetService.findByCreatedUserIdAndAppropriateMonth(tempUserId,null);
+
+        budgets.forEach(b -> {
+        	Budget registBudget = new Budget();
+        	
+        	//計上年月はリクエストから取得。それ以外はコピー元を参照
+        	registBudget.setAppropriateMonth(requestFirstDate);
+        	registBudget.setBudgetCategoryId(b.getBudgetCategoryId());
+        	registBudget.setAmount(b.getAmount());
+        	registBudget.setName(b.getName());
+        	
+        	//保存
+        	budgetService.createBudget(registBudget);
+        });
+        
+        return "success!!";
+        
+    }
+    
+    
+	// 月初日を返す
+	public static Date getFirstDate(Date date) {
+
+		if (date==null) return null;
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		int first = calendar.getActualMinimum(Calendar.DATE);
+		calendar.set(Calendar.DATE, first);
+
+		calendar.set(Calendar.HOUR_OF_DAY, 00);
+		calendar.set(Calendar.MINUTE, 00);
+		calendar.set(Calendar.SECOND, 00);
+		calendar.set(Calendar.MILLISECOND, 000);
+
+		return calendar.getTime();
+	}
 }
