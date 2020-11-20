@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hm.springapi.controller.view.ast.assetmaster.BudgetResponse;
 import hm.springapi.controller.view.ast.assetmaster.dto.BudgetFixPostReq;
+import hm.springapi.controller.view.ast.assetmaster.dto.BudgetGetResponse;
 import hm.springapi.controller.view.ast.assetmaster.dto.BudgetPostReq;
 import hm.springapi.dao.entity.Actual;
 import hm.springapi.dao.entity.Budget;
@@ -35,13 +36,24 @@ public class BudgetController {
 
     @GetMapping("/api/ast/budget")
     @CrossOrigin
-    public ResponseEntity<BudgetResponse> findAll() {
-        List<Budget> budgets = budgetService.findAll();
-        BudgetResponse budgetResponse = BudgetResponse.builder()
+    public ResponseEntity<BudgetGetResponse> findAll() {
+    	//budgets‚Ìæ“¾
+    	//TODO LEFT JOIN BudgetCategory‚Åƒ†[ƒU[ID‚Åi‚é
+        List<Budget> budgets = budgetService.findByAppropriateMonthIsNull();
+        
+        //latestAppropriateMonth‚Ìæ“¾        
+        Budget latestFixedBudget = new Budget();
+        latestFixedBudget = budgetService.findFirst1ByAppropriateMonthNotNullOrderByAppropriateMonthDesc();
+        
+        Date latestAppropriateMonth = new Date();
+        latestAppropriateMonth = latestFixedBudget.getAppropriateMonth();
+        
+        BudgetGetResponse budgetGetResponse = BudgetGetResponse.builder()
                 .budgets(budgets)
+                .latestAppropriateMonth(latestAppropriateMonth)
                 .build();
         
-        return new ResponseEntity<>(budgetResponse, HttpStatus.OK);
+		return new ResponseEntity<>(budgetGetResponse, HttpStatus.OK);
     }
     
     @PatchMapping("/api/ast/budget")

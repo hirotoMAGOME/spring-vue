@@ -46,6 +46,16 @@ public class BudgetService {
     	return "success!!";
     }
     
+    //AST_02_—\ŽZAPI_GET
+    public ArrayList<Budget> findByAppropriateMonthIsNull() {
+        return budgetRepository.findByAppropriateMonthIsNull();
+    }
+    public Budget findFirst1ByAppropriateMonthNotNullOrderByAppropriateMonthDesc() {
+    	
+    	return budgetRepository.findFirst1ByAppropriateMonthNotNullOrderByAppropriateMonthDesc();
+    }
+    
+    //
     public ArrayList<Budget> findByCreatedUserId(Long createdUserId) {
     	
     	return budgetRepository.findByCreatedUserId(createdUserId);
