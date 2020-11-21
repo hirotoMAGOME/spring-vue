@@ -26,7 +26,11 @@
           >{{ item.name }}</el-option
         >
       </el-select>
-      <el-button type="info" round @click="onClickBudgetFix()"
+      <el-button
+        type="info"
+        round
+        @click="onClickBudgetFix()"
+        v-bind:disabled="budgetFixButtonDisabled"
         >予算の確定</el-button
       >
     </el-row>
@@ -159,7 +163,8 @@ export default {
             id: 6,
             name: "予算カテゴリ６"
           }
-        ]
+        ],
+        latestAppropriateMonth: null
       },
       dialogFormVisible: false, //モーダルの表示状態
       form: {
@@ -170,7 +175,9 @@ export default {
         // selectedBudgetCategory: null
         // budgetCategoryType: false
       },
-      selectedBudgetCategory: null
+      selectedBudgetCategory: null,
+      budgetFixButtonDisabled: false, //予算の確定ボタンの非表示フラグ
+      appropriateMonth: null //確定することができる計上年月
     }
   },
   created: function() {
@@ -182,15 +189,11 @@ export default {
     // that
     //   .getClsType("budget_category_type", true)
     //   .then(that.setClsType, that.setClsTypeErr)
-
-    //初期値をセット
-    that.display(that)
   },
   mounted: function() {},
   methods: {
     // TODO 共通パーツ化
     openSuccessNotification: function(defaultFlg, originalMessage) {
-      console.log(defaultFlg)
       var message =
         defaultFlg === true ? "This is a success message" : originalMessage
       this.$notify({
@@ -207,6 +210,10 @@ export default {
         .get(API_PATH_AST_02)
         .then(function(res) {
           that.options.budgets = res.data.budgets
+          that.options.latestAppropriateMonth = res.data.latestAppropriateMonth
+
+          //初期値をセット
+          that.display(that)
         })
         .catch(function(err) {
           console.log("ERROR")
@@ -220,6 +227,7 @@ export default {
     // setClsTypeErr: function(data) {
     //   console.log(data)
     // },
+    //RULE GETのレスポンスを使用する画面描画については、thenの中から呼ぶ
     display: function(that) {
       that.options.budgetCategories.push({
         id: 0,
@@ -227,7 +235,26 @@ export default {
       })
       // debugger
       that.options.budgetCategories.sort(that.objectArraySort("id", "asc"))
-      // debugger
+
+      //予算の確定ボタンの表示制御
+      let dObj = new Date()
+      let thisMonth = parseInt(dObj.getMonth() + 1, 10)
+
+      let responseMonth = parseInt(
+        that.options.latestAppropriateMonth.substr(5, 2),
+        10
+      )
+
+      if (thisMonth <= responseMonth) {
+        that.budgetFixButtonDisabled = true
+      }
+
+      //予算を確定できる年月(PATCHのリクエスト用)
+      that.appropriateMonth =
+        dObj.getFullYear() +
+        "-" +
+        String(100 + dObj.getMonth() + 1).substr(1, 2) +
+        "-01"
     },
     onClickEdit: function(selectedId) {
       //モーダルに値をセット
@@ -248,7 +275,7 @@ export default {
           amount: getData.amount
         }
       }
-      console.log(this.form)
+
       //モーダルを開く
       // this.dialogFormVisible = true;
     },
@@ -292,8 +319,8 @@ export default {
       var that = this
 
       var request = {
-        userId: 2,
-        appropriateMonth: "2020-11-01"
+        userId: 2, //TODO 正しくはログイン者のユーザーID
+        appropriateMonth: that.appropriateMonth
       }
 
       axios
