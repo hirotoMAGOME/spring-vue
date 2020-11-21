@@ -10,29 +10,45 @@
           :key="item.id"
           :label="item.name"
           :value="item.api_cd"
-        >{{ item.name }}</el-option>
+          >{{ item.name }}</el-option
+        >
       </el-select>
     </el-card>
     <div v-show="selectedAssetApiList === 'AST_01'">
       <BudgetCategoryList />
+    </div>
+    <div v-show="selectedAssetApiList === 'AST_02'">
+      <BudgetList />
+    </div>
+    <div v-show="selectedAssetApiList === 'AST_03'">
+      <AccountCategoryList />
+    </div>
+    <div v-show="selectedAssetApiList === 'AST_04'">
+      <AccountList />
     </div>
   </el-main>
 </template>
 <script>
 /* eslint-disable no-console */
 
-import axios from "axios";
-import BudgetCategoryList from "./BudgetCategoryList";
-import common from "@/js/common/common.js";
+import axios from "axios"
+import BudgetCategoryList from "./BudgetCategoryList"
+import BudgetList from "./BudgetList"
+import AccountCategoryList from "./AccountCategoryList"
+import AccountList from "./AccountList"
+import common from "@/js/common/common.js"
 
 //TODO enumで読み込み？
-const API_PATH_AST_90 = "http://localhost:8080/api/ast/asset-api-list";
+const API_PATH_AST_90 = "http://localhost:8080/api/ast/asset-api-list"
 
 export default {
   name: "AssetMaster",
   mixins: [common],
   components: {
-    BudgetCategoryList
+    BudgetCategoryList,
+    BudgetList,
+    AccountCategoryList,
+    AccountList
   },
   data() {
     return {
@@ -40,41 +56,41 @@ export default {
         assetApiList: []
       },
       selectedAssetApiList: "AST_01"
-    };
+    }
   },
   created: async function() {
-    await this.refresh();
+    await this.refresh()
   },
   mounted: function() {},
   methods: {
     refresh: async function() {
-      var that = this;
+      var that = this
 
       //GET
-      that.getFromApi();
+      that.getFromApi()
       //画面に初期値をセット
-      that.display();
+      that.display()
     },
     getFromApi: function() {
-      var that = this;
+      var that = this
       //GETの実行
       axios
         .get(API_PATH_AST_90)
         .then(function(res) {
-          that.options.assetApiList = res.data.assetApiLists;
+          that.options.assetApiList = res.data.assetApiLists
         })
         .catch(function(err) {
-          console.log("ERROR");
-          console.log(err);
-        });
+          console.log("ERROR")
+          console.log(err)
+        })
     },
     display: function() {},
-    onClickRegist: function() {
+    onClickRegistAPI: function() {
       // var request = {
       //   test1: "aaa",
       //   test2: "bbb"
       // };
-      console.log("regist");
+      console.log("regist")
       // axios
       //   .post(API_PATH_AST_01, request)
       //   .then(function(response) {
@@ -88,7 +104,7 @@ export default {
       // console.log("regist2");
     }
   }
-};
+}
 </script>
 
 <style scoped>

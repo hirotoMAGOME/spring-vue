@@ -5,7 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import hm.springapi.domain.Currency;
+
+import hm.springapi.dao.entity.Currency;
 import hm.springapi.service.CurrencyService;
 
 import java.util.List;

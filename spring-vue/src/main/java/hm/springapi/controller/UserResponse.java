@@ -2,9 +2,10 @@ package hm.springapi.controller;
 
 import lombok.Builder;
 import lombok.Getter;
-import hm.springapi.domain.User;
 
 import java.util.List;
+
+import hm.springapi.dao.entity.User;
 
 @Getter
 @Builder

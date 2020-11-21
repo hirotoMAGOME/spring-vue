@@ -3,8 +3,8 @@ package hm.springapi.service.common;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import hm.springapi.domain.ClsType;
-import hm.springapi.domain.ClsTypeRepository;
+import hm.springapi.dao.entity.ClsType;
+import hm.springapi.dao.entity.ClsTypeRepository;
 
 //import java.time.LocalDateTime;
 import java.util.List;

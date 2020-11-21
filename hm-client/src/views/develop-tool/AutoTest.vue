@@ -31,6 +31,18 @@
           style="background-color:red"
         >{{ testTransformationToCamelTextFromSnakeTextErrList }}</div>
       </el-card>
+      <!-- testObjectArraySort -->
+      <el-card class="box-card" shadow="always" body-style="padding:10px 20px">
+        <div slot="header" class="clearfix">
+          <div class="template-no-area"></div>
+          <span>testObjectArraySort</span>
+        </div>
+        <div
+          v-show="testObjectArraySortErrFlg"
+          style="background-color:red"
+        >{{ testObjectArraySortErrList }}</div>
+      </el-card>
+
       <!-- ここまで -->
       <el-card class="box-card" shadow="always" body-style="padding:10px 20px">
         <div slot="header" class="clearfix">
@@ -68,7 +80,9 @@ export default {
       testIsObjectErrList: [],
       testIsObjectErrFlg: false,
       testTransformationToCamelTextFromSnakeTextErrList: [],
-      testTransformationToCamelTextFromSnakeTextErrFlg: false
+      testTransformationToCamelTextFromSnakeTextErrFlg: false,
+      testObjectArraySortErrList: [],
+      testObjectArraySortErrFlg: false
     }
   },
   methods: {
@@ -76,7 +90,8 @@ export default {
       this.testIsArray()
       this.testIsObject()
       this.testTransformationToCamelTextFromSnakeText()
-      this.testTransformationToCamelFromSnake()
+      this.testObjectArraySort()
+      // this.testTransformationToCamelFromSnake()
     },
     testIsArray: function() {
       if (this.isArray("String")) {
@@ -115,6 +130,41 @@ export default {
           "ERROR testTransformationToCamelTextFromSnakeText(001)"
         )
         this.testTransformationToCamelTextFromSnakeTextErrFlg = true
+      }
+    },
+    testObjectArraySort: function() {
+      //判定用テストデータ
+      var testObjectArray = [
+        { id: 1, name: "ZZZ" },
+        { id: 5, name: "BBB" },
+        { id: 3, name: "aaa" }
+      ]
+      var CorrectArray1 = [
+        { id: 1, name: "ZZZ" },
+        { id: 3, name: "aaa" },
+        { id: 5, name: "BBB" }
+      ]
+      var CorrectArray2 = [
+        { id: 1, name: "ZZZ" },
+        { id: 5, name: "BBB" },
+        { id: 3, name: "aaa" }
+      ]
+
+      if (
+        JSON.stringify(
+          testObjectArray.sort(this.objectArraySort("id", "asc"))
+        ) !== JSON.stringify(CorrectArray1)
+      ) {
+        this.testObjectArraySortErrList.push("ERROR testObjectArraySort(001)")
+        this.testObjectArraySortErrFlg = true
+      }
+      if (
+        JSON.stringify(
+          testObjectArray.sort(this.objectArraySort("name", "desc"))
+        ) !== JSON.stringify(CorrectArray2)
+      ) {
+        this.testObjectArraySortErrList.push("ERROR testObjectArraySort(002)")
+        this.testObjectArraySortErrFlg = true
       }
     }
   },

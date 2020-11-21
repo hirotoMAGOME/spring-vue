@@ -1,13 +1,13 @@
 package hm.springapi.service;
 
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import hm.springapi.domain.BudgetCategory;
-import hm.springapi.domain.BudgetCategoryRepository;
+import hm.springapi.dao.entity.BudgetCategory;
+import hm.springapi.dao.entity.BudgetCategoryRepository;
+import hm.springapi.dao.entity.BudgetRepository;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +30,13 @@ public class BudgetCategoryService {
     	budgetCategory.setUpdatedAt(date);
     	
     	budgetCategoryRepository.save(budgetCategory);
+    	
+    	return "success!!";
+    }
+    
+    public String deleteBudgetCategory(Long id) {
+    	
+    	budgetCategoryRepository.deleteById(id);
     	
     	return "success!!";
     }

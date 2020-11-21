@@ -28,7 +28,17 @@
           >編集</el-button>
         </template>
       </el-table-column>
-      <el-table-column label="削除" width="180"></el-table-column>
+      <el-table-column label="削除" width="180">
+        <template slot-scope="scope">
+          <el-button
+            type="info"
+            round
+            @click="
+              onClickDelete(scope.row.id)
+            "
+          >削除</el-button>
+        </template>
+      </el-table-column>
     </el-table>
     <el-dialog title="新規登録" :visible.sync="dialogFormVisible">
       <el-form :model="form">
@@ -54,7 +64,7 @@
           type="primary"
           @click="
             dialogFormVisible = false
-            onClickRegist()
+            onClickRegistAPI()
           "
         >Confirm</el-button>
       </span>
@@ -101,6 +111,17 @@ export default {
   },
   mounted: function() {},
   methods: {
+    // TODO 共通パーツ化
+    openSuccessNotification: function(defaultFlg, originalMessage) {
+      console.log(defaultFlg)
+      var message =
+        defaultFlg === true ? "This is a success message" : originalMessage
+      this.$notify({
+        title: "Success",
+        message: message,
+        type: "success"
+      })
+    },
     getFromApi: function() {
       var that = this
 
@@ -135,7 +156,7 @@ export default {
         var getData = this.options.budgetCategories.find(
           v => v.id === selectedId
         )
-        console.log(getData)
+
         this.form = {
           id: getData.id,
           name: getData.name,
@@ -146,8 +167,9 @@ export default {
       //モーダルを開く
       // this.dialogFormVisible = true;
     },
-    onClickRegist: function() {
-      console.log("onClickRegist method実行")
+    onClickRegistAPI: function() {
+      var that = this
+      console.log("onClickRegistAPI method実行")
       var request = {
         id: this.form.id,
         name: this.form.name,
@@ -155,13 +177,28 @@ export default {
       }
 
       axios
-        .post(API_PATH_AST_01, request)
+        .patch(API_PATH_AST_01, request)
+        .then(function(response) {
+          console.log("ok")
+          console.log(response)
+          that.openSuccessNotification(true)
+        })
+        .catch(function(error) {
+          console.log("NG")
+          console.log(error)
+        })
+    },
+    onClickDelete: function(selectedId) {
+      // var params = { id: selectedId }
+      //DELETEの実行
+      axios
+        .delete(API_PATH_AST_01 + "/" + selectedId)
         .then(function(response) {
           console.log("ok")
           console.log(response)
         })
         .catch(function(error) {
-          console.log("NG")
+          console.log("ERROR")
           console.log(error)
         })
     }

@@ -2,9 +2,10 @@ package hm.springapi.controller.com;
 
 import lombok.Builder;
 import lombok.Getter;
-import hm.springapi.domain.ClsType;
 
 import java.util.List;
+
+import hm.springapi.dao.entity.ClsType;
 
 @Getter
 @Builder

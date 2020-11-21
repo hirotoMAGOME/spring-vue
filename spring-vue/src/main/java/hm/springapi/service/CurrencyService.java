@@ -3,8 +3,9 @@ package hm.springapi.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import hm.springapi.domain.Currency;
-import hm.springapi.domain.CurrencyRepository;
+
+import hm.springapi.dao.entity.Currency;
+import hm.springapi.dao.entity.CurrencyRepository;
 
 import java.util.List;
 

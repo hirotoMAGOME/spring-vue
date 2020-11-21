@@ -53,6 +53,20 @@ export default new Router({
         )
     },
     {
+      path: "/cost-performance",
+      name: "cost-performance",
+      component: () =>
+        import(
+          /* webpackChunkName: "budget" */ "@/views/cost-performance/CostPerformance.vue"
+        )
+    },
+    {
+      path: "/budget",
+      name: "budget",
+      component: () =>
+        import(/* webpackChunkName: "budget" */ "@/views/budget/Budget.vue")
+    },
+    {
       path: "/develop-tool/ui-parts",
       name: "uiParts",
       component: () =>
@@ -62,10 +76,10 @@ export default new Router({
     },
     {
       path: "/develop-tool/auto-test",
-      name: "AutoTest",
+      name: "autoTest",
       component: () =>
         import(
-          /* webpackChunkName: "uiParts" */ "@/views/develop-tool/AutoTest.vue"
+          /* webpackChunkName: "autoTest" */ "@/views/develop-tool/AutoTest.vue"
         )
     },
     {
