@@ -19,7 +19,35 @@
       <el-card class="box-card" shadow="always" body-style="padding:10px 20px">
         <div slot="header" class="clearfix">
           <div class="template-no-area"></div>
-          <span>モーダル(中)</span>
+          <el-button type="info" round @click="dialogFormVisible = true"
+            >モーダル(中)</el-button
+          >
+          <el-dialog title="新規登録" :visible.sync="dialogFormVisible">
+            <el-form :model="form">
+              <el-form
+                ref="form"
+                :model="form"
+                label-width="200px"
+                size="medium"
+              >
+                <el-form-item label="ID">{{ input.input1 }}</el-form-item>
+                <el-form-item label="予算カテゴリ名">
+                  <el-input v-model="input.input1"></el-input>
+                </el-form-item>
+              </el-form>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+              <el-button @click="dialogFormVisible = false">Cancel</el-button>
+              <el-button
+                type="primary"
+                @click="
+                  dialogFormVisible = false
+                  onClickRegistAPI()
+                "
+                >Confirm</el-button
+              >
+            </span>
+          </el-dialog>
         </div>
       </el-card>
       <el-card class="box-card" shadow="always" body-style="padding:10px 20px">
@@ -48,6 +76,15 @@
               >{{ item.name }}</el-option
             >
           </el-select>
+        </el-form-item>
+        <el-form-item label="datepicker">
+          <el-date-picker
+            v-model="datepickerValue2"
+            type="date"
+            placeholder="Pick a day"
+            :picker-options="pickerOptions"
+          >
+          </el-date-picker>
         </el-form-item>
         <el-form-item label="Activity time">
           <el-col :span="11">
@@ -91,10 +128,22 @@
           <el-input type="textarea" v-model="form.desc"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit">Create</el-button>
+          <el-button type="primary">Create</el-button>
           <el-button>Cancel</el-button>
         </el-form-item>
       </el-form>
+    </el-card>
+    <el-card class="box-card" shadow="always" body-style="padding:10px 20px">
+      <div slot="header" class="clearfix">
+        <span>ボタン</span>
+      </div>
+      <row>
+        <el-button type="info" round>編集</el-button>
+        <el-button type="primary" round>更新</el-button>
+        <el-button type="warning" round>警告</el-button>
+        <el-button type="danger" round>エラー</el-button>
+      </row>
+      <row></row>
     </el-card>
   </el-main>
 </template>
@@ -125,7 +174,46 @@ export default {
             name: "name2"
           }
         ]
-      }
+      },
+      dialogFormVisible: false, //モーダル中の表示状態
+      input: {
+        input1: null,
+        input2: null,
+        input3: null,
+        input4: null,
+        input5: null
+      },
+      pickerOptions: {
+        //datepicker用
+        disabledDate(time) {
+          return time.getTime() > Date.now()
+        },
+        shortcuts: [
+          {
+            text: "Today",
+            onClick(picker) {
+              picker.$emit("pick", new Date())
+            }
+          },
+          {
+            text: "Yesterday",
+            onClick(picker) {
+              const date = new Date()
+              date.setTime(date.getTime() - 3600 * 1000 * 24)
+              picker.$emit("pick", date)
+            }
+          },
+          {
+            text: "A week ago",
+            onClick(picker) {
+              const date = new Date()
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+              picker.$emit("pick", date)
+            }
+          }
+        ]
+      },
+      datepickerValue2: "" //datepicker用,
     }
   },
   methods: {

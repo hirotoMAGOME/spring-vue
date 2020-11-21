@@ -42,26 +42,6 @@ export default {
             })
         }
       })
-
-      // var params = { domainCdList };
-
-      // //axiosのconfigを変えて、配列の形式を変更する
-      // //OK http://localhost:8080/api/com/cls-type?domainCdList=budget_category_type&domainCdList=user_type
-      // //NG http://localhost:8080/api/com/cls-type?domainCdList[]=budget_category_type&domainCdList[]=user_type
-      // let myAxios = axios.create({
-      //     paramsSerializer: params => Qs.stringify(params, { arrayFormat: 'repeat' })
-      // })
-
-      // //GETの実行
-      // myAxios
-      //     .get(API_PATH_COM_01, { params })
-      //     .then(function (res) {
-      //         console.log("aaa");
-      //         return res.data;
-      //     })
-      //     .catch(function () {
-      //         return [];
-      //     });
     },
     isArray: function(item) {
       return Object.prototype.toString.call(item) === "[object Array]"
@@ -73,6 +53,31 @@ export default {
       return SnakeText.replace(/_./g, function(s) {
         return s.charAt(1).toUpperCase()
       })
+    },
+    objectArraySort: function(key, order = "asc") {
+      return function(a, b) {
+        // if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+        if (
+          !Object.prototype.hasOwnProperty.call(a, key) ||
+          !Object.prototype.hasOwnProperty.call(b, key)
+        ) {
+          console.log("NG")
+          console.log(key)
+          // property doesn't exist on either object
+          return 0
+        }
+
+        const varA = typeof a[key] === "string" ? a[key].toUpperCase() : a[key]
+        const varB = typeof b[key] === "string" ? b[key].toUpperCase() : b[key]
+
+        let comparison = 0
+        if (varA > varB) {
+          comparison = 1
+        } else if (varA < varB) {
+          comparison = -1
+        }
+        return order == "desc" ? comparison * -1 : comparison
+      }
     }
   }
 }

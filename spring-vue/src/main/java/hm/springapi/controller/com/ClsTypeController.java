@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import hm.springapi.domain.ClsType;
+
+import hm.springapi.dao.entity.ClsType;
 import hm.springapi.service.common.ClsTypeService;
 
 import java.util.List;

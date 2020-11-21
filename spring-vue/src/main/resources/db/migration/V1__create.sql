@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS m_user;
 -- 口座残高
 CREATE TABLE a_account_balance
 (
-	id bigint unsigned NOT NULL,
+	id bigint unsigned NOT NULL AUTO_INCREMENT,
 	account_id bigint unsigned NOT NULL,
 	-- 実際の口座残高を確認した日
 	recorded_at datetime DEFAULT NOW() NOT NULL,
@@ -90,16 +90,18 @@ CREATE TABLE a_budget
 CREATE TABLE m_account
 (
 	id bigint unsigned NOT NULL AUTO_INCREMENT,
-	account_type_id bigint unsigned NOT NULL,
+	account_category_id bigint unsigned NOT NULL,
 	name varchar(64) NOT NULL,
+	sort int DEFAULT 0 NOT NULL,
 	created_at datetime DEFAULT NOW() NOT NULL,
 	updated_at datetime DEFAULT NOW() NOT NULL,
 	deleted_at datetime,
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	UNIQUE (sort)
 );
 
 
--- 口座カテゴリー
+-- 口座カテゴリ
 CREATE TABLE m_account_category
 (
 	id bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -158,6 +160,7 @@ CREATE TABLE m_cls_type
 CREATE TABLE m_currency
 (
 	id bigint unsigned NOT NULL AUTO_INCREMENT,
+	user_id bigint unsigned NOT NULL,
 	name varchar(64) NOT NULL,
 	mark varchar(64) NOT NULL,
 	created_at datetime DEFAULT NOW() NOT NULL,
@@ -223,7 +226,7 @@ ALTER TABLE a_actual
 
 
 ALTER TABLE m_account
-	ADD FOREIGN KEY (account_type_id)
+	ADD FOREIGN KEY (account_category_id)
 	REFERENCES m_account_category (id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
@@ -249,22 +252,6 @@ ALTER TABLE a_account_balance
 ALTER TABLE m_cls_type
 	ADD FOREIGN KEY (domain_cd)
 	REFERENCES m_domain (domain_cd)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE m_account_category
-	ADD FOREIGN KEY (user_id)
-	REFERENCES m_user (id)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE m_budget_category
-	ADD FOREIGN KEY (user_id)
-	REFERENCES m_user (id)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;

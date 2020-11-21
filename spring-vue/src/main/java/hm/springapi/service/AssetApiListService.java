@@ -2,8 +2,9 @@ package hm.springapi.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import hm.springapi.domain.AssetApiList;
-import hm.springapi.domain.AssetApiListRepository;
+
+import hm.springapi.dao.entity.AssetApiList;
+import hm.springapi.dao.entity.AssetApiListRepository;
 
 import java.util.List;
 
