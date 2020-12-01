@@ -1,5 +1,8 @@
 <template>
-  <el-header id="app-shared-header" style="background-color: rgb(238, 241, 246)">
+  <el-header
+    id="app-shared-header"
+    style="background-color: rgb(238, 241, 246)"
+  >
     <el-menu
       :default-active="activeIndex2"
       class="el-menu-demo"
@@ -39,7 +42,11 @@
         </el-menu-item>
       </el-submenu>
       <el-menu-item index="5">
-        <a href="/develop-tool">sample</a>
+        <a
+          href="https://www.notion.so/Getting-Started-20047802b46042618e1e50c75c42bc0c"
+          target="_blank"
+          >notion</a
+        >
       </el-menu-item>
     </el-menu>
   </el-header>
