@@ -22,6 +22,7 @@ import hm.springapi.service.BudgetService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -35,7 +36,12 @@ public class BudgetActualController {
 
     @GetMapping("/api/ast/asset-budget-actual")
     @CrossOrigin
-    public ResponseEntity<BudgetActualGetRes> findAll(@RequestParam("appropriateMonth") String appropriateMonth) {
+    public ResponseEntity<BudgetActualGetRes> findAll(@RequestParam("appropriateMonth") Date appropriateMonth) {
+    	//appropriateMonth: "2020/11/16aaa"　でも通ってしまうので、バリデーションを入れる必要あり(BudgetControllerと同じ)
+        //appropriateMonthの必須チェックは
+    	
+
+    	
     	System.out.println(appropriateMonth);System.out.println(appropriateMonth);System.out.println(appropriateMonth);
         //レスポンスの第1階層セット用インスタンス
         ArrayList <BudgetCategoriesBudgets> budgetCategoriesBudgets = new ArrayList<>();
@@ -48,7 +54,7 @@ public class BudgetActualController {
         //全件ループ(bc=budget_category)
         budgetCategoryAll.forEach(bc -> {
         	//budgetCategoryIdを指定してBudgetを取得
-        	ArrayList<Budget> budgetTemp = budgetService.findByBudgetCategoryId(bc.getId());
+        	ArrayList<Budget> budgetTemp = budgetService.findByBudgetCategoryIdAndAppropriateMonth(bc.getId(),appropriateMonth);
         	
         	//全件ループ(b=budget)
         	budgetTemp.forEach(b -> {

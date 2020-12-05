@@ -22,8 +22,8 @@ public class BudgetService {
         return budgetRepository.findAll();
     }
     
-    public ArrayList<Budget> findByBudgetCategoryId(Long budgetCategoryId) {
-        return budgetRepository.findByBudgetCategoryId(budgetCategoryId);
+    public ArrayList<Budget> findByBudgetCategoryIdAndAppropriateMonth(Long budgetCategoryId,Date appropriateMonth) {
+        return budgetRepository.findByBudgetCategoryIdAndAppropriateMonth(budgetCategoryId,appropriateMonth);
     }
 
     public String createBudget(Budget budget) {

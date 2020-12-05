@@ -70,20 +70,22 @@ public class AccountBalanceController {
             }
 
         });
-
+        
         //ÉåÉXÉ|ÉìÉXÇÃçÏê¨
     	AccountBalanceManagementGetRes accountBalanceManagementResponse = AccountBalanceManagementGetRes.builder()
                 .latestAccountBalance(latestAccountBalance)
                 .accountBalanceHistory(accountBalanceHistory)
                 .build();
-
+        
         return new ResponseEntity<>(accountBalanceManagementResponse, HttpStatus.OK);
     }
     
-    @PostMapping("/api/ast/account-balance")
+    @PostMapping("/api/ast/account-balance-management")
     @CrossOrigin
     @ResponseBody
     public String postAccountBalance(@RequestBody AccountBalancePostReq body) {
+    	System.out.println("request body recorderAt:");
+    	System.out.println(body.getRecordedAt());
     	AccountBalance accountBalance = new AccountBalance();
     	accountBalance.setAccountId(body.getAccountId());
     	accountBalance.setRecordedAt(body.getRecordedAt());

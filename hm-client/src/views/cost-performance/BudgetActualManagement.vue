@@ -4,14 +4,14 @@
       <span>予実管理</span>
       <el-select
         filterable
-        v-model="selectedMonth"
+        v-model="appropriateMonth"
         @change="changeMonthsSelect"
       >
         <el-option
           v-for="item in options.months"
-          :key="item.number"
+          :key="item.appropriateMonth"
           :label="item.name"
-          :value="item.number"
+          :value="item.appropriateMonth"
           >{{ item.name }}</el-option
         >
       </el-select>
@@ -68,7 +68,7 @@
             label="scope.row.id"
             round
             @click="
-              onClickOpenHistory(scope.row.budgetId)
+              onClickOpenActualHistory(scope.row.budgetId)
               historyDialogVisible = true
             "
           >
@@ -143,7 +143,8 @@ export default {
         months: []
       },
       selectedMonth: null, //対象月プルダウン
-      thisMonth: null,
+      thisYMD: null, //今日のyyyy/mm/dd
+      appropriateMonth: null, //プルダウンで選択したyyyy/mm/01
       dialogFormVisible: false, //モーダルの表示状態
       historyDialogVisible: false, //履歴モーダルの表示状態
       form: {
@@ -160,10 +161,6 @@ export default {
   },
   created: function() {
     var that = this
-
-    let dObj = new Date()
-    that.thisMonth = String(100 + dObj.getMonth() + 1).substr(1, 2)
-    that.selectedMonth = String(100 + dObj.getMonth() + 1).substr(1, 2)
 
     //GET
     that.getFromApi()
@@ -192,14 +189,28 @@ export default {
     getFromApi: function() {
       var that = this
 
+      //初期表示時のみappropriateMonthをセット
+      if (that.appropriateMonth === null) {
+        let dObj = new Date()
+
+        that.thisYMD = dObj.toLocaleString().split(" ")[0]
+        that.appropriateMonth =
+          that.thisYMD.split("/")[0] + "/" + that.thisYMD.split("/")[1] + "/01"
+      }
+
       //GETの実行
       axios
         .get(API_PATH_CPF_22, {
+          // params: {
+          //   appropriateMonth: that.selectedMonth
+          // }
+          //TODO 固定値をやめる
           params: {
-            appropriateMonth: that.selectedMonth
+            appropriateMonth: this.appropriateMonth
           }
         })
         .then(function(res) {
+          console.log(res)
           that.options.budgetCategoriesBudgets =
             res.data.budgetCategoriesBudgets
 
@@ -218,7 +229,7 @@ export default {
     //   console.log(data)
     // },
     display: function(that) {
-      that.options.months = that.setMonthsSelect(that.thisMonth)
+      that.options.months = that.setMonthsSelect(that.thisYMD)
     },
     onClickEdit: function(selectedId) {
       //モーダルに値をセット
@@ -234,31 +245,7 @@ export default {
         currencyId: getAccountBalance.currencyId
       }
     },
-    // onClickPostApi: function() {
-    //   var that = this
-    //   console.log("onClickPostApi method実行")
-
-    //   //POSTリクエスト項目
-    //   var request = {
-    //     accountId: this.form.accountId,
-    //     recordedAt: this.form.recordedAt,
-    //     balance: this.form.balance,
-    //     currencyId: 1 //TODOマスタから取得
-    //   }
-
-    //   axios
-    //     .post(API_PATH_CPF_22, request)
-    //     .then(function(response) {
-    //       console.log("ok")
-    //       console.log(response)
-    //       that.openSuccessNotification(true)
-    //     })
-    //     .catch(function(error) {
-    //       console.log("NG")
-    //       console.log(error)
-    //     })
-    // },
-    onClickOpenHistory: function(budgetId) {
+    onClickOpenActualHistory: function(budgetId) {
       var that = this
       let getDialogData = Array
 
@@ -270,23 +257,27 @@ export default {
       that.historyDialog.history = getDialogData[0].actuals
     },
     //プルダウンのセット用
-    setMonthsSelect: function(thisMonth) {
+    setMonthsSelect: function(thisYMD) {
+      let year = thisYMD.split("/")[0]
+      let month = thisYMD.split("/")[1]
+
       var returnObj = []
       for (let i = 0; i < 3; i++) {
-        let num = (Number(thisMonth) - i) % 12
-        let name = num + "月"
+        let MonthNum = (Number(month) - i) % 12
+        if (MonthNum === 0) {
+          MonthNum = 12
+        }
 
         returnObj.push({
-          number: num,
-          name: name
+          name: year + "年" + MonthNum + "月",
+          appropriateMonth: year + "/" + MonthNum + "/01"
         })
       }
 
       return returnObj
     },
     //プルダウンのchangeアクション用
-    changeMonthsSelect: function(month) {
-      console.log(month)
+    changeMonthsSelect: function() {
       this.getFromApi()
     }
   }

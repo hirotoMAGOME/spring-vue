@@ -48,6 +48,7 @@
     </el-table>
 
     <el-dialog title="最新の口座状況の登録" :visible.sync="dialogFormVisible">
+      aaa{{ form.recordedAt }} bbb{{ recordedAt }}
       <el-form :model="form">
         <el-form ref="form" :model="form" label-width="200px" size="medium">
           <el-form-item label="口座名">{{ form.accountId }}</el-form-item>
@@ -232,6 +233,7 @@ export default {
     onClickPostApi: function() {
       var that = this
       console.log("onClickPostApi method実行")
+      console.log(that.recordedAt)
 
       //POSTリクエスト項目
       var request = {
