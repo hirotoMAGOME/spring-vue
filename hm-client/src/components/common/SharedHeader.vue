@@ -48,6 +48,9 @@
           >notion</a
         >
       </el-menu-item>
+      <el-menu-item index="6">
+        <a href="/book-mark">リンク集</a>
+      </el-menu-item>
     </el-menu>
   </el-header>
 </template>
