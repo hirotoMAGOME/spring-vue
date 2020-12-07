@@ -252,9 +252,9 @@ export default {
       //予算を確定できる年月(PATCHのリクエスト用)
       that.appropriateMonth =
         dObj.getFullYear() +
-        "-" +
+        "/" +
         String(100 + dObj.getMonth() + 1).substr(1, 2) +
-        "-01"
+        "/01 00:00:00"
     },
     onClickEdit: function(selectedId) {
       //モーダルに値をセット

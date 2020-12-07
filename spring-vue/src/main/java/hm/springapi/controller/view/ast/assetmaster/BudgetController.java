@@ -8,21 +8,16 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import hm.springapi.controller.view.ast.assetmaster.BudgetResponse;
 import hm.springapi.controller.view.ast.assetmaster.dto.BudgetFixPostReq;
 import hm.springapi.controller.view.ast.assetmaster.dto.BudgetGetResponse;
 import hm.springapi.controller.view.ast.assetmaster.dto.BudgetPostReq;
-import hm.springapi.dao.entity.Actual;
 import hm.springapi.dao.entity.Budget;
 import hm.springapi.service.BudgetService;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -86,8 +81,8 @@ public class BudgetController {
     public String budgetFix(@RequestBody BudgetFixPostReq body) {
     	//TODO リクエストの型チェックができてない
     	//appropriateMonth: "2020-11-16aaa"　でも通ってしまうので、バリデーションを入れる必要あり
-    	
-    	
+    	System.out.println("aaaaaaaaaaaaa");
+    	System.out.println(body.getAppropriateMonth());
     	//body:2020-11-01
     	//TODO 業務チェック
     	

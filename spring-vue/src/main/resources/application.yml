@@ -6,7 +6,7 @@ spring:
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
   jackson:
-    dateFormat: yyyy-MM-dd HH:mm:ss
+    dateFormat: yyyy/MM/dd HH:mm:ss
     time-zone: Asia/Tokyo
 logging:
   file:
