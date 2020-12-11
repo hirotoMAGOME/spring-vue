@@ -80,10 +80,8 @@ public class BudgetController {
     @ResponseBody
     public String budgetFix(@RequestBody BudgetFixPostReq body) {
     	//TODO リクエストの型チェックができてない
-    	//appropriateMonth: "2020-11-16aaa"　でも通ってしまうので、バリデーションを入れる必要あり
-    	System.out.println("aaaaaaaaaaaaa");
-    	System.out.println(body.getAppropriateMonth());
-    	//body:2020-11-01
+    	//appropriateMonth: "2020/11/16aaa"　でも通ってしまうので、バリデーションを入れる必要あり←Date型にしたから通らないかも
+
     	//TODO 業務チェック
     	
     	Date requestFirstDate = getFirstDate(body.getAppropriateMonth());

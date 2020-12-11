@@ -48,13 +48,13 @@
     </el-table>
 
     <el-dialog title="最新の口座状況の登録" :visible.sync="dialogFormVisible">
-      aaa{{ form.recordedAt }} bbb{{ recordedAt }}
       <el-form :model="form">
         <el-form ref="form" :model="form" label-width="200px" size="medium">
           <el-form-item label="口座名">{{ form.accountId }}</el-form-item>
           <el-form-item label="記帳日時">
             <el-date-picker
-              v-model="recordedAt"
+              v-model="form.recordedAt"
+              format="yyyy/MM/dd"
               type="date"
               placeholder="口座残高を確認した日付"
               :picker-options="pickerOptions"
@@ -154,8 +154,7 @@ export default {
             }
           }
         ]
-      },
-      recordedAt: "" //datepicker用 defaultの設定を共通化したい
+      }
     }
   },
   created: function() {
@@ -232,17 +231,19 @@ export default {
     },
     onClickPostApi: function() {
       var that = this
-      console.log("onClickPostApi method実行")
-      console.log(that.recordedAt)
+
+      let textRecordedAt = that.form.recordedAt.toLocaleString().split("T")[0]
 
       //POSTリクエスト項目
-      var request = {
-        accountId: this.form.accountId,
-        recordedAt: this.form.recordedAt,
-        balance: this.form.balance,
+      let request = {
+        accountId: that.form.accountId,
+        recordedAt: textRecordedAt,
+        balance: that.form.balance,
         currencyId: 1 //TODOマスタから取得
       }
 
+      console.log("onClickPostApi method実行")
+      console.log(request)
       axios
         .post(API_PATH_CPF_21, request)
         .then(function(response) {

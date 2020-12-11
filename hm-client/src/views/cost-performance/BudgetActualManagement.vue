@@ -129,7 +129,7 @@
 import axios from "axios"
 import common from "@/js/common/common.js"
 
-//口座残高管理API
+//予実管理(資産)API
 const API_PATH_CPF_22 = "http://localhost:8080/api/ast/asset-budget-actual"
 
 export default {
