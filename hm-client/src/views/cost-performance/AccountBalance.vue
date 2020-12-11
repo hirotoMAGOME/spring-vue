@@ -75,7 +75,7 @@
           type="primary"
           @click="
             dialogFormVisible = false
-            onClickPostApi()
+            onClickPatchApi()
           "
           >Confirm</el-button
         >
@@ -229,7 +229,7 @@ export default {
         currencyId: getAccountBalance.currencyId
       }
     },
-    onClickPostApi: function() {
+    onClickPatchApi: function() {
       var that = this
 
       let textRecordedAt = that.form.recordedAt.toLocaleString().split("T")[0]
@@ -242,7 +242,7 @@ export default {
         currencyId: 1 //TODOマスタから取得
       }
 
-      console.log("onClickPostApi method実行")
+      console.log("onClickPatchApi method実行")
       console.log(request)
       axios
         .post(API_PATH_CPF_21, request)
