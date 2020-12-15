@@ -4,11 +4,11 @@
       <span>口座残高管理</span>
     </div>
     <el-table :data="options.latestAccountBalances" border style="width: 100%">
-      <el-table-column
-        prop="accountId"
-        label="口座名"
-        width="180"
-      ></el-table-column>
+      <el-table-column label="口座名" width="180">
+        <template slot-scope="props">
+          {{ getAccountName(props.row.accountId) }}
+        </template>
+      </el-table-column>
       <el-table-column
         prop="balance"
         label="残高"
@@ -111,7 +111,8 @@ export default {
     return {
       options: {
         latestAccountBalances: [],
-        accountBalanceHistory: []
+        accountBalanceHistory: [],
+        accounts: []
       },
       dialogFormVisible: false, //モーダルの表示状態
       historyDialogVisible: false, //履歴モーダルの表示状態
@@ -157,6 +158,21 @@ export default {
       }
     }
   },
+  computed: {
+    getAccountName: function() {
+      return function(accountId) {
+        var that = this
+
+        let target = that.options.accounts
+          .filter(function(object) {
+            return object.id == accountId
+          })
+          .shift()
+
+        return target.name
+      }
+    }
+  },
   created: function() {
     var that = this
     //GET
@@ -192,6 +208,7 @@ export default {
         .then(function(res) {
           that.options.latestAccountBalances = res.data.latestAccountBalance
           that.options.accountBalanceHistory = res.data.accountBalanceHistory
+          that.options.accounts = res.data.accounts
         })
         .catch(function(err) {
           console.log("ERROR")

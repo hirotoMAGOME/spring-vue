@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import hm.springapi.controller.view.ast.costperformance.dto.AccountBalanceManagementGetRes;
 import hm.springapi.controller.view.ast.costperformance.dto.AccountBalanceHistory;
 import hm.springapi.controller.view.ast.costperformance.dto.AccountBalancePostReq;
+import hm.springapi.dao.entity.Account;
 import hm.springapi.dao.entity.AccountBalance;
+import hm.springapi.service.AccountService;
 import hm.springapi.service.AccountBalanceService;
 
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class AccountBalanceController {
-
+	private final AccountService accountService;
     private final AccountBalanceService accountBalanceService;
 
     @GetMapping("/api/ast/account-balance-management")
@@ -32,6 +34,7 @@ public class AccountBalanceController {
         //レスポンスの第1階層セット用インスタンス
         ArrayList <AccountBalance> latestAccountBalance = new ArrayList<>();
         ArrayList <AccountBalanceHistory> accountBalanceHistory = new ArrayList<>();
+        ArrayList <Account> accounts = new ArrayList<>();
     	
     	//全取得
         List<AccountBalance> accountBalancesAll = accountBalanceService.findAll();
@@ -71,10 +74,15 @@ public class AccountBalanceController {
 
         });
         
+        
+        //口座マスタの取得
+        List<Account> accountAll = accountService.findAll();
+        
         //レスポンスの作成
     	AccountBalanceManagementGetRes accountBalanceManagementResponse = AccountBalanceManagementGetRes.builder()
                 .latestAccountBalance(latestAccountBalance)
                 .accountBalanceHistory(accountBalanceHistory)
+                .accounts(accountAll)
                 .build();
         
         return new ResponseEntity<>(accountBalanceManagementResponse, HttpStatus.OK);
