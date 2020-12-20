@@ -48,20 +48,20 @@
         label="実績(計)"
         width="180"
       ></el-table-column>
-      <el-table-column label="編集" width="180">
+      <el-table-column label="実績登録" width="180">
         <template slot-scope="scope">
           <el-button
             type="info"
             round
             @click="
-              onClickEdit(scope.row.id)
+              onClickActualRegist(scope.row.budgetId)
               dialogFormVisible = true
             "
             >編集</el-button
           >
         </template>
       </el-table-column>
-      <el-table-column label="実績" width="180">
+      <el-table-column label="実績確認" width="180">
         <template slot-scope="scope">
           <el-button
             type="info"
@@ -231,18 +231,18 @@ export default {
     display: function(that) {
       that.options.months = that.setMonthsSelect(that.thisYMD)
     },
-    onClickEdit: function(selectedId) {
+    onClickActualRegist: function(selectedBudgetId) {
       //モーダルに値をセット
 
-      var getAccountBalance = this.options.latestAccountBalances.find(
-        v => v.accountId === selectedId
+      var getBudgetCategoriesBudgets = this.options.budgetCategoriesBudgets.find(
+        v => v.budgetId === selectedBudgetId
       )
-
+      console.log(getBudgetCategoriesBudgets)
       this.form = {
-        accountId: getAccountBalance.accountId,
-        recordedAt: getAccountBalance.recordedAt,
-        balance: getAccountBalance.balance,
-        currencyId: getAccountBalance.currencyId
+        accountId: getBudgetCategoriesBudgets.accountId,
+        recordedAt: getBudgetCategoriesBudgets.recordedAt,
+        balance: getBudgetCategoriesBudgets.balance,
+        currencyId: getBudgetCategoriesBudgets.currencyId
       }
     },
     onClickOpenActualHistory: function(budgetId) {

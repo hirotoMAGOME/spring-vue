@@ -28,11 +28,11 @@ INSERT INTO a_budget (id, appropriate_month, budget_category_id, amount, name, c
 
 
 -- 実績
-INSERT INTO a_actual (id, appropriate_month, settled_at, budget_id, account_id, price, name, created_at, created_user_id, updated_at, updated_user_id, deleted_at, deleted_user_id) VALUES ('1', null, '2020-02-01 12:00:00', '1', '1', '800', 'ラーメン', '2020-01-01 00:00:00', '1', '2020-01-01 00:00:00', '1', null, null);
-INSERT INTO a_actual (id, appropriate_month, settled_at, budget_id, account_id, price, name, created_at, created_user_id, updated_at, updated_user_id, deleted_at, deleted_user_id) VALUES ('2', null, '2020-02-02 12:00:00', '1', '1', '600', '弁当', '2020-01-01 00:00:00', '1', '2020-01-01 00:00:00', '1', null, null);
-INSERT INTO a_actual (id, appropriate_month, settled_at, budget_id, account_id, price, name, created_at, created_user_id, updated_at, updated_user_id, deleted_at, deleted_user_id) VALUES ('3', null, '2020-02-02 12:00:00', '1', '2', '900', '油そば', '2020-01-01 00:00:00', '1', '2020-01-01 00:00:00', '1', null, null);
-INSERT INTO a_actual (id, appropriate_month, settled_at, budget_id, account_id, price, name, created_at, created_user_id, updated_at, updated_user_id, deleted_at, deleted_user_id) VALUES ('4', null, '2020-11-02 12:00:00', '2', '2', '6000', '鍋', '2020-01-01 00:00:00', '1', '2020-01-01 00:00:00', '1', null, null);
-INSERT INTO a_actual (id, appropriate_month, settled_at, budget_id, account_id, price, name, created_at, created_user_id, updated_at, updated_user_id, deleted_at, deleted_user_id) VALUES ('5', null, '2020-11-03 12:00:00', '2', '2', '8000', '居酒屋', '2020-01-01 00:00:00', '1', '2020-01-01 00:00:00', '1', null, null);
+INSERT INTO a_actual (id, appropriate_month, settled_at, budget_id, account_id, price, name, created_at, created_user_id, updated_at, updated_user_id, deleted_at, deleted_user_id) VALUES ('1', null, '2020-02-01 12:00:00', '13', '1', '800', 'ラーメン', '2020-01-01 00:00:00', '1', '2020-01-01 00:00:00', '1', null, null);
+INSERT INTO a_actual (id, appropriate_month, settled_at, budget_id, account_id, price, name, created_at, created_user_id, updated_at, updated_user_id, deleted_at, deleted_user_id) VALUES ('2', null, '2020-02-02 12:00:00', '13', '1', '600', '弁当', '2020-01-01 00:00:00', '1', '2020-01-01 00:00:00', '1', null, null);
+INSERT INTO a_actual (id, appropriate_month, settled_at, budget_id, account_id, price, name, created_at, created_user_id, updated_at, updated_user_id, deleted_at, deleted_user_id) VALUES ('3', null, '2020-02-02 12:00:00', '13', '2', '900', '油そば', '2020-01-01 00:00:00', '1', '2020-01-01 00:00:00', '1', null, null);
+INSERT INTO a_actual (id, appropriate_month, settled_at, budget_id, account_id, price, name, created_at, created_user_id, updated_at, updated_user_id, deleted_at, deleted_user_id) VALUES ('4', null, '2020-11-02 12:00:00', '14', '2', '6000', '鍋', '2020-01-01 00:00:00', '1', '2020-01-01 00:00:00', '1', null, null);
+INSERT INTO a_actual (id, appropriate_month, settled_at, budget_id, account_id, price, name, created_at, created_user_id, updated_at, updated_user_id, deleted_at, deleted_user_id) VALUES ('5', null, '2020-11-03 12:00:00', '14', '2', '8000', '居酒屋', '2020-01-01 00:00:00', '1', '2020-01-01 00:00:00', '1', null, null);
 
 
 -- 口座残高
