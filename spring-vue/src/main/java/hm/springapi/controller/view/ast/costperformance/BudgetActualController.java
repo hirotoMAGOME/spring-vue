@@ -5,9 +5,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import hm.springapi.controller.view.ast.costperformance.dto.ActualRegistPostReq;
 import hm.springapi.controller.view.ast.costperformance.dto.BudgetActualGetRes;
 import hm.springapi.controller.view.ast.costperformance.dto.BudgetCategoriesBudgets;
 import hm.springapi.controller.view.ast.costperformance.dto.BudgetsActuals;
@@ -116,6 +120,27 @@ public class BudgetActualController {
                 .build();        
         
         return new ResponseEntity<>(budgetActualGetResponse, HttpStatus.OK);
+    }
+    
+    @PatchMapping("/api/ast/asset-budget-actual")
+    @CrossOrigin
+    @ResponseBody
+    public String postActual(@RequestBody ActualRegistPostReq body) {
+    	Actual actual = new Actual();
+    	actual.setSettledAt(body.getSettledAt());
+    	actual.setBudgetId(body.getBudgetId());
+    	actual.setAccountId(body.getAccountId());
+    	actual.setPrice(body.getPrice());
+    	actual.setName(body.getName());
+    	
+    	//
+//    	actual.setAppropriateMonth(appropriateMonth);
+    	
+    	//TODO ŒÅ’è’l‚ð‚â‚ß‚é
+    	actual.setCreatedUserId(1);
+    	actual.setUpdatedUserId(1);
+    	
+    	return actualService.createActual(actual);
     }
     
 }

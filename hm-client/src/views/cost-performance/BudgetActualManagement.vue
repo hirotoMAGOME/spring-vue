@@ -48,20 +48,7 @@
         label="実績(計)"
         width="180"
       ></el-table-column>
-      <el-table-column label="実績登録" width="180">
-        <template slot-scope="scope">
-          <el-button
-            type="info"
-            round
-            @click="
-              onClickActualRegist(scope.row.budgetId)
-              dialogFormVisible = true
-            "
-            >編集</el-button
-          >
-        </template>
-      </el-table-column>
-      <el-table-column label="実績確認" width="180">
+      <el-table-column label="実績(履歴)" width="180">
         <template slot-scope="scope">
           <el-button
             type="info"
@@ -72,16 +59,56 @@
               historyDialogVisible = true
             "
           >
-            実績</el-button
+            履歴</el-button
+          >
+        </template>
+      </el-table-column>
+      <el-table-column label="登録" width="180">
+        <template slot-scope="scope">
+          <el-button
+            type="info"
+            round
+            @click="
+              onClickActualRegist(scope.row.budgetId)
+              dialogFormVisible = true
+            "
+            >登録</el-button
           >
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog title="新規登録" :visible.sync="dialogFormVisible">
+    <el-dialog title="実績登録" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form ref="form" :model="form" label-width="200px" size="medium">
-          <el-form-item label="ID">{{ form.id }}</el-form-item>
-          <el-form-item label="予算カテゴリ名">
+          <el-form-item label="予算ID">{{ form.budgetId }}</el-form-item>
+          <el-form-item label="口座ID">
+            <el-select filterable placeholder="Select" v-model="form.accountId">
+              <el-option
+                v-for="item in options.accounts"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id"
+                >{{ item.name }}</el-option
+              >
+            </el-select>
+          </el-form-item>
+          <el-form-item label="datepicker">
+            <el-date-picker
+              v-model="form.settledAt"
+              format="yyyy/MM/dd"
+              type="date"
+              placeholder="Pick a day"
+              :picker-options="pickerOptions"
+            >
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item label="金額">
+            <el-input v-model="form.price"></el-input>
+          </el-form-item>
+          <el-form-item label="実績">
+            <el-input v-model="form.name"></el-input>
+          </el-form-item>
+          <!-- <el-form-item label="予算カテゴリ名">
             <el-input v-model="form.name"></el-input>
           </el-form-item>
           <el-form-item label="固定費/変動費">
@@ -93,7 +120,7 @@
                 >{{ v.name }}</el-radio
               >
             </el-radio-group>
-          </el-form-item>
+          </el-form-item> -->
         </el-form>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -140,7 +167,8 @@ export default {
       options: {
         budgetCategoriesBudgets: [],
         budgetsActuals: [],
-        months: []
+        months: [],
+        accounts: []
       },
       selectedMonth: null, //対象月プルダウン
       thisYMD: null, //今日のyyyy/mm/dd
@@ -148,10 +176,11 @@ export default {
       dialogFormVisible: false, //モーダルの表示状態
       historyDialogVisible: false, //履歴モーダルの表示状態
       form: {
+        budgetId: null,
         accountId: null,
-        recordedAt: null,
-        balance: null,
-        currencyId: null
+        price: null,
+        name: null,
+        settledAt: null
       },
       historyDialog: {
         budgetName: null,
@@ -213,8 +242,8 @@ export default {
           console.log(res)
           that.options.budgetCategoriesBudgets =
             res.data.budgetCategoriesBudgets
-
           that.options.budgetsActuals = res.data.budgetsActuals
+          that.options.accounts = res.data.accounts
         })
         .catch(function(err) {
           console.log("ERROR")
@@ -233,17 +262,43 @@ export default {
     },
     onClickActualRegist: function(selectedBudgetId) {
       //モーダルに値をセット
-
-      var getBudgetCategoriesBudgets = this.options.budgetCategoriesBudgets.find(
+      console.log(selectedBudgetId)
+      var targetBudgetCategoriesBudgets = this.options.budgetCategoriesBudgets.find(
         v => v.budgetId === selectedBudgetId
       )
-      console.log(getBudgetCategoriesBudgets)
+      console.log(targetBudgetCategoriesBudgets)
       this.form = {
-        accountId: getBudgetCategoriesBudgets.accountId,
-        recordedAt: getBudgetCategoriesBudgets.recordedAt,
-        balance: getBudgetCategoriesBudgets.balance,
-        currencyId: getBudgetCategoriesBudgets.currencyId
+        budgetId: targetBudgetCategoriesBudgets.budgetId,
+        accountId: null,
+        price: null,
+        name: null
       }
+    },
+    onClickRegistAPI: function() {
+      var that = this
+
+      let textSettlededAt = that.form.settledAt.toLocaleString().split("T")[0]
+
+      console.log("onClickRegistAPI method実行")
+      var request = {
+        settledAt: textSettlededAt,
+        budgetId: that.form.budgetId,
+        accountId: that.form.accountId,
+        price: that.form.price,
+        name: that.form.name
+      }
+
+      axios
+        .patch(API_PATH_CPF_22, request)
+        .then(function(response) {
+          console.log("ok")
+          console.log(response)
+          that.openSuccessNotification(true)
+        })
+        .catch(function(error) {
+          console.log("NG")
+          console.log(error)
+        })
     },
     onClickOpenActualHistory: function(budgetId) {
       var that = this

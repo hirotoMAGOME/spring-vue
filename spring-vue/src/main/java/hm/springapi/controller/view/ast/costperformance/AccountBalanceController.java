@@ -34,7 +34,6 @@ public class AccountBalanceController {
         //レスポンスの第1階層セット用インスタンス
         ArrayList <AccountBalance> latestAccountBalance = new ArrayList<>();
         ArrayList <AccountBalanceHistory> accountBalanceHistory = new ArrayList<>();
-        ArrayList <Account> accounts = new ArrayList<>();
     	
     	//全取得
         List<AccountBalance> accountBalancesAll = accountBalanceService.findAll();
