@@ -16,7 +16,7 @@
       <el-submenu index="2">
         <template slot="title">資産管理</template>
         <el-menu-item index="2-1">
-          <a href="/asset-master/asset-summary">サマリー</a>
+          <a href="/asset-summary">サマリー</a>
         </el-menu-item>
         <el-menu-item index="2-2">
           <a href="/cost-performance">予実登録更新</a>

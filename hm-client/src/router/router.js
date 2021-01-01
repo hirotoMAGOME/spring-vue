@@ -45,11 +45,11 @@ export default new Router({
         import(/* webpackChunkName: "currency" */ "@/views/Currency.vue")
     },
     {
-      path: "/asset-master/asset-summary",
+      path: "/asset-summary",
       name: "assetSummary",
       component: () =>
         import(
-          /* webpackChunkName: "assetMaster" */ "@/views/asset-master/asset-summary/AssetSummary.vue"
+          /* webpackChunkName: "assetMaster" */ "@/views/asset-summary/AssetSummary.vue"
         )
     },
     {
