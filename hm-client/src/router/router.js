@@ -45,11 +45,11 @@ export default new Router({
         import(/* webpackChunkName: "currency" */ "@/views/Currency.vue")
     },
     {
-      path: "/asset-master",
-      name: "assetMaster",
+      path: "/asset-master/asset-summary",
+      name: "assetSummary",
       component: () =>
         import(
-          /* webpackChunkName: "assetMaster" */ "@/views/asset-master/AssetMaster.vue"
+          /* webpackChunkName: "assetMaster" */ "@/views/asset-master/asset-summary/AssetSummary.vue"
         )
     },
     {
@@ -58,6 +58,14 @@ export default new Router({
       component: () =>
         import(
           /* webpackChunkName: "budget" */ "@/views/cost-performance/CostPerformance.vue"
+        )
+    },
+    {
+      path: "/asset-master",
+      name: "assetMaster",
+      component: () =>
+        import(
+          /* webpackChunkName: "assetMaster" */ "@/views/asset-master/AssetMaster.vue"
         )
     },
     {
