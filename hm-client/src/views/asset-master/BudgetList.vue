@@ -237,15 +237,25 @@ export default {
       that.options.budgetCategories.sort(that.objectArraySort("id", "asc"))
 
       //予算の確定ボタンの表示制御
+      //TODO thisYearとthisMonthを1行で取りたい。比較まできれいに。
       let dObj = new Date()
+      let thisYear = parseInt(dObj.getFullYear())
       let thisMonth = parseInt(dObj.getMonth() + 1, 10)
 
+      let responseYear = parseInt(
+        that.options.latestAppropriateMonth.substr(0, 4),
+        10
+      )
       let responseMonth = parseInt(
         that.options.latestAppropriateMonth.substr(5, 2),
         10
       )
 
-      if (thisMonth <= responseMonth) {
+      //TODO とりあえず今は6桁の整数にして比較。日付型で比較したい。
+      let thisYearMonth6 = thisYear * 100 + thisMonth
+      let responsrYearMonth6 = responseYear * 100 + responseMonth
+
+      if (thisYearMonth6 <= responsrYearMonth6) {
         that.budgetFixButtonDisabled = true
       }
 
