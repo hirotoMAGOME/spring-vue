@@ -19,6 +19,10 @@
         <p>
           TODO いろいろフィルタで絞り込む。予算カテゴリや「今月の予算」など？
         </p>
+        <p>
+          TODO
+          画面定義書がないとキツい。画面の構成。各操作で何を更新するのか定義したい。
+        </p>
       </div>
     </div>
     <el-row>
@@ -142,10 +146,7 @@
         <el-table-column prop="name" label="残高"></el-table-column>
         <el-table-column prop="price" label="金額"></el-table-column>
         <el-table-column prop="accountId" label="口座"></el-table-column>
-        <el-table-column
-          prop="settledAt"
-          label="最終記録日時"
-        ></el-table-column>
+        <el-table-column prop="settledAt" label="記帳日時"></el-table-column>
       </el-table>
     </el-dialog>
   </el-card>
@@ -185,6 +186,36 @@ export default {
       historyDialog: {
         budgetName: null,
         history: []
+      },
+      pickerOptions: {
+        //datepicker用
+        disabledDate(time) {
+          return time.getTime() > Date.now()
+        },
+        shortcuts: [
+          {
+            text: "Today",
+            onClick(picker) {
+              picker.$emit("pick", new Date())
+            }
+          },
+          {
+            text: "Yesterday",
+            onClick(picker) {
+              const date = new Date()
+              date.setTime(date.getTime() - 3600 * 1000 * 24)
+              picker.$emit("pick", date)
+            }
+          },
+          {
+            text: "A week ago",
+            onClick(picker) {
+              const date = new Date()
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7)
+              picker.$emit("pick", date)
+            }
+          }
+        ]
       }
     }
   },

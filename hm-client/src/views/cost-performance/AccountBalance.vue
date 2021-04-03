@@ -16,22 +16,9 @@
       ></el-table-column>
       <el-table-column
         prop="recordedAt"
-        label="最終記録日時"
+        label="最終記帳日時"
         width="180"
       ></el-table-column>
-      <el-table-column label="編集" width="180">
-        <template slot-scope="scope">
-          <el-button
-            type="info"
-            round
-            @click="
-              onClickEdit(scope.row.accountId)
-              dialogFormVisible = true
-            "
-            >編集</el-button
-          >
-        </template>
-      </el-table-column>
       <el-table-column label="履歴" width="180">
         <template slot-scope="scope">
           <el-button
@@ -42,6 +29,19 @@
               historyDialogVisible = true
             "
             >履歴</el-button
+          >
+        </template>
+      </el-table-column>
+      <el-table-column label="編集" width="180">
+        <template slot-scope="scope">
+          <el-button
+            type="info"
+            round
+            @click="
+              onClickEdit(scope.row.accountId)
+              dialogFormVisible = true
+            "
+            >編集</el-button
           >
         </template>
       </el-table-column>
@@ -86,10 +86,7 @@
       口座名：{{ historyDialog.accountNm }}
       <el-table :data="historyDialog.history" border style="width: 100%">
         <el-table-column prop="balance" label="残高"></el-table-column>
-        <el-table-column
-          prop="recordedAt"
-          label="最終記録日時"
-        ></el-table-column>
+        <el-table-column prop="recordedAt" label="記帳日時"></el-table-column>
       </el-table>
     </el-dialog>
   </el-card>
