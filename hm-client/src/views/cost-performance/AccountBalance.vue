@@ -9,16 +9,13 @@
           {{ getAccountName(props.row.accountId) }}
         </template>
       </el-table-column>
-      <el-table-column
-        prop="balance"
-        label="残高"
-        width="180"
-      ></el-table-column>
-      <el-table-column
-        prop="recordedAt"
-        label="最終記帳日時"
-        width="180"
-      ></el-table-column>
+      <el-table-column prop="balance" label="残高" width="180">
+      </el-table-column>
+      <el-table-column prop="recordedAt" label="最終記帳日時" width="180">
+        <template slot-scope="props">
+          {{ deleteSsfromDatetime(props.row.recordedAt) }}
+        </template>
+      </el-table-column>
       <el-table-column label="履歴" width="180">
         <template slot-scope="scope">
           <el-button
@@ -32,7 +29,7 @@
           >
         </template>
       </el-table-column>
-      <el-table-column label="編集" width="180">
+      <el-table-column label="登録" width="180">
         <template slot-scope="scope">
           <el-button
             type="info"
@@ -41,7 +38,7 @@
               onClickEdit(scope.row.accountId)
               dialogFormVisible = true
             "
-            >編集</el-button
+            >登録</el-button
           >
         </template>
       </el-table-column>

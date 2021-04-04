@@ -78,6 +78,14 @@ export default {
         }
         return order == "desc" ? comparison * -1 : comparison
       }
+    },
+    ////////////////////////
+    // 表示系
+    ////////////////////////
+    deleteSsfromDatetime: function (input) {
+      // yyyy/MM/dd HH:mm:ss → yyyy/MM/dd HH:mm
+      let output = input.slice(0,-3)
+      return output
     }
   }
 }
